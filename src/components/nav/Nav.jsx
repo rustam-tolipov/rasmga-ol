@@ -1,9 +1,13 @@
+import logoFile from '../../assets/logo.svg';
+
 import './Nav.scss';
 
 const Nav = (props) => {
   return (
     <nav className='nav'>
-      <h1>Nav</h1>
+      <div className='logo'>
+        <img className='logo' src={logoFile} alt='Keep logo' />
+      </div>
     </nav>
   );
 };
