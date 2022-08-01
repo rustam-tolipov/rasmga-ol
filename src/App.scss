@@ -1,3 +1,29 @@
+// font
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Regular.woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Bold.woff2');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-SemiBold.woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-Medium.woff2');
+  font-weight: 500;
+}
+
+// styles
 * {
   margin: 0;
   padding: 0;
@@ -6,4 +32,12 @@
 
 html {
   font-size: 62.5%;
-} 
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: #333;
+  background-color: #fff;
+}
