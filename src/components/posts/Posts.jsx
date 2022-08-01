@@ -1,6 +1,8 @@
+import './Posts.scss';
+
 const Posts = (props) => {
   return (
-    <div>
+    <div className='posts'>
       <h1>Posts</h1>
     </div>
   );

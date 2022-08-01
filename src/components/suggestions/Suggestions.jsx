@@ -1,7 +1,11 @@
+import './Suggestions.scss';
+
 const Suggestions = (props) => {
-  return ( <div>
-    <h1>Suggestions</h1>
-  </div> );
-}
- 
+  return (
+    <div className='suggestions'>
+      <h1>Suggestions</h1>
+    </div>
+  );
+};
+
 export default Suggestions;

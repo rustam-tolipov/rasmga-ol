@@ -1,8 +1,10 @@
+import './Nav.scss';
+
 const Nav = (props) => {
   return (
-    <div>
+    <nav className='nav'>
       <h1>Nav</h1>
-    </div>
+    </nav>
   );
 };
 
