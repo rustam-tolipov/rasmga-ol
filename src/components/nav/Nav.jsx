@@ -1,6 +1,7 @@
 import logoFile from '../../assets/logo.svg';
 
 import './Nav.scss';
+import NavFooter from './NavFooter';
 import NavLinks from './NavLinks';
 import NavProfile from './NavProfile';
 
@@ -12,6 +13,7 @@ const Nav = (props) => {
       </div>
       <NavProfile />
       <NavLinks />
+      <NavFooter />
     </nav>
   );
 };
