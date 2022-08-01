@@ -1,6 +1,7 @@
 import logoFile from '../../assets/logo.svg';
 
 import './Nav.scss';
+import NavLinks from './NavLinks';
 import NavProfile from './NavProfile';
 
 const Nav = (props) => {
@@ -10,6 +11,7 @@ const Nav = (props) => {
         <img className='logo' src={logoFile} alt='Keep logo' />
       </div>
       <NavProfile />
+      <NavLinks />
     </nav>
   );
 };

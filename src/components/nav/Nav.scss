@@ -1,8 +1,9 @@
 .nav {
   grid-column: 1 / span 2;
 
-  // temp
-  outline: 3px solid #14532d;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
 }
 
 .logo {
