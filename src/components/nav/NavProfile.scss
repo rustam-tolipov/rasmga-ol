@@ -1,0 +1,32 @@
+.nav-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__avatar-img {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+  }
+
+  &__name-box {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.4rem;
+  }
+
+  &__id {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  &__icon {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,12 @@
+.nav {
+  grid-column: 1 / span 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.logo {
+  width: 75%;
+  color: #fff;
+}

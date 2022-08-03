@@ -1,0 +1,33 @@
+.suggestions-item,
+.suggestions-item__profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.suggestions-item__profile {
+  gap: 1.2rem;
+}
+
+.suggestions-item__img {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+}
+
+.suggestions-item__name-box {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.suggestions-item__id {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.suggestions-item__name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
