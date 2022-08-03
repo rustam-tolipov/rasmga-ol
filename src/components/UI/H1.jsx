@@ -2,6 +2,7 @@ const h1Styles = {
   fontSize: '2.4rem',
   color: '#fff',
   fontWeight: '700',
+  marginBottom: '2.4rem',
 };
 
 const H1 = (props) => {
