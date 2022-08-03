@@ -1,7 +1,13 @@
 import './Post.scss';
 
-const Post = (div) => {
-  return <div className='post'></div>;
+const Post = (props) => {
+  console.log(props)
+
+  return (
+    <div className='post'>
+      <img src={props.url} alt='' />
+    </div>
+  );
 };
 
 export default Post;
