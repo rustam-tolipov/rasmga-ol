@@ -19,8 +19,6 @@ const Posts = (props) => {
       .then((data) => setPosts(data.results));
   }, []);
 
-  console.log(posts);
-
   return (
     <div className='posts'>
       <PostsSearch />
