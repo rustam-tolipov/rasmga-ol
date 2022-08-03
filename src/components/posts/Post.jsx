@@ -5,7 +5,7 @@ const Post = (props) => {
 
   return (
     <div className='post'>
-      <img src={props.url} alt='' />
+      <img className='post__img' src={props.url} alt='' />
     </div>
   );
 };

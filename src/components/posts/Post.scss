@@ -1,0 +1,12 @@
+.post {
+
+  &__img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    height: 48rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+  }
+}

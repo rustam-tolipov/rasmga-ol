@@ -13,7 +13,7 @@ const Posts = (props) => {
 
   useEffect(() => {
     fetch(
-      `https://api.unsplash.com/search/photos?page=1&length=20&query=cars&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS}`
+      `https://api.unsplash.com/search/photos?page=1&length=20&query=cats&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS}`
     )
       .then((response) => response.json())
       .then((data) => setPosts(data.results));
