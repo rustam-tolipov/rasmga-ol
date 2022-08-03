@@ -1,5 +1,6 @@
 import { IoChevronDownOutline } from 'react-icons/io5';
 import avatarFile from '../../assets/avatar.jpg';
+import Verified from '../UI/Verified';
 
 import './NavProfile.scss';
 
@@ -14,7 +15,9 @@ const NavProfile = (props) => {
         />
       </div>
       <div className='nav-profile__name-box'>
-        <span className='nav-profile__id'>maqsudtolipov9</span>
+        <span className='nav-profile__id'>
+          maqsudtolipov9 <Verified />
+        </span>
         <span className='nav-profile__name'>Maqsud Tolipov</span>
       </div>
       <div className='nav-profile__icon'>

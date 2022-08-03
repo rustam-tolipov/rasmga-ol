@@ -1,6 +1,5 @@
-import { MdVerified } from 'react-icons/md';
-
 import Button from '../UI/Button';
+import Verified from '../UI/Verified';
 import './SuggestionsItem.scss';
 
 const SuggestionsItem = (props) => {
@@ -10,7 +9,7 @@ const SuggestionsItem = (props) => {
         <img className='suggestions-item__img' src={props.image} alt='user' />
         <div className='suggestions-item__name-box'>
           <span className='suggestions-item__id'>
-            {props.id} <MdVerified color='#0095f6' />
+            {props.id} <Verified />
           </span>
           <span className='suggestions-item__name'>{props.name}</span>
         </div>
