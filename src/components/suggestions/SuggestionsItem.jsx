@@ -1,3 +1,4 @@
+import Button from '../UI/Button';
 import './SuggestionsItem.scss';
 
 const SuggestionsItem = (props) => {
@@ -10,7 +11,7 @@ const SuggestionsItem = (props) => {
           <span className='suggestions-item__name'>{props.name}</span>
         </div>
       </div>
-      <button>Follow</button>
+      <Button>Follow</Button>
     </li>
   );
 };
