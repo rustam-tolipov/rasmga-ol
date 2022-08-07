@@ -23,7 +23,7 @@ const Posts = (props) => {
       <h1>Posts</h1>
       {posts &&
         posts.map((post, i) => {
-          return <Post key={posts.id} url={post.image.url} />;
+          return <Post key={posts.id} url={post.image.url} content= {post.content} />;
         })}
     </div>
   );
