@@ -1,3 +1,9 @@
 .posts {
   grid-column: 3 / span 5;
 }
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}

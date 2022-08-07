@@ -21,10 +21,18 @@ const Posts = (props) => {
     <div className='posts'>
       <PostsSearch />
       <h1>Posts</h1>
-      {posts &&
-        posts.map((post, i) => {
-          return <Post key={posts.id} url={post.image.url} content= {post.content} />;
-        })}
+      <div className='posts-list'>
+        {posts &&
+          posts.map((post, i) => {
+            return (
+              <Post
+                key={posts.id}
+                url={post.image.url}
+                content={post.content}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };
