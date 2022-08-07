@@ -7,7 +7,6 @@ import PostsSearch from './PostsSearch';
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
 
-  //fetch https://rustam-social-media-app.herokuapp.com/api/v1/posts
   useEffect(() => {
     fetch('https://rustam-social-media-app.herokuapp.com/api/v1/posts')
       .then((response) => response.json())
