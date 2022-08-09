@@ -1,9 +1,9 @@
-import './Button.scss'
+import './Button.scss';
 
 const Button = (props) => {
-  return <button className='button'>
-    {props.children}
-  </button>;
+  const classes = 'button ' + props.className;
+
+  return <button className={classes}>{props.children}</button>;
 };
 
 export default Button;

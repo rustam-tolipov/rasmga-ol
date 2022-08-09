@@ -21,7 +21,6 @@ const User = () => {
 
   return (
     <div className='user'>
-      Halo amigo {id}
       <UserProfile
         username={fakeData.username}
         email={fakeData.email}
