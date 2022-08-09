@@ -1,6 +1,9 @@
 .posts {
   grid-column: 3 / span 5;
+}
 
-  // temp
-  outline: 3px solid #0c4a6e;
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
 }
