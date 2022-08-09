@@ -1,7 +1,7 @@
 //  import browser router rote and switch
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Profile from './components/profile/Profile';
+import User from './components/user/User';
 
 import Nav from './components/nav/Nav';
 import Posts from './components/posts/Posts';
@@ -24,7 +24,7 @@ function App() {
               </>
             }
           />
-          <Route path='/users/:id' element={<Profile />} />
+          <Route path='/users/:id' element={<User />} />
         </Routes>
       </div>
     </BrowserRouter>
