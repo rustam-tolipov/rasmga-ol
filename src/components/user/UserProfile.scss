@@ -1,4 +1,21 @@
 .user-profile {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+
+  &__info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+
+  &__img {
+    height: 9rem;
+    border-radius: 50%;
+  }
+
+  &__name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1.2;
+  }
 }
