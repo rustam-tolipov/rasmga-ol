@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import UserProfile from './UserProfile';
 import UserNav from './UserNav';
+import UserPosts from './UserPosts';
 
 import './User.scss';
 import UserStatus from './UserStatus';
@@ -33,6 +34,7 @@ const User = () => {
         <UserStatus />
       </div>
       <UserNav />
+      <UserPosts />
     </div>
   );
 };
