@@ -24,6 +24,5 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 3.2rem;
-
-  
+  align-items: start;
 }

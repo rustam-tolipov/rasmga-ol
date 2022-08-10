@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import UserProfile from './UserProfile';
 
 import './User.scss';
+import UserStatus from './UserStatus';
 
 const fakeData = {
   email: 'maqsudtolipov9@gmail.com',
@@ -27,6 +28,7 @@ const User = () => {
         img={fakeData.avatar.url}
         description={fakeData.description}
       />
+      <UserStatus />
     </div>
   );
 };
