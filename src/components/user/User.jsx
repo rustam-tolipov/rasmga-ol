@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import UserProfile from './UserProfile';
+import UserNav from './UserNav';
 
 import './User.scss';
 import UserStatus from './UserStatus';
@@ -22,13 +23,16 @@ const User = () => {
 
   return (
     <div className='user'>
-      <UserProfile
-        username={fakeData.username}
-        email={fakeData.email}
-        img={fakeData.avatar.url}
-        description={fakeData.description}
-      />
-      <UserStatus />
+      <div className='user__header'>
+        <UserProfile
+          username={fakeData.username}
+          email={fakeData.email}
+          img={fakeData.avatar.url}
+          description={fakeData.description}
+        />
+        <UserStatus />
+      </div>
+      <UserNav />
     </div>
   );
 };
