@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Post from './Post';
 
 import './Posts.scss';
-import PostsSearch from './PostsSearch';
+import Search from '../UI/Search';
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
@@ -19,7 +19,7 @@ const Posts = (props) => {
 
   return (
     <div className='posts'>
-      <PostsSearch />
+      <Search />
       <h1>Posts</h1>
       <div className='posts-list'>
         {posts &&

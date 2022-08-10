@@ -7,7 +7,13 @@
    margin = 2.6rem
    full width = 1240px
 
+-- Typography
+  small: 12px
+  regular: 14px
+  large: 16px
 
+  heading 1: 2
+ 
 */
 
 .app {
@@ -18,6 +24,5 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 3.2rem;
-
-  
+  align-items: start;
 }
