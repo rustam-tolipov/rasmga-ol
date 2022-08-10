@@ -6,6 +6,7 @@ import UserPosts from './UserPosts';
 
 import './User.scss';
 import UserStatus from './UserStatus';
+import Search from '../UI/Search';
 
 const fakeData = {
   email: 'maqsudtolipov9@gmail.com',
@@ -24,6 +25,7 @@ const User = () => {
 
   return (
     <div className='user'>
+      <Search />
       <div className='user__header'>
         <UserProfile
           username={fakeData.username}
