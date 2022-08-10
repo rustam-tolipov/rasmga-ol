@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import './UserPosts.scss';
+
 const UserPosts = () => {
   const [posts, setPosts] = useState([]);
 
@@ -19,9 +21,7 @@ const UserPosts = () => {
   return (
     <div className='user-posts'>
       {posts.map((post, index) => (
-        <div>
-          <img src={post.urls.regular} alt='' />
-        </div>
+        <img src={post.urls.regular} alt='' />
       ))}
     </div>
   );
