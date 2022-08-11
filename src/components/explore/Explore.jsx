@@ -1,9 +1,11 @@
 import Search from '../UI/Search';
 import ExplorePosts from './ExplorePosts';
 
+import './Explore.scss'
+
 const Explore = () => {
   return (
-    <div>
+    <div className='explore'>
       <Search />
       <ExplorePosts />
     </div>
