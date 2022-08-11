@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import {
   IoHome,
   IoCompassOutline,
   IoBookmarkOutline,
   IoChatbubblesOutline,
-  IoFlashOutline
+  IoFlashOutline,
 } from 'react-icons/io5';
 
 import './NavLinks.scss';
@@ -13,16 +14,16 @@ const NavLinks = (props) => {
     <div className='nav-links'>
       <ul className='nav-links__list'>
         <li className='nav-links__item nav-links__item--active'>
-          <a className='nav-links__link' href='#'>
+          <Link to='/' className='nav-links__link' href='#'>
             <IoHome className='nav-links__icon' />
             <span className='nav-links__link-text'>Feed</span>
-          </a>
+          </Link>
         </li>
         <li className='nav-links__item'>
-          <a className='nav-links__link' href='#'>
+          <Link to={'explore'} className='nav-links__link' href='#'>
             <IoCompassOutline className='nav-links__icon' />
             <span className='nav-links__link-text'>Explore</span>
-          </a>
+          </Link>
         </li>
         <li className='nav-links__item'>
           <a className='nav-links__link' href='#'>
