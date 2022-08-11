@@ -1,10 +1,11 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const loginHandler = (e) => {
     e.preventDefault();
 
@@ -22,7 +23,10 @@ const Login = (props) => {
       .then((res) => {
         console.log(res);
         Cookies.set('jwt', res.headers.authorization.slice(7));
-        props.setIsLogged(true);
+      })
+      .then(() => {
+        console.log('redirect');
+        navigate('/');
       })
       .catch((err) => {});
   };
@@ -37,6 +41,7 @@ const Login = (props) => {
         <div>
           <input type='password' placeholder='password' />
         </div>
+
         <Button>Login</Button>
       </form>
     </div>
