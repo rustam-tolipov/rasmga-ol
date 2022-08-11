@@ -1,11 +1,20 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
 
 const Login = (props) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLogged = Cookies.get('jwt');
+
+    console.log(isLogged);
+    if (isLogged) navigate('/');
+  });
+
   const loginHandler = (e) => {
     e.preventDefault();
 
