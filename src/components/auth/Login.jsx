@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+import Cookies from 'js-cookie';
+
 import Button from '../UI/Button';
 
 import logo from '../../assets/logo.svg';
@@ -16,10 +18,13 @@ const Login = () => {
           password: 'password',
           'ber-token': true,
         },
+        withCredentials: true,
       }
+      // axcess conrrol origin axios
     )
       .then((res) => {
         console.log(res);
+        Cookies.set('jwt', res.headers.authorization.slice(7));
       })
       .catch((err) => {});
   };

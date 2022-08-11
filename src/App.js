@@ -20,6 +20,7 @@ function App() {
             path='/'
             element={
               <>
+                <Nav />
                 <Posts />
                 <Suggestions />
               </>
