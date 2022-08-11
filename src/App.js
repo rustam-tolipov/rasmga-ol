@@ -7,6 +7,7 @@ import Nav from './components/nav/Nav';
 import Posts from './components/posts/Posts';
 import Suggestions from './components/suggestions/Suggestions';
 import Explore from './components/explore/Explore';
+import Login from './components/auth/Login';
 
 import './App.scss';
 
@@ -14,7 +15,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className='app'>
-        <Nav />
         <Routes>
           <Route
             path='/'
@@ -25,8 +25,27 @@ function App() {
               </>
             }
           />
-          <Route path='/users/:id' element={<User />} />
-          <Route path='/explore' element={<Explore />} />
+          <Route
+            path='/users/:id'
+            element={
+              <>
+                {' '}
+                <Nav />
+                <User />
+              </>
+            }
+          />
+          <Route
+            path='/explore'
+            element={
+              <>
+                {' '}
+                <Nav />
+                <Explore />
+              </>
+            }
+          />
+          <Route path='/login' element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>
