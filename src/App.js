@@ -6,6 +6,7 @@ import User from './components/user/User';
 import Nav from './components/nav/Nav';
 import Posts from './components/posts/Posts';
 import Suggestions from './components/suggestions/Suggestions';
+import Explore from './components/explore/Explore';
 
 import './App.scss';
 
@@ -25,6 +26,7 @@ function App() {
             }
           />
           <Route path='/users/:id' element={<User />} />
+          <Route path='/explore' element={<Explore />} />
         </Routes>
       </div>
     </BrowserRouter>
