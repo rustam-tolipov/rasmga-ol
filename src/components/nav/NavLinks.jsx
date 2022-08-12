@@ -20,7 +20,7 @@ const NavLinks = (props) => {
           </Link>
         </li>
         <li className='nav-links__item'>
-          <Link to={'explore'} className='nav-links__link' href='#'>
+          <Link to='/explore' className='nav-links__link' href='#'>
             <IoCompassOutline className='nav-links__icon' />
             <span className='nav-links__link-text'>Explore</span>
           </Link>
