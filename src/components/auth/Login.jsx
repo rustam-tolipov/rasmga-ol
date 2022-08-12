@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
@@ -8,6 +8,9 @@ import logo from '../../assets/logo.svg';
 import './Login.scss';
 
 const Login = (props) => {
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+
   const navigate = useNavigate();
   useEffect(() => {
     const isLogged = Cookies.get('jwt');
@@ -21,11 +24,9 @@ const Login = (props) => {
       'https://rustam-social-media-rails-app.herokuapp.com/api/v1/auth/login',
       {
         user: {
-          email: 'maqsudtolipov9@gmail.com',
-          password: 'password',
-          'ber-token': true,
+          email: emailInputRef.current.value,
+          password: passwordInputRef.current.value,
         },
-        withCredentials: true,
       }
     )
       .then((res) => {
@@ -44,10 +45,14 @@ const Login = (props) => {
       <form className='login-form' action=''>
         <img className='login-img' src={logo} alt='Instagram logo' />
         <div>
-          <input type='email' placeholder='email' />
+          <input ref={emailInputRef} type='email' placeholder='email' />
         </div>
         <div>
-          <input type='password' placeholder='password' />
+          <input
+            ref={passwordInputRef}
+            type='password'
+            placeholder='password'
+          />
         </div>
 
         <Button>Login</Button>
