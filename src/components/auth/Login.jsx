@@ -32,6 +32,7 @@ const Login = (props) => {
       .then((res) => {
         console.log(res);
         Cookies.set('jwt', res.headers.authorization.slice(7));
+        localStorage.setItem('me', JSON.stringify(res.data));
       })
       .then(() => {
         console.log('redirect');
