@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
 
@@ -9,7 +9,6 @@ import './Login.scss';
 
 const Login = (props) => {
   const navigate = useNavigate();
-
   useEffect(() => {
     const isLogged = Cookies.get('jwt');
     if (isLogged) navigate('/');
@@ -52,6 +51,9 @@ const Login = (props) => {
         </div>
 
         <Button>Login</Button>
+        <Link className='login-link' to='/signup'>
+          If you don't have an account, create one here
+        </Link>
       </form>
     </div>
   );

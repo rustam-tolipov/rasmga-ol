@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
 import './Login.scss';
@@ -23,6 +24,9 @@ const SignUp = () => {
         </div>
 
         <Button>Sign Up</Button>
+        <Link className='login-link' to='/login'>
+          If you already memberm, please login here
+        </Link>
       </form>
     </div>
   );
