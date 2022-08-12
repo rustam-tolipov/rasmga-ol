@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { IoChevronDownOutline } from 'react-icons/io5';
@@ -7,6 +8,9 @@ import Verified from '../UI/Verified';
 import './NavProfile.scss';
 
 const NavProfile = (props) => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('me')));
+  console.log(user);
+
   return (
     <div className='nav-profile'>
       <div className='nav-profile__avatar'>
@@ -19,10 +23,13 @@ const NavProfile = (props) => {
       <div className='nav-profile__name-box'>
         <Link to='/users/maqsud'>
           <span className='nav-profile__id'>
-            maqsudtolipov9 <Verified />
+            {(user.first_name + user.last_name + user.id).toLowerCase()}{' '}
+            <Verified />
           </span>
         </Link>
-        <span className='nav-profile__name'>Maqsud Tolipov</span>
+        <span className='nav-profile__name'>
+          {user.first_name + ' ' + user.last_name}
+        </span>
       </div>
       <div className='nav-profile__icon'>
         <IoChevronDownOutline />

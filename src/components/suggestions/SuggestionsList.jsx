@@ -12,9 +12,7 @@ const SuggestionsList = (props) => {
     fetch('https://randomuser.me/api/?results=12')
       .then((res) => res.json())
       .then((data) => setUsers(data.results));
-  }, []);
-
-  console.log(users);
+  }, [])
 
   return (
     <ul className='suggestions-list'>
