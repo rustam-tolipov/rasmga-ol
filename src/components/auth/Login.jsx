@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
 
+import './Login.scss';
+
 const Login = (props) => {
   const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const Login = (props) => {
   return (
     <div className='login' onSubmit={loginHandler}>
       <form className='login-form' action=''>
-        <img src={logo} alt='Instagram logo' />
+        <img className='login-img' src={logo} alt='Instagram logo' />
         <div>
           <input type='email' placeholder='email' />
         </div>
