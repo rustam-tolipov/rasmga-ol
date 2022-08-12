@@ -9,6 +9,7 @@ import Posts from './components/posts/Posts';
 import Suggestions from './components/suggestions/Suggestions';
 import Explore from './components/explore/Explore';
 import Login from './components/auth/Login';
+import SignUp from './components/auth/SignUp';
 import PrivateRoute from './components/utils/PrivateRoute';
 
 import './App.scss';
@@ -51,6 +52,7 @@ function App() {
             />
           </Route>
           <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
         </Routes>
       </div>
     </BrowserRouter>
