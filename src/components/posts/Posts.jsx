@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Axios from 'axios';
+import Cookies from 'js-cookie';
 import Post from './Post';
 
 import './Posts.scss';
@@ -8,14 +10,18 @@ const Posts = (props) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://rustam-social-media-app.herokuapp.com/api/v1/posts')
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-      });
+    Axios.get(
+      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts',
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    ).then((res) => {
+      console.log(res.data);
+      setPosts(res.data);
+    });
   }, []);
-
-  console.log(posts);
 
   return (
     <div className='posts'>
@@ -26,7 +32,7 @@ const Posts = (props) => {
           posts.map((post, i) => {
             return (
               <Post
-                key={posts.id}
+                key={post.id}
                 url={post.image.url}
                 content={post.content}
               />
