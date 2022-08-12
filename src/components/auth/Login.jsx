@@ -10,8 +10,6 @@ const Login = (props) => {
 
   useEffect(() => {
     const isLogged = Cookies.get('jwt');
-
-    console.log(isLogged);
     if (isLogged) navigate('/');
   });
 
