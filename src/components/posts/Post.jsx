@@ -7,8 +7,11 @@ import {
 } from 'react-icons/io5';
 
 import './Post.scss';
+import sound from '../../assets/like.mp3';
 
 const Post = (props) => {
+  const audio = new Audio(sound);
+
   const [liked, setLiked] = useState(false);
 
   const heartRef = useRef();
@@ -16,6 +19,10 @@ const Post = (props) => {
   const heartRightRef = useRef();
 
   const animateHeart = () => {
+    setTimeout(function () {
+      audio.play();
+    }, 500);
+
     const tl = gsap.timeline({
       defaults: { duration: 0.5, clearProps: 'all' },
     });
