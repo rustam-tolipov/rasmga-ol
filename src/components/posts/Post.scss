@@ -26,14 +26,21 @@
     gap: 0.4rem;
     font-size: 2rem;
 
-    .like {
-      font-size: 2.4rem;
-    }
-
     & *:hover {
       color: #555;
       cursor: pointer;
     }
+  }
+
+  .like {
+    width: 2rem;
+    transform-origin: center;
+  }
+
+  .heart,
+  .heart-left,
+  .heart-right {
+    transform-origin: center;
   }
 
   &__content {

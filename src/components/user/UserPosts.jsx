@@ -16,8 +16,6 @@ const UserPosts = () => {
     fetchPosts();
   }, []);
 
-  console.log(posts);
-
   return (
     <div className='user-posts'>
       {posts.map((post, index) => (
