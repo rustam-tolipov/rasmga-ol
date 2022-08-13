@@ -25,15 +25,16 @@ const fakeData = {
 
 const User = () => {
   const { id } = useParams();
-  const username = id.replace(/\D/g, '');
+  console.log('id', id);
+  const userId = id.replace(/\D/g, '');
 
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    console.log(username, id, Cookies.get('jwt'));
+    // console.log(username, id, Cookies.get('jwt'));
 
     Axios.get(
-      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${3}`,
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
@@ -44,7 +45,7 @@ const User = () => {
       setUserData(res.data);
       console.log(res.data.posts);
     });
-  }, []);
+  }, [id]);
 
   if (!userData) return;
   return (
@@ -52,10 +53,10 @@ const User = () => {
       <Search />
       <div className='user__header'>
         <UserProfile
-          username={fakeData.username}
-          email={fakeData.email}
-          img={fakeData.avatar.url}
-          description={fakeData.description}
+          username={id}
+          email={userData.email}
+          img={userData.avatar.url}
+          description={userData.description}
         />
         <UserStatus />
       </div>

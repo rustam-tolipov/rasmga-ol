@@ -3,13 +3,15 @@ import { IoChatbox } from 'react-icons/io5';
 import Verified from '../UI/Verified';
 import Button from '../UI/Button';
 
+import avatar from '../../assets/avatar.jpg';
 import './UserProfile.scss';
+
 
 const UserProfile = (props) => {
   return (
     <div className='user-profile'>
       <div className='user-profile__info'>
-        <img className='user-profile__img' src={props.img} alt='' />
+        <img className='user-profile__img' src={props.img || avatar} alt='' />
         <div>
           <p className='user-profile__name'>
             {props.username}
@@ -18,7 +20,7 @@ const UserProfile = (props) => {
               Message <IoChatbox />
             </Button>
           </p>
-          <p className='user-profile__description'>{props.description}</p>
+          <p className='user-profile__description'>{props.description || 'I’m a mysterious individual who has yet to fill out my bio 🥶'}</p>
         </div>
       </div>
     </div>
