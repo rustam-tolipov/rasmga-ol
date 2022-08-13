@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Axios from 'axios';
+import Cookies from 'js-cookie';
 
 import UserProfile from './UserProfile';
 import UserNav from './UserNav';
@@ -22,7 +25,28 @@ const fakeData = {
 
 const User = () => {
   const { id } = useParams();
+  const username = id.replace(/\D/g, '');
 
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    console.log(username, id, Cookies.get('jwt'));
+
+    Axios.get(
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${3}`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    ).then((res) => {
+      console.log(res);
+      setUserData(res.data);
+      console.log(res.data.posts);
+    });
+  }, []);
+
+  if (!userData) return;
   return (
     <div className='user'>
       <Search />
@@ -36,7 +60,7 @@ const User = () => {
         <UserStatus />
       </div>
       <UserNav />
-      <UserPosts />
+      <UserPosts data={userData.posts} />
     </div>
   );
 };
