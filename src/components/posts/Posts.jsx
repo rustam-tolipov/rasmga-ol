@@ -18,7 +18,6 @@ const Posts = (props) => {
         },
       }
     ).then((res) => {
-      console.log(res.data);
       setPosts(res.data);
     });
   }, []);
@@ -35,6 +34,7 @@ const Posts = (props) => {
                 key={post.id}
                 url={post.image.url}
                 content={post.content}
+                user={post.user_id}
               />
             );
           })}

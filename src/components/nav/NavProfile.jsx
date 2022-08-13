@@ -9,7 +9,6 @@ import './NavProfile.scss';
 
 const NavProfile = (props) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('me')));
-  console.log(user);
 
   return (
     <div className='nav-profile'>

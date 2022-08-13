@@ -25,13 +25,11 @@ const fakeData = {
 
 const User = () => {
   const { id } = useParams();
-  console.log('id', id);
   const userId = id.replace(/\D/g, '');
 
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    // console.log(username, id, Cookies.get('jwt'));
 
     Axios.get(
       `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${userId}`,
@@ -41,9 +39,7 @@ const User = () => {
         },
       }
     ).then((res) => {
-      console.log(res);
       setUserData(res.data);
-      console.log(res.data.posts);
     });
   }, [id]);
 

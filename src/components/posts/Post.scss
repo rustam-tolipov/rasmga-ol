@@ -1,7 +1,23 @@
 .post {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.8rem;
+
+  &-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.4rem;
+
+    &__img {
+      border-radius: 50%;
+    }
+
+    &__name {
+      font-weight: 600;
+      color: #fff;
+    }
+  }
 
   &__img {
     width: 100%;
