@@ -38,6 +38,10 @@ const Post = (props) => {
     });
   }, [props.user]);
 
+  // close overlay
+  const closeOverlay = () => {
+    setOpen(false);
+  };
   // Play sound on like ♥
   const audio = new Audio(sound);
 
@@ -165,7 +169,13 @@ const Post = (props) => {
         </div>
 
         {/* post portal test */}
-        {open && <PostPortal content={props.content} url={props.url} />}
+        {open && (
+          <PostPortal
+            content={props.content}
+            url={props.url}
+            closeOverlay={closeOverlay}
+          />
+        )}
       </div>
     )
   );
