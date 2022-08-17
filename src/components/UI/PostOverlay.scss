@@ -1,0 +1,33 @@
+.backdrop,
+.post-overlay {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.backdrop {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+}
+
+.post-overlay {
+  background-color: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25);
+  height: 50rem;
+  width: 80rem;
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr;
+  overflow: hidden;
+
+  &__image {
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

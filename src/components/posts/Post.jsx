@@ -9,7 +9,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 
 import Verified from '../UI/Verified';
-import PostPortal from '../UI/PostPortal';
+import PostPortal from '../UI/PostOverlay';
 
 import avatar from '../../assets/avatar.jpg';
 import sound from '../../assets/like.mp3';
@@ -36,15 +36,9 @@ const Post = (props) => {
     ).then((res) => {
       setPostProfile(res.data);
     });
-  }, []);
+  }, [props.user]);
 
-  // show post portal
-  const showPostPortal = () => {
-    console.log('open post portal');
-    return;
-  };
-
-  // audio
+  // Play sound on like ♥
   const audio = new Audio(sound);
 
   // animation
@@ -171,7 +165,7 @@ const Post = (props) => {
         </div>
 
         {/* post portal test */}
-        {open && <PostPortal />}
+        {open && <PostPortal content={props.content} url={props.url} />}
       </div>
     )
   );
