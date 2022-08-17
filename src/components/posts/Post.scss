@@ -76,10 +76,8 @@
     transform-origin: center;
   }
 
-  .heart,
-  .heart-left,
-  .heart-right {
-    transform-origin: center;
+  .heart {
+    color: #ef4444;
   }
 
   &__content {

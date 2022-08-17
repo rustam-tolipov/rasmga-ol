@@ -35,6 +35,8 @@ const Posts = (props) => {
                 url={post.image.url}
                 content={post.content}
                 user={post.user_id}
+                likes={post.likes}
+                id={post.id}
               />
             );
           })}
