@@ -8,19 +8,21 @@ import {
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 
+import Verified from '../UI/Verified';
+import PostPortal from '../UI/PostPortal';
+
 import avatar from '../../assets/avatar.jpg';
 import sound from '../../assets/like.mp3';
 import './Post.scss';
-import Verified from '../UI/Verified';
 
 const Post = (props) => {
   const heartRef = useRef();
   const heartLeftRef = useRef();
   const heartRightRef = useRef();
 
+  const [open, setOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [postProfile, setPostProfile] = useState();
-  console.log(postProfile);
 
   // get user data
   useEffect(() => {
@@ -35,6 +37,12 @@ const Post = (props) => {
       setPostProfile(res.data);
     });
   }, []);
+
+  // show post portal
+  const showPostPortal = () => {
+    console.log('open post portal');
+    return;
+  };
 
   // audio
   const audio = new Audio(sound);
@@ -110,11 +118,19 @@ const Post = (props) => {
             style={{ height: '24px' }}
           />
           <p className='post-profile__name'>
-            {postProfile.username || postProfile.first_name + ' ' + postProfile.last_name}
+            {postProfile.username ||
+              postProfile.first_name + ' ' + postProfile.last_name}
           </p>
           <Verified />
         </div>
-        <img className='post__img' src={props.url} alt='' />
+        <div
+          className='post__img-container'
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          <img className='post__img' src={props.url} alt='' />
+        </div>
         <div className='post__description'>
           <p className='post__content'>{props.content}</p>
           <div className='post__icons'>
@@ -153,6 +169,9 @@ const Post = (props) => {
             </svg>
           </div>
         </div>
+
+        {/* post portal test */}
+        {open && <PostPortal />}
       </div>
     )
   );

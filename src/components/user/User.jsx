@@ -30,7 +30,6 @@ const User = () => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-
     Axios.get(
       `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${userId}`,
       {
