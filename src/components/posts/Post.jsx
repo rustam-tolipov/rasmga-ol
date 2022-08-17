@@ -48,7 +48,6 @@ const Post = (props) => {
 
   // like post
   const likePost = async () => {
-    console.log(props.id);
     await Axios.post(
       `https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/${props.id}/like`,
       { session: false },
@@ -60,10 +59,21 @@ const Post = (props) => {
           data: null,
         },
       }
-    ).then((res) => {
-      console.log(res);
-    });
+    );
     setLiked(true);
+  };
+
+  // unlike post
+  const unlikePost = async () => {
+    await Axios.delete(
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/${props.id}/like`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    );
+    setLiked(false);
   };
 
   // close overlay
@@ -103,7 +113,7 @@ const Post = (props) => {
             <IoPaperPlaneOutline className='share' />
             <IoChatbubbleOutline className='comment' />
             {liked ? (
-              <IoHeart className='heart' />
+              <IoHeart className='heart' onClick={unlikePost} />
             ) : (
               <IoHeartOutline onClick={likePost} />
             )}
