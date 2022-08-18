@@ -10,7 +10,7 @@ import Axios from 'axios';
 import Cookies from 'js-cookie';
 
 import Verified from '../UI/Verified';
-import PostPortal from '../UI/PostOverlay';
+import PostOverlay from './PostOverlay';
 
 import avatar from '../../assets/avatar.jpg';
 import sound from '../../assets/like.mp3';
@@ -122,10 +122,12 @@ const Post = (props) => {
 
         {/* post portal test */}
         {open && (
-          <PostPortal
+          <PostOverlay
             content={props.content}
             url={props.url}
             closeOverlay={closeOverlay}
+            avatar={postProfile.avatar.url}
+            username={postProfile.username || postProfile.first_name}
           />
         )}
       </div>

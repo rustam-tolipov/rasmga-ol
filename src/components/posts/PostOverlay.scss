@@ -23,14 +23,6 @@
   grid-template-columns: 2.5fr 1.5fr;
   overflow: hidden;
 
-  &__image {
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-  }
-
   &__close-btn {
     position: absolute;
     top: 0.8rem;
@@ -43,5 +35,32 @@
       background-color: #121212;
       border-radius: 50%;
     }
+  }
+}
+
+.overlay-image {
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.overlay-comments {
+  padding: 1.6rem;
+}
+
+.overlay-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  &__img {
+    height: 2.4rem;
+    border-radius: 50%;
+  }
+  &__username {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
   }
 }
