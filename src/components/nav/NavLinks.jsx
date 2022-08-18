@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState, useMatch, useResolvedPath } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   IoHome,
   IoCompassOutline,
@@ -13,17 +14,31 @@ const NavLinks = (props) => {
   return (
     <div className='nav-links'>
       <ul className='nav-links__list'>
-        <li className='nav-links__item nav-links__item--active'>
-          <Link to='/' className='nav-links__link' href='#'>
+        <li className='nav-links__item '>
+          <NavLink
+            to='/'
+            className={({ isActive }) =>
+              isActive
+                ? 'nav-links__link nav-links__link--active'
+                : 'nav-links__link'
+            }
+          >
             <IoHome className='nav-links__icon' />
             <span className='nav-links__link-text'>Feed</span>
-          </Link>
+          </NavLink>
         </li>
         <li className='nav-links__item'>
-          <Link to='/explore' className='nav-links__link' href='#'>
+          <NavLink
+            to='/explore'
+            className={({ isActive }) =>
+              isActive
+                ? 'nav-links__link nav-links__link--active'
+                : 'nav-links__link'
+            }
+          >
             <IoCompassOutline className='nav-links__icon' />
             <span className='nav-links__link-text'>Explore</span>
-          </Link>
+          </NavLink>
         </li>
         <li className='nav-links__item'>
           <a className='nav-links__link' href='#'>

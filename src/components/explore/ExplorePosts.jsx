@@ -28,7 +28,7 @@ const ExplorePosts = () => {
   return (
     <div className='explore-posts'>
       {posts.map((post, index) => {
-        return <img src={post.image.url} alt='' />;
+        return <img src={post.image.url} alt='' key={index} />;
       })}
     </div>
   );
