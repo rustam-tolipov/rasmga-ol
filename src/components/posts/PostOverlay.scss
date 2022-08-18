@@ -69,11 +69,17 @@
 }
 
 // comment
+.overlay-comments {
+  padding-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
 .comment {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.8rem;
-  padding-top: 0.8rem;
 
   &__img img {
     height: 2.4rem;

@@ -3,6 +3,7 @@ import { IoClose } from 'react-icons/io5';
 
 import avatar from '../../assets/avatar.jpg';
 import './PostOverlay.scss';
+import PostOverlayComment from './PostOverlayComment';
 
 const PostOverlay = (props) => {
   const backdrop = (
@@ -34,22 +35,19 @@ const PostOverlay = (props) => {
         {/* overlay comments */}
         <div className='overlay-comments'>
           {props.comments &&
-            props.comments.map((comment, id) => {
-              return (
-                <div className='comment' key={id}>
-                  <div className='comment__img'>
-                    <img
-                      src={props.avatar === null ? avatar : props.avatar}
-                      alt=''
-                    />
-                  </div>
+            props.comments
+              .map((comment, id) => {
+                console.log(comment);
 
-                  <div className='comment__content'>
-                    <span className='comment__username'>username</span> {comment.content}
-                  </div>
-                </div>
-              );
-            })}
+                return (
+                  <PostOverlayComment
+                    userId={comment.user_id}
+                    content={comment.content}
+                    key={id}
+                  />
+                );
+              })
+              .reverse()}
         </div>
       </div>
       <IoClose
