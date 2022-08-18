@@ -47,6 +47,7 @@
 }
 
 .overlay-right {
+  position: relative;
   padding: 1.6rem;
 }
 
@@ -94,5 +95,35 @@
   &__content {
     padding-top: 0.4rem;
     font-size: 1.2rem;
+  }
+}
+
+// input
+.overlay-input {
+  display: inline-grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  position: absolute;
+  bottom: 1.6rem;
+  width: 100%;
+  padding-right: 3.2rem;
+
+  &__icon {
+    font-size: 1.6rem;
+    color: #fff;
+  }
+
+  input,
+  input:focus,
+  input:active {
+    color: #7e7e7e;
+    background-color: #212121;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    display: flex;
+    gap: 0.8rem;
   }
 }

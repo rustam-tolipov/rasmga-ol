@@ -1,9 +1,12 @@
 import { createPortal } from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 
+import PostOverlayComment from './PostOverlayComment';
+import Button from '../UI/Button';
+
+import { IoHappyOutline } from 'react-icons/io5';
 import avatar from '../../assets/avatar.jpg';
 import './PostOverlay.scss';
-import PostOverlayComment from './PostOverlayComment';
 
 const PostOverlay = (props) => {
   const backdrop = (
@@ -48,6 +51,13 @@ const PostOverlay = (props) => {
                 );
               })
               .reverse()}
+        </div>
+
+        {/* overlay input */}
+        <div className='overlay-input'>
+          <IoHappyOutline className='overlay-input__icon' />
+          <input type='text' />
+          <Button>Post</Button>
         </div>
       </div>
       <IoClose
