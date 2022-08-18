@@ -1,5 +1,8 @@
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { IoClose } from 'react-icons/io5';
+import Axios from 'axios';
+import Cookies from 'js-cookie';
 
 import PostOverlayComment from './PostOverlayComment';
 import Button from '../UI/Button';
@@ -9,12 +12,28 @@ import avatar from '../../assets/avatar.jpg';
 import './PostOverlay.scss';
 
 const PostOverlay = (props) => {
+  const inputRef = useRef();
+  const [render, setRender] = useState('');
+
   const backdrop = (
     <div className='backdrop' onClick={props.closeOverlay}></div>
   );
 
-  // componnet
-  console.log(props.comments);
+  const postCommentHandler = () => {
+    Axios.post(
+      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/2/comments',
+      {
+        content: inputRef.current.value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    ).then((res) => {
+      console.log(res);
+    });
+  };
 
   const component = (
     <div className='post-overlay'>
@@ -56,8 +75,8 @@ const PostOverlay = (props) => {
         {/* overlay input */}
         <div className='overlay-input'>
           <IoHappyOutline className='overlay-input__icon' />
-          <input type='text' />
-          <Button>Post</Button>
+          <input type='text' id='post-comment' ref={inputRef} />
+          <Button onClick={postCommentHandler}>Post</Button>
         </div>
       </div>
       <IoClose

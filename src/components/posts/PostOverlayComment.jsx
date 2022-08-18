@@ -20,6 +20,7 @@ const PostOverlayComment = (props) => {
       console.log(res.data);
     });
   }, [props.userId]);
+
   return (
     profile && (
       <div className='comment'>
