@@ -51,9 +51,12 @@
 }
 
 .overlay-header {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
+  align-items: center;
   gap: 0.8rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #7d7d7d80;
+
   &__img {
     height: 2.4rem;
     border-radius: 50%;

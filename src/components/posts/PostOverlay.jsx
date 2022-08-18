@@ -28,7 +28,6 @@ const PostOverlay = (props) => {
           </div>
           <div>
             <span className='overlay-header__username'>{props.username}</span>
-            <p>{props.content}</p>
           </div>
         </div>
       </div>
