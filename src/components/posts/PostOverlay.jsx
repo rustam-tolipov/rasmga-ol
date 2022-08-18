@@ -10,14 +10,14 @@ const PostOverlay = (props) => {
   );
 
   // componnet
-  console.log(props.avatar);
+  console.log(props.comments);
 
   const component = (
     <div className='post-overlay'>
       <div className='overlay-image'>
         <img src={props.url} alt='' />
       </div>
-      <div className='overlay-comments'>
+      <div className='overlay-right'>
         <div className='overlay-header'>
           <div>
             <img
@@ -29,6 +29,27 @@ const PostOverlay = (props) => {
           <div>
             <span className='overlay-header__username'>{props.username}</span>
           </div>
+        </div>
+
+        {/* overlay comments */}
+        <div className='overlay-comments'>
+          {props.comments &&
+            props.comments.map((comment, id) => {
+              return (
+                <div className='comment' key={id}>
+                  <div className='comment__img'>
+                    <img
+                      src={props.avatar === null ? avatar : props.avatar}
+                      alt=''
+                    />
+                  </div>
+
+                  <div className='comment__content'>
+                    <span className='comment__username'>username</span> {comment.content}
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
       <IoClose

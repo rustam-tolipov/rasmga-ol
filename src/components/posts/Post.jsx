@@ -128,6 +128,7 @@ const Post = (props) => {
             closeOverlay={closeOverlay}
             avatar={postProfile.avatar.url}
             username={postProfile.username || postProfile.first_name}
+            comments={props.comments}
           />
         )}
       </div>

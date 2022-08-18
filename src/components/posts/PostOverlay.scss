@@ -46,7 +46,7 @@
   }
 }
 
-.overlay-comments {
+.overlay-right {
   padding: 1.6rem;
 }
 
@@ -65,5 +65,28 @@
     font-size: 1.4rem;
     font-weight: 600;
     color: #fff;
+  }
+}
+
+// comment
+.comment {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  padding-top: 0.8rem;
+
+  &__img img {
+    height: 2.4rem;
+    border-radius: 50%;
+  }
+
+  &__username {
+    font-size: 1.4rem;
+    color: #fff;
+  }
+
+  &__content {
+    padding-top: 0.4rem;
+    font-size: 1.2rem;
   }
 }
