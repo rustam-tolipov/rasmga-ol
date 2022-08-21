@@ -18,7 +18,6 @@ const ExplorePosts = () => {
     )
       .then((res) => {
         setPosts(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log('🔴 Could not get posts', err);

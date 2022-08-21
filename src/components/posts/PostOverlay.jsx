@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { IoClose } from 'react-icons/io5';
 import Axios from 'axios';
@@ -14,10 +14,26 @@ import './PostOverlay.scss';
 const PostOverlay = (props) => {
   const inputRef = useRef();
   const [render, setRender] = useState('');
+  const [postData, setPostData] = useState();
 
   const backdrop = (
     <div className='backdrop' onClick={props.closeOverlay}></div>
   );
+
+  // get this post data
+  useEffect(() => {
+    Axios.get(
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/${props.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    ).then((res) => {
+      setPostData(res.data);
+      console.log(res.data);
+    });
+  }, []);
 
   const postCommentHandler = () => {
     Axios.post(
@@ -30,15 +46,13 @@ const PostOverlay = (props) => {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
         },
       }
-    ).then((res) => {
-      console.log(res);
-    });
+    ).then((res) => {});
   };
 
-  const component = (
+  const component = postData && (
     <div className='post-overlay'>
       <div className='overlay-image'>
-        <img src={props.url} alt='' />
+        <img src={postData.image.url} alt='' />
       </div>
       <div className='overlay-right'>
         <div className='overlay-header'>
@@ -56,11 +70,9 @@ const PostOverlay = (props) => {
 
         {/* overlay comments */}
         <div className='overlay-comments'>
-          {props.comments &&
-            props.comments
+          {postData.comments &&
+            postData.comments
               .map((comment, id) => {
-                console.log(comment);
-
                 return (
                   <PostOverlayComment
                     userId={comment.user_id}

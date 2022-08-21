@@ -17,10 +17,7 @@ import sound from '../../assets/like.mp3';
 import './Post.scss';
 
 const Post = (props) => {
-  const heartRef = useRef();
-  const heartLeftRef = useRef();
-  const heartRightRef = useRef();
-
+  const [postData, setPostData] = useState(props.post);
   const [open, setOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [postProfile, setPostProfile] = useState();
@@ -62,6 +59,8 @@ const Post = (props) => {
     );
     setLiked(true);
   };
+
+  console.log(props, 'd');
 
   // unlike post
   const unlikePost = async () => {
@@ -129,6 +128,7 @@ const Post = (props) => {
             avatar={postProfile.avatar.url}
             username={postProfile.username || postProfile.first_name}
             comments={props.comments}
+            id={props.id}
           />
         )}
       </div>
