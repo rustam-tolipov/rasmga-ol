@@ -5,10 +5,34 @@
   transform: translate(-50%, -50%);
   height: 50rem;
   width: 50rem;
-  
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+
   background-color: #121212;
   border-radius: 1.2rem;
   box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25);
+
+  &__text {
+    font-size: 1.6rem;
+    color: #7e7e7e;
+  }
+
+  textarea {
+    font-family: inherit;
+    color: #7e7e7e;
+    background-color: #212121;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    display: flex;
+    gap: 0.8rem;
+    width: 30rem;
+  }
 }
 
 .create-overlay__btn {
@@ -29,4 +53,9 @@
   &:hover {
     background-color: #0085dd;
   }
+}
+
+.create-overlay__icon {
+  height: 16rem;
+  width: 16rem;
 }
