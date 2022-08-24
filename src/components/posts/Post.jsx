@@ -8,6 +8,7 @@ import {
 } from 'react-icons/io5';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
+import { followUser } from '../../helpers';
 
 import Verified from '../UI/Verified';
 import PostOverlay from './PostOverlay';
@@ -15,6 +16,7 @@ import PostOverlay from './PostOverlay';
 import avatar from '../../assets/avatar.jpg';
 import sound from '../../assets/like.mp3';
 import './Post.scss';
+import Button from '../UI/Button';
 
 const Post = (props) => {
   const [postData, setPostData] = useState(props.post);
@@ -97,6 +99,13 @@ const Post = (props) => {
               postProfile.first_name + ' ' + postProfile.last_name}
           </p>
           <Verified />
+          <Button
+            onClick={() => {
+              followUser(postProfile.id);
+            }}
+          >
+            Follow
+          </Button>
         </div>
         <div
           className='post__img-container'

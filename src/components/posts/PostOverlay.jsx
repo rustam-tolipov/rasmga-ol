@@ -65,7 +65,9 @@ const PostOverlay = (props) => {
           </div>
           <div>
             <span className='overlay-header__username'>{props.username}</span>
+
           </div>
+          <Button>Follow</Button>
         </div>
 
         {/* overlay comments */}

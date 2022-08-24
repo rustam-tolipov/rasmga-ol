@@ -13,6 +13,7 @@ import SignUp from './components/auth/SignUp';
 import PrivateRoute from './components/utils/PrivateRoute';
 
 import './App.scss';
+import CreatePost from './components/CreatePost/CreatePost';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>
+        <CreatePost />
       </div>
     </BrowserRouter>
   );

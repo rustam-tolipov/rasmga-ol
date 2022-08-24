@@ -20,6 +20,7 @@
   max-width: 1240px;
   margin: 0 auto;
   padding: 3.2rem 2.6rem;
+  contain: content;
 
   display: grid;
   grid-template-columns: repeat(10, 1fr);
