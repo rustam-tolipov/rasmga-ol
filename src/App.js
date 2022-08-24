@@ -11,6 +11,7 @@ import Explore from './components/explore/Explore';
 import Login from './components/auth/Login';
 import SignUp from './components/auth/SignUp';
 import PrivateRoute from './components/utils/PrivateRoute';
+import Settings from './components/settings/Settings';
 
 import './App.scss';
 import CreatePost from './components/CreatePost/CreatePost';
@@ -48,6 +49,15 @@ function App() {
                   {' '}
                   <Nav />
                   <Explore />
+                </>
+              }
+            />
+            <Route
+              path='/settings'
+              element={
+                <>
+                  <Nav />
+                  <Settings />
                 </>
               }
             />
