@@ -1,12 +1,32 @@
-.create-post {
+.create-overlay {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 50rem;
+  width: 50rem;
+  
+  background-color: #121212;
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 20px rgb(0, 0, 0, 0.25);
+}
+
+.create-overlay__btn {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.8rem 0;
+  width: 100%;
+  cursor: pointer;
 
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 600;
   background-color: #0094f6;
   border-radius: 1.2rem;
-  color: #121212;
+  color: #fff;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #0085dd;
+  }
 }
