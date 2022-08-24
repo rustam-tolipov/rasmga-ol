@@ -1,4 +1,5 @@
 import logoFile from '../../assets/logo.svg';
+import CreatePost from '../CreatePost/CreatePost';
 
 import './Nav.scss';
 import NavFooter from './NavFooter';
@@ -13,6 +14,7 @@ const Nav = (props) => {
       </div>
       <NavProfile />
       <NavLinks />
+      <CreatePost />
       <NavFooter />
     </nav>
   );
