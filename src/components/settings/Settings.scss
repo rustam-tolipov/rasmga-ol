@@ -1,0 +1,44 @@
+.settings {
+  form {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 1.6rem;
+  }
+
+  &__img {
+    display: flex;
+    justify-content: flex-end;
+    
+    img {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 50%;
+    }
+  }
+
+  &__name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  input,
+  textarea {
+    font-family: inherit;
+    color: #7e7e7e;
+    background-color: #212121;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 0.4rem;
+    display: flex;
+    gap: 0.8rem;
+    width: 30rem;
+  }
+
+  &__input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
