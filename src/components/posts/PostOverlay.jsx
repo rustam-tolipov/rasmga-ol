@@ -31,13 +31,12 @@ const PostOverlay = (props) => {
       }
     ).then((res) => {
       setPostData(res.data);
-      console.log(res.data);
     });
   }, []);
 
   const postCommentHandler = () => {
     Axios.post(
-      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/2/comments',
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts/${props.id}/comments`,
       {
         content: inputRef.current.value,
       },
@@ -46,7 +45,9 @@ const PostOverlay = (props) => {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
         },
       }
-    ).then((res) => {});
+    ).then((res) => {
+      console.log(res);
+    });
   };
 
   const component = postData && (
@@ -65,7 +66,6 @@ const PostOverlay = (props) => {
           </div>
           <div>
             <span className='overlay-header__username'>{props.username}</span>
-
           </div>
           <Button>Follow</Button>
         </div>

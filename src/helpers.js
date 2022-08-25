@@ -12,7 +12,6 @@ export const followUser = (userId) => {
     }
   )
     .then((res) => {
-      console.log('Followed user', res.data);
     })
     .catch((err) => {
       console.log('Could not follow user', err);

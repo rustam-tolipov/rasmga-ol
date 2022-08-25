@@ -62,8 +62,6 @@ const Post = (props) => {
     setLiked(true);
   };
 
-  console.log(props, 'd');
-
   // unlike post
   const unlikePost = async () => {
     await Axios.delete(
