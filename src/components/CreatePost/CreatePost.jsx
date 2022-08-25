@@ -34,7 +34,7 @@ const CreatePost = (props) => {
         },
       }
     ).then((res) => {
-      console.log(res);
+      setOpen(false);
     });
   };
 
