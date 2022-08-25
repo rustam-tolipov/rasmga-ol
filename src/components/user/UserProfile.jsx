@@ -21,7 +21,7 @@ const UserProfile = (props) => {
             </Button>
           </p>
           <p className='user-profile__description'>
-            {props.description ||
+            {props.bio ||
               'I’m a mysterious individual who has yet to fill out my bio 🥶'}
           </p>
         </div>

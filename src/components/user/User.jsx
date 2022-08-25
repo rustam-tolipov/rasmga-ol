@@ -52,7 +52,7 @@ const User = () => {
           username={id}
           email={userData.email}
           img={userData.avatar.url}
-          description={userData.description}
+          bio={userData.bio}
         />
         <UserStatus />
       </div>
