@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import Axios from 'axios';
+import Cookies from 'js-cookie';
 
 import Button from '../UI/Button';
 
@@ -7,10 +9,53 @@ import './Settings.scss';
 
 const Settings = () => {
   const [data, setData] = useState(JSON.parse(localStorage.getItem('me')));
+  const [file, setFile] = useState(null);
+  const [resData, setResData] = useState();
+
+  const imgRef = useRef();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('avatar', imgRef.current.files[0]);
+    console.log(imgRef.current.files[0]);
+
+    console.log([...formData]);
+
+    Axios.put(
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/auth/users/${data.id}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('jwt')}`,
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res);
+        setResData(res.data);
+
+        // get user data and update localStorage
+        Axios.get(
+          `https://rustam-social-media-rails-app.herokuapp.com/api/v1/auth/users/${data.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get('jwt')}`,
+            },
+          }
+        ).then((res) => {
+          localStorage.setItem('me', JSON.stringify(res.data));
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className='settings'>
-      <form>
+      <form onSubmit={submitHandler}>
         <div className='settings__img'>
           <img
             src={data.avatar.url === null ? avatar : data.avatar.url}
@@ -18,7 +63,7 @@ const Settings = () => {
           />
         </div>
         <div className='settings__input-box'>
-          <input type='file' />
+          <input ref={imgRef} type='file' />
         </div>
 
         <p className='settings__name'>Name</p>

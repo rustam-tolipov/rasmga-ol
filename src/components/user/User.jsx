@@ -39,6 +39,7 @@ const User = () => {
       }
     ).then((res) => {
       setUserData(res.data);
+      console.log(res.data);
     });
   }, [id]);
 
