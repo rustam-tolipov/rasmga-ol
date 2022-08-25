@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { IoChevronDownOutline } from 'react-icons/io5';
-import avatarFile from '../../assets/avatar.jpg';
+import avatar from '../../assets/avatar.jpg';
 import Verified from '../UI/Verified';
 
 import './NavProfile.scss';
@@ -15,7 +15,7 @@ const NavProfile = (props) => {
       <div className='nav-profile__avatar'>
         <img
           className='nav-profile__avatar-img'
-          src={avatarFile}
+          src={user.avatar.url === null ? avatar : user.avatar.url}
           alt='User avatar'
         />
       </div>
