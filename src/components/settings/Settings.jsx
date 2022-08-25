@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Button from '../UI/Button';
+
 import avatar from '../../assets/avatar.jpg';
 import './Settings.scss';
 
@@ -51,6 +53,8 @@ const Settings = () => {
           <input type='text' />
           <p>This won't be displayed publicly.</p>
         </div>
+
+        <Button className='settings__btn'>Save Changes</Button>
       </form>
     </div>
   );

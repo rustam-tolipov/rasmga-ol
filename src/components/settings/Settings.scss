@@ -1,4 +1,7 @@
 .settings {
+  grid-column: 3 / -1;
+  padding: 4rem;
+
   form {
     display: grid;
     grid-template-columns: 10rem 1fr;
@@ -8,7 +11,7 @@
   &__img {
     display: flex;
     justify-content: flex-end;
-    
+
     img {
       height: 4rem;
       width: 4rem;
@@ -33,12 +36,17 @@
     padding: 0.4rem;
     display: flex;
     gap: 0.8rem;
-    width: 30rem;
   }
 
   &__input-box {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    width: 30rem;
+  }
+
+  &__btn {
+    grid-column: 2;
+    width: 30rem;
   }
 }
