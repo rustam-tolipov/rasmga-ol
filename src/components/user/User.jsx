@@ -49,7 +49,7 @@ const User = () => {
       <Search />
       <div className='user__header'>
         <UserProfile
-          username={id}
+          username={userData.username}
           email={userData.email}
           img={userData.avatar.url}
           bio={userData.bio}
