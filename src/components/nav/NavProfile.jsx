@@ -22,7 +22,7 @@ const NavProfile = (props) => {
       <div className='nav-profile__name-box'>
         <NavLink to='/users/maqsud'>
           <span className='nav-profile__id'>
-            {(user.first_name + user.last_name + user.id).toLowerCase()}{' '}
+            {user.username}
             <Verified />
           </span>
         </NavLink>
