@@ -26,20 +26,23 @@ const fakeData = {
 const User = () => {
   const { id } = useParams();
   const userId = id.replace(/\D/g, '');
+  console.log(id, userId);
 
   const [userData, setUserData] = useState();
 
   useEffect(() => {
+    let data = JSON.stringify({
+      username: 'art3mis',
+    });
     Axios.get(
-      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${userId}`,
+      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/search`,
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
         },
       }
     ).then((res) => {
-      setUserData(res.data);
-      console.log(res.data);
+      console.log(res);
     });
   }, [id]);
 
