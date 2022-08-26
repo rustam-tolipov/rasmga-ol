@@ -15,7 +15,8 @@ const UserProfile = (props) => {
         <div>
           <p className='user-profile__name'>
             {props.username}
-            <Verified /> <Button>Follow</Button>{' '}
+            <Verified />
+            <Button>Follow</Button>{' '}
             <Button className='user-profile__button'>
               Message <IoChatbox />
             </Button>

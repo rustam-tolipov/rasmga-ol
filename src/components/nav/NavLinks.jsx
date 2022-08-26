@@ -6,6 +6,7 @@ import {
   IoBookmarkOutline,
   IoChatbubblesOutline,
   IoFlashOutline,
+  IoCog,
 } from 'react-icons/io5';
 
 import './NavLinks.scss';
@@ -59,6 +60,17 @@ const NavLinks = (props) => {
             <span className='nav-links__link-text'>Activity</span>
           </a>
         </li>
+        <NavLink
+          to='/settings'
+          className={({ isActive }) =>
+            isActive
+              ? 'nav-links__link nav-links__link--active'
+              : 'nav-links__link'
+          }
+        >
+          <IoCog className='nav-links__icon' />
+          <span className='nav-links__link-text'>Settings</span>
+        </NavLink>
       </ul>
     </div>
   );

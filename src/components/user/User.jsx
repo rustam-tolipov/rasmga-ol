@@ -54,7 +54,7 @@ const User = () => {
           img={userData.avatar.url}
           bio={userData.bio}
         />
-        <UserStatus />
+        <UserStatus postsCount={userData.posts.length} />
       </div>
       <UserNav />
       <UserPosts data={userData.posts} />

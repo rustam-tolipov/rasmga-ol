@@ -1,10 +1,10 @@
 import './UserStatus.scss';
 
-const UserStatus = () => {
+const UserStatus = (props) => {
   return (
     <div className='user-status'>
       <div>
-        <div className='user-status__number'>845</div>
+        <div className='user-status__number'>{props.postsCount}</div>
         <div className='user-status__text'>Posts</div>
       </div>
       <div>
