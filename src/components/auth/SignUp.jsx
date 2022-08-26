@@ -12,6 +12,7 @@ import './Login.scss';
 const SignUp = () => {
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
+  const userNameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -30,6 +31,7 @@ const SignUp = () => {
         user: {
           first_name: firstNameRef.current.value,
           last_name: lastNameRef.current.value,
+          username: userNameRef.current.value,
           email: emailRef.current.value,
           password: passwordRef.current.value,
         },
@@ -56,6 +58,9 @@ const SignUp = () => {
         </div>
         <div>
           <input ref={lastNameRef} type='text' placeholder='Last Name' />
+        </div>
+        <div>
+          <input ref={userNameRef} type='text' placeholder='Username' />
         </div>
         <div>
           <input ref={emailRef} type='email' placeholder='Email' />
