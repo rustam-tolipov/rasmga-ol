@@ -90,7 +90,6 @@ const Post = (props) => {
               postProfile.avatar.url === null ? avatar : postProfile.avatar.url
             }
             alt='User profile'
-            style={{ height: '24px' }}
           />
           <p className='post-profile__name'>
             {postProfile.username ||
