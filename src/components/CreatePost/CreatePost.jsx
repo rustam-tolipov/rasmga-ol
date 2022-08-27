@@ -7,19 +7,22 @@ import Button from '../UI/Button';
 
 import './CreatePost.scss';
 import image from '../../assets/upload.svg';
+import spinner from '../../assets/spinner.svg';
 
 const CreatePost = (props) => {
   const textareaRef = useRef(null);
 
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
-
+  const [loading, setLoading] = useState(false);
 
   const uploadHandler = (e) => {
     setFile(e.target.files[0]);
   };
 
   const postHandler = () => {
+    setLoading(true);
+
     let formData = new FormData();
 
     formData.append('image', file);
@@ -33,9 +36,13 @@ const CreatePost = (props) => {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
         },
       }
-    ).then((res) => {
-      setOpen(false);
-    });
+    )
+      .then((res) => {
+        setOpen(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   // class if from PostOverlay component
@@ -50,7 +57,14 @@ const CreatePost = (props) => {
 
   const postOverlay = (
     <div className='create-overlay'>
-      <img className='create-overlay__icon' src={image} alt='' width='10px' />
+      {loading ? (
+        <div className='spinner'>
+          <img src={spinner} alt='' />
+        </div>
+      ) : (
+        <img className='create-overlay__icon' src={image} alt='' />
+      )}
+
       <p className='create-overlay__text'>Drag photos here</p>
       <input type='file' name='file' onChange={uploadHandler} />
       <textarea
