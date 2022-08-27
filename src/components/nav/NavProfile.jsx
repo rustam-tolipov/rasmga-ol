@@ -20,7 +20,7 @@ const NavProfile = (props) => {
         />
       </div>
       <div className='nav-profile__name-box'>
-        <NavLink to='/users/maqsud'>
+        <NavLink to={`/users/${user.username}`}>
           <span className='nav-profile__id'>
             {user.username}
             <Verified />

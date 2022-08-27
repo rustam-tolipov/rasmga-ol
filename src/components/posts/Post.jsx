@@ -9,6 +9,7 @@ import {
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 import { followUser } from '../../helpers';
+import { Link } from 'react-router-dom';
 
 import Verified from '../UI/Verified';
 import PostOverlay from './PostOverlay';
@@ -91,10 +92,13 @@ const Post = (props) => {
             }
             alt='User profile'
           />
-          <p className='post-profile__name'>
+          <Link
+            to={`/users/${postProfile.username}`}
+            className='post-profile__name'
+          >
             {postProfile.username ||
               postProfile.first_name + ' ' + postProfile.last_name}
-          </p>
+          </Link>
           <Verified />
           <Button
             onClick={() => {
