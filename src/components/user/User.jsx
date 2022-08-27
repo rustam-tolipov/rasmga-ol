@@ -31,18 +31,22 @@ const User = () => {
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    let data = JSON.stringify({
-      username: 'art3mis',
-    });
-    Axios.get(
+    // let data = JSON.stringify({
+    //   username: 'art3mis',
+    // });
+    Axios.post(
       `https://rustam-social-media-rails-app.herokuapp.com/api/v1/search`,
+      {
+        username: id,
+      },
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('jwt')}`,
         },
       }
     ).then((res) => {
-      console.log(res);
+      console.log(res.data[0]);
+      setUserData(res.data[0])
     });
   }, [id]);
 
