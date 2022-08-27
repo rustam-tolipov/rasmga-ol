@@ -49,6 +49,9 @@
 .overlay-right {
   position: relative;
   padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 .overlay-header {
@@ -67,6 +70,10 @@
     font-weight: 600;
     color: #fff;
   }
+}
+
+.overlay-content {
+  font-size: 1.4rem;
 }
 
 // comment

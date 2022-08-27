@@ -31,6 +31,7 @@ const PostOverlay = (props) => {
       }
     ).then((res) => {
       setPostData(res.data);
+      console.log('POST', res.data);
     });
   }, []);
 
@@ -69,6 +70,8 @@ const PostOverlay = (props) => {
           </div>
           <Button>Follow</Button>
         </div>
+
+        <div className='overlay-content'>{postData.content}</div>
 
         {/* overlay comments */}
         <div className='overlay-comments'>
