@@ -45,8 +45,7 @@ const User = () => {
         },
       }
     ).then((res) => {
-      console.log(res.data[0]);
-      setUserData(res.data[0])
+      setUserData(res.data[0]);
     });
   }, [id]);
 
@@ -61,7 +60,10 @@ const User = () => {
           img={userData.avatar.url}
           bio={userData.bio}
         />
-        <UserStatus postsCount={userData.posts.length} />
+        <UserStatus
+          postsCount={userData.posts.length}
+          followersCount={userData.followers.length}
+        />
       </div>
       <UserNav />
       <UserPosts data={userData.posts} />

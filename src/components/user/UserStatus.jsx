@@ -8,7 +8,7 @@ const UserStatus = (props) => {
         <div className='user-status__text'>Posts</div>
       </div>
       <div>
-        <div className='user-status__number'>12.4M</div>
+        <div className='user-status__number'>{props.followersCount}</div>
         <div className='user-status__text'>Followers</div>
       </div>
       <div>
