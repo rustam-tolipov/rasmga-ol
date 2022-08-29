@@ -14,6 +14,7 @@ import './PostOverlay.scss';
 const PostOverlay = (props) => {
   const inputRef = useRef();
   const [postData, setPostData] = useState();
+  const [rerender, setRerender] = useState('');
 
   const backdrop = (
     <div className='backdrop' onClick={props.closeOverlay}></div>
@@ -32,7 +33,7 @@ const PostOverlay = (props) => {
       setPostData(res.data);
       console.log('POST', res.data);
     });
-  }, []);
+  }, [rerender]);
 
   const postCommentHandler = () => {
     Axios.post(
@@ -47,6 +48,7 @@ const PostOverlay = (props) => {
       }
     ).then((res) => {
       console.log(res);
+      setRerender((state) => state + ' ')
     });
   };
 
