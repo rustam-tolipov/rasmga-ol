@@ -67,7 +67,8 @@ const Settings = () => {
       })
       .catch((err) => {
         console.log(err);
-      }).finally(() => {
+      })
+      .finally(() => {
         setLoading(false);
       });
   };
@@ -122,8 +123,14 @@ const Settings = () => {
         </div>
 
         <Button className='settings__btn'>
-          {loading && <img src={spinner} alt='' />}
-          Save Changes
+          {loading ? (
+            <>
+              <img src={spinner} alt='' />
+              <span>Updating</span>
+            </>
+          ) : (
+            <span> Save Changes</span>
+          )}
         </Button>
       </form>
     </div>
