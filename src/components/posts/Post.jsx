@@ -8,19 +8,16 @@ import {
 } from 'react-icons/io5';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
-import { followUser } from '../../helpers';
 import { Link } from 'react-router-dom';
 
 import Verified from '../UI/Verified';
 import PostOverlay from './PostOverlay';
 
 import avatar from '../../assets/avatar.jpg';
-import sound from '../../assets/like.mp3';
 import './Post.scss';
 import Button from '../UI/Button';
 
 const Post = (props) => {
-  const [postData, setPostData] = useState(props.post);
   const [open, setOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [postProfile, setPostProfile] = useState();
@@ -36,6 +33,7 @@ const Post = (props) => {
       }
     ).then((res) => {
       setPostProfile(res.data);
+      
     });
   }, [props.user]);
 
@@ -87,9 +85,7 @@ const Post = (props) => {
         <div className='post-profile'>
           <img
             className='post-profile__img'
-            src={
-              postProfile.avatar.url === null ? avatar : postProfile.avatar.url
-            }
+            src={postProfile.avatar === null ? avatar : postProfile.avatar}
             alt='User profile'
           />
           <Link
@@ -100,13 +96,7 @@ const Post = (props) => {
               postProfile.first_name + ' ' + postProfile.last_name}
           </Link>
           <Verified />
-          <Button
-            onClick={() => {
-              followUser(postProfile.id);
-            }}
-          >
-            Follow
-          </Button>
+          <Button>Follow</Button>
         </div>
         <div
           className='post__img-container'

@@ -6,8 +6,23 @@ import Button from '../UI/Button';
 
 import avatar from '../../assets/avatar.jpg';
 import './UserProfile.scss';
+import { followUser, unfollowUser } from '../../helpers';
 
 const UserProfile = (props) => {
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const userData = JSON.parse(localStorage.getItem('me'));
+
+  useEffect(() => {
+    const followed = userData.followees.forEach((followee) => {
+      console.log(followee.id, props.id);
+      if (followee.id === props.id) {
+        setIsFollowing(true);
+      }
+    });
+    console.log(followed);
+  }, [props.id]);
+
   return (
     <div className='user-profile'>
       <div className='user-profile__info'>
@@ -15,8 +30,26 @@ const UserProfile = (props) => {
         <div>
           <p className='user-profile__name'>
             {props.username}
-            <Verified />
-            <Button>Follow</Button>{' '}
+            <Verified />{' '}
+            {isFollowing ? (
+              <Button
+                onClick={() => {
+                  setIsFollowing(false);
+                  unfollowUser(props.id, false);
+                }}
+              >
+                Unfollow
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  followUser(props.id);
+                  setIsFollowing(true);
+                }}
+              >
+                Follow
+              </Button>
+            )}
             <Button className='user-profile__button'>
               Message <IoChatbox />
             </Button>

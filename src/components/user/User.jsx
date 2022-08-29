@@ -55,9 +55,10 @@ const User = () => {
       <Search />
       <div className='user__header'>
         <UserProfile
+          id={userData.id}
           username={userData.username}
           email={userData.email}
-          img={userData.avatar.url}
+          img={userData.avatar}
           bio={userData.bio}
         />
         <UserStatus

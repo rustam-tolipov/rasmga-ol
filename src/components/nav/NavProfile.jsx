@@ -15,7 +15,7 @@ const NavProfile = (props) => {
       <div className='nav-profile__avatar'>
         <img
           className='nav-profile__avatar-img'
-          src={user.avatar.url === null ? avatar : user.avatar.url}
+          src={user.avatar === null ? avatar : user.avatar}
           alt='User avatar'
         />
       </div>
