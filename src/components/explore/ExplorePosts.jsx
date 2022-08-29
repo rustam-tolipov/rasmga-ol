@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 
+import ExplorePost from './ExplorePost';
+
 import './ExplorePosts.scss';
 
 const ExplorePosts = () => {
@@ -18,6 +20,7 @@ const ExplorePosts = () => {
     )
       .then((res) => {
         setPosts(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log('🔴 Could not get posts', err);
@@ -27,7 +30,7 @@ const ExplorePosts = () => {
   return (
     <div className='explore-posts'>
       {posts.map((post, index) => {
-        return <img src={post.image.url} alt='' key={index} />;
+        return <ExplorePost src={post.image.url} key={index} id={post.id} />;
       })}
     </div>
   );
