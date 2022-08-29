@@ -48,5 +48,14 @@
   &__btn {
     grid-column: 2;
     width: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    img {
+      height: 12px;
+      animation: spin 2.5s linear infinite;
+    }
   }
 }

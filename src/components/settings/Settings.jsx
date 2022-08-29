@@ -5,12 +5,14 @@ import Cookies from 'js-cookie';
 import Button from '../UI/Button';
 
 import avatar from '../../assets/avatar.jpg';
+import spinner from '../../assets/spinner.svg';
 import './Settings.scss';
 
 const Settings = () => {
   const [data, setData] = useState(JSON.parse(localStorage.getItem('me')));
   const [file, setFile] = useState(null);
   const [resData, setResData] = useState();
+  const [loading, setLoading] = useState(false);
 
   const imgRef = useRef();
   const firstNameRef = useRef();
@@ -21,6 +23,7 @@ const Settings = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
     if (imgRef.current.files[0])
@@ -64,6 +67,8 @@ const Settings = () => {
       })
       .catch((err) => {
         console.log(err);
+      }).finally(() => {
+        setLoading(false);
       });
   };
 
@@ -71,10 +76,7 @@ const Settings = () => {
     <div className='settings'>
       <form onSubmit={submitHandler}>
         <div className='settings__img'>
-          <img
-            src={data.avatar === null ? avatar : data.avatar}
-            alt=''
-          />
+          <img src={data.avatar === null ? avatar : data.avatar} alt='' />
         </div>
         <div className='settings__input-box'>
           <input ref={imgRef} type='file' />
@@ -119,7 +121,10 @@ const Settings = () => {
           <p>This won't be displayed publicly.</p>
         </div>
 
-        <Button className='settings__btn'>Save Changes</Button>
+        <Button className='settings__btn'>
+          {loading && <img src={spinner} alt='' />}
+          Save Changes
+        </Button>
       </form>
     </div>
   );
