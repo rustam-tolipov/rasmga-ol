@@ -33,7 +33,7 @@ const Post = (props) => {
       }
     ).then((res) => {
       setPostProfile(res.data);
-      
+
     });
   }, [props.user]);
 
@@ -125,7 +125,7 @@ const Post = (props) => {
             content={props.content}
             url={props.url}
             closeOverlay={closeOverlay}
-            avatar={postProfile.avatar.url}
+            avatar={postProfile.avatar}
             username={postProfile.username || postProfile.first_name}
             comments={props.comments}
             id={props.id}

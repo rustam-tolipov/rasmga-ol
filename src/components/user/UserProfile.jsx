@@ -14,12 +14,14 @@ const UserProfile = (props) => {
   const userData = JSON.parse(localStorage.getItem('me'));
 
   useEffect(() => {
-    const followed = userData.followees.forEach((followee) => {
-      console.log(followee.id, props.id);
-      if (followee.id === props.id) {
-        setIsFollowing(true);
-      }
-    });
+    const followed =
+      userData.followees &&
+      userData.followees.forEach((followee) => {
+        console.log(followee.id, props.id);
+        if (followee.id === props.id) {
+          setIsFollowing(true);
+        }
+      });
     console.log(followed);
   }, [props.id]);
 

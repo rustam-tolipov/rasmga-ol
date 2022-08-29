@@ -72,7 +72,7 @@ const Settings = () => {
       <form onSubmit={submitHandler}>
         <div className='settings__img'>
           <img
-            src={data.avatar.url === null ? avatar : data.avatar.url}
+            src={data.avatar === null ? avatar : data.avatar}
             alt=''
           />
         </div>
