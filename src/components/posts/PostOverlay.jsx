@@ -13,7 +13,6 @@ import './PostOverlay.scss';
 
 const PostOverlay = (props) => {
   const inputRef = useRef();
-  const [render, setRender] = useState('');
   const [postData, setPostData] = useState();
 
   const backdrop = (

@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 
-export const followUser = (id) => {
+const followUser = (id) => {
   Axios.post(
     `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${id}/follow`,
     { session: false },
@@ -16,7 +16,7 @@ export const followUser = (id) => {
   });
 };
 
-export const unfollowUser = (id) => {
+const unfollowUser = (id) => {
   Axios.delete(
     `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${id}/unfollow`,
     {
@@ -34,7 +34,7 @@ export const unfollowUser = (id) => {
     });
 };
 
-export const updateUserLS = () => {
+const updateUserLS = () => {
   Axios.get(
     `https://rustam-social-media-rails-app.herokuapp.com/api/v1/auth/me`,
     {
@@ -50,3 +50,5 @@ export const updateUserLS = () => {
       console.log(err);
     });
 };
+
+export { followUser, unfollowUser, updateUserLS };
