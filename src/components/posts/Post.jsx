@@ -96,7 +96,6 @@ const Post = (props) => {
               postProfile.first_name + ' ' + postProfile.last_name}
           </Link>
           <Verified />
-          <Button>Follow</Button>
         </div>
         <div
           className='post__img-container'
