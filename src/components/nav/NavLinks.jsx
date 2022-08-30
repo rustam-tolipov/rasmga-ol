@@ -47,7 +47,7 @@ const NavLinks = (props) => {
             <span className='nav-links__link-text'>Saved</span>
           </a>
         </li>
-        <hr />
+        <div className='nav-links__line'></div>
         <li className='nav-links__item'>
           <a className='nav-links__link' href='#'>
             <IoChatbubblesOutline className='nav-links__icon' />
