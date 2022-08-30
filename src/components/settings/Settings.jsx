@@ -73,6 +73,8 @@ const Settings = () => {
       });
   };
 
+  console.log(data);
+
   return (
     <div className='settings'>
       <form onSubmit={submitHandler}>
@@ -85,8 +87,8 @@ const Settings = () => {
 
         <p className='settings__name'>Name</p>
         <div className='settings__input-box'>
-          <input ref={firstNameRef} type='text' placeholder='First Name' />
-          <input ref={lastNameRef} type='text' placeholder='Last Name' />
+          <input ref={firstNameRef} type='text' placeholder='First Name' value={data.first_name} />
+          <input ref={lastNameRef} type='text' placeholder='Last Name' value={data.last_name} />
           <p>
             Help people discover your account by using the name you're known by:
             either your full name, nickname, or business name.
@@ -95,7 +97,7 @@ const Settings = () => {
 
         <p className='settings__name'>Username</p>
         <div className='settings__input-box'>
-          <input ref={usernameRef} type='text' placeholder='Username' />
+          <input ref={usernameRef} type='text' placeholder='Username' value={data.username} />
           <p>
             In most cases, you'll be able to change your username back to
             maqsudtolipov9 for another 14 days.
@@ -109,6 +111,7 @@ const Settings = () => {
             rows='4'
             cols='50'
             placeholder='Hello 👋🏼, I am'
+            value={data.bio}
           />
           <p>
             Prive your account by adding a short bio about yourself. This is a
@@ -118,7 +121,7 @@ const Settings = () => {
 
         <p className='settings__name'>Email</p>
         <div className='settings__input-box'>
-          <input ref={emailRef} type='email' placeholder='Email' />
+          <input ref={emailRef} type='email' placeholder='Email' value={data.email} />
           <p>This won't be displayed publicly.</p>
         </div>
 
