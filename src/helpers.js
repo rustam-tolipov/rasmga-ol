@@ -44,7 +44,7 @@ const updateUserLS = () => {
     }
   )
     .then((res) => {
-      localStorage.setItem('user', JSON.stringify(res.data));
+      localStorage.setItem('me', JSON.stringify(res.data));
     })
     .catch((err) => {
       console.log(err);
