@@ -1,59 +1,42 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Axios from 'axios';
-import Cookies from 'js-cookie';
 
-import UserProfile from './UserProfile';
-import UserNav from './UserNav';
-import UserPosts from './UserPosts';
-
+import usersApi from '../../api/users';
 import './User.scss';
-import UserStatus from './UserStatus';
-import Search from '../UI/Search';
 
-const fakeData = {
-  email: 'maqsudtolipov9@gmail.com',
-  first_name: 'Maqsud',
-  last_name: 'Tolipov',
-  username: 'maqsudtolipov9',
-  description:
-    'Hi there. This is the first person in the list of people who have joined the group.',
-  avatar: {
-    url: 'https://i.ibb.co/rQS844Y/Blue-Minimalist-Circle-Profile-Image-1.png',
-  },
-};
+const UserProfile = React.lazy(() => import('./UserProfile'));
+const UserNav = React.lazy(() => import('./UserNav'));
+const UserPosts = React.lazy(() => import('./UserPosts'));
+const UserStatus = React.lazy(() => import('./UserStatus'));
+const Search = React.lazy(() => import('../UI/Search'));
 
 const User = () => {
   const { id } = useParams();
-  const userId = id.replace(/\D/g, '');
-  console.log(id, userId);
+  const currentUser = useSelector((state) => state.auth.currentUser);
 
   const [userData, setUserData] = useState();
 
   useEffect(() => {
-    // let data = JSON.stringify({
-    //   username: 'art3mis',
-    // });
-    Axios.post(
-      `https://rustam-social-media-rails-app.herokuapp.com/api/v1/search`,
-      {
-        username: id,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('jwt')}`,
-        },
+    async function fetchUser() {
+      const response = await usersApi.findByUsername(id);
+      if (response.status === 200) {
+        setUserData(response.data);
+      } else {
+        console.log(response.status);
       }
-    ).then((res) => {
-      setUserData(res.data[0]);
-    });
-  }, [id]);
+    }
+
+    fetchUser();
+  }, [currentUser]);
+
+  console.log(userData);
 
   if (!userData) return;
   return (
-    <div className='user'>
+    <div className="user">
       <Search />
-      <div className='user__header'>
+      <div className="user__header">
         <UserProfile
           id={userData.id}
           username={userData.username}
@@ -62,12 +45,13 @@ const User = () => {
           bio={userData.bio}
         />
         <UserStatus
-          postsCount={userData.posts.length}
-          followersCount={userData.followers.length}
+          postsCount={userData.posts_count}
+          followersCount={userData.followers_count}
+          followeesCount={userData.followees_count}
         />
       </div>
       <UserNav />
-      <UserPosts data={userData.posts} />
+      <UserPosts id={userData.id} />
     </div>
   );
 };
