@@ -1,7 +1,9 @@
 import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import Axios from 'axios';
-import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+
+import postsApi from '../../api/posts';
+import { getPosts } from '../../redux/actions/posts';
 
 import Button from '../UI/Button';
 
@@ -11,6 +13,8 @@ import spinner from '../../assets/spinner.svg';
 
 const CreatePost = (props) => {
   const textareaRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState(null);
@@ -28,27 +32,21 @@ const CreatePost = (props) => {
     formData.append('image', file);
     formData.append('content', textareaRef.current.value);
 
-    Axios.post(
-      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts',
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('jwt')}`,
-        },
-      }
-    )
+    postsApi
+      .createPost(formData) // this is the same as above
       .then((res) => {
         setOpen(false);
       })
       .finally(() => {
         setLoading(false);
+        dispatch(getPosts());
       });
   };
 
   // class if from PostOverlay component
   const backdrop = (
     <div
-      className='backdrop'
+      className="backdrop"
       onClick={() => {
         setOpen(false);
       }}
@@ -56,23 +54,23 @@ const CreatePost = (props) => {
   );
 
   const postOverlay = (
-    <div className='create-overlay'>
+    <div className="create-overlay">
       {loading ? (
-        <div className='spinner'>
-          <img src={spinner} alt='' />
+        <div className="spinner">
+          <img src={spinner} alt="" />
         </div>
       ) : (
-        <img className='create-overlay__icon' src={image} alt='' />
+        <img className="create-overlay__icon" src={image} alt="" />
       )}
 
-      <p className='create-overlay__text'>Drag photos here</p>
-      <input type='file' name='file' onChange={uploadHandler} />
+      <p className="create-overlay__text">Drag photos here</p>
+      <input type="file" name="file" onChange={uploadHandler} />
       <textarea
         ref={textareaRef}
-        name='content'
-        placeholder='Whats on your mind?'
-        minLength='15'
-        maxLength='500'
+        name="content"
+        placeholder="Whats on your mind?"
+        minLength="15"
+        maxLength="500"
       ></textarea>
       <Button onClick={postHandler}>Post your image</Button>
     </div>
@@ -81,7 +79,7 @@ const CreatePost = (props) => {
   return (
     <>
       <button
-        className='create-overlay__btn'
+        className="create-overlay__btn"
         onClick={() => {
           setOpen(true);
         }}

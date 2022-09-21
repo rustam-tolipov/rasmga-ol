@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Cookies from 'js-cookie';
 
+import postApi from '../../api/posts';
+
 import ExplorePost from './ExplorePost';
 
 import './ExplorePosts.scss';
@@ -10,27 +12,21 @@ const ExplorePosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    Axios.get(
-      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts',
-      {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('jwt')}`,
-        },
+    async function fetchPosts() {
+      const response = await postApi.getPosts();
+      if (response.status === 200) {
+        setPosts(response.data);
+      } else {
+        console.log(response.status);
       }
-    )
-      .then((res) => {
-        setPosts(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log('🔴 Could not get posts', err);
-      });
+    }
+    fetchPosts();
   }, []);
 
   return (
-    <div className='explore-posts'>
+    <div className="explore-posts">
       {posts.map((post, index) => {
-        return <ExplorePost src={post.image.url} key={index} id={post.id} />;
+        return <ExplorePost src={post.image.medium.url} key={index} id={post.id} user_id={post.user_id} />;
       })}
     </div>
   );

@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
-import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
+
 import Post from './Post';
+
+import postsApi from '../../api/posts';
 
 import './Posts.scss';
 import Search from '../UI/Search';
@@ -9,24 +11,25 @@ import Search from '../UI/Search';
 const Posts = (props) => {
   const [posts, setPosts] = useState([]);
 
+  const newPostAdded = useSelector((state) => state.posts.posts);
+
   useEffect(() => {
-    Axios.get(
-      'https://rustam-social-media-rails-app.herokuapp.com/api/v1/posts',
-      {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('jwt')}`,
-        },
+    async function fetchPosts() {
+      const response = await postsApi.getPosts();
+      if (response.status === 200) {
+        setPosts(response.data);
+      } else {
+        console.log(response.status);
       }
-    ).then((res) => {
-      setPosts(res.data);
-    });
-  }, []);
+    }
+    fetchPosts();
+  }, [newPostAdded]);
 
   return (
-    <div className='posts'>
+    <div className="posts">
       <Search />
       <h1>Posts</h1>
-      <div className='posts-list'>
+      <div className="posts-list">
         {posts &&
           posts.map((post, i) => {
             return (
@@ -34,7 +37,7 @@ const Posts = (props) => {
                 key={post.id}
                 url={post.image.url}
                 content={post.content}
-                user={post.user_id}
+                user={post.user}
                 likes={post.likes}
                 id={post.id}
                 comments={post.comments}
