@@ -1,29 +1,37 @@
 import { useState, useEffect } from 'react';
 import SuggestionsItem from './SuggestionsItem';
+import userApi from '../../api/users';
 
 import './SuggestionsList.scss';
 
-const SuggestionsList = (props) => {
-  // fetch https://randomuser.me/api/?results=12 using axios
+const SuggestionsList = () => {
 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://randomuser.me/api/?results=12')
-      .then((res) => res.json())
-      .then((data) => setUsers(data.results));
+    async function fetchUsers() {
+      const response = await userApi.suggestedUsers();
+      if (response.status === 200) {
+        setUsers(response.data);
+      } else {
+        console.log(response.status);
+      }
+    }
+    fetchUsers();
   }, []);
 
+  console.log(users);
+
   return (
-    <ul className='suggestions-list'>
-      {users.map((user, id) => {
+    <ul className="suggestions-list">
+      {users.map((user) => {
         return (
           <SuggestionsItem
-            key={id}
-            image={user.picture.large}
-            id={user.login.username}
-            name={user.name.first}
-            lastName={user.name.last}
+            key={user.user.id}
+            image={user.user.avatar}
+            id={user.user.id}
+            name={`${user.user.first_name} ${user.user.last_name}`}
+            lastName={user.user.last_name}
           />
         );
       })}

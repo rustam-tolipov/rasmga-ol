@@ -1,6 +1,7 @@
 import Button from '../UI/Button';
 import Verified from '../UI/Verified';
 import './SuggestionsItem.scss';
+import Follow from '../user/Follow';
 
 const SuggestionsItem = (props) => {
   return (
@@ -9,12 +10,12 @@ const SuggestionsItem = (props) => {
         <img className='suggestions-item__img' src={props.image} alt='user' />
         <div className='suggestions-item__name-box'>
           <span className='suggestions-item__id'>
-            {props.id} <Verified />
+            {props.name} <Verified />
           </span>
           <span className='suggestions-item__name'>{props.name}</span>
         </div>
       </div>
-      <Button>Follow</Button>
+      <Follow id={props.id} />
     </li>
   );
 };
