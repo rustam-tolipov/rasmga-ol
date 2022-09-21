@@ -1,16 +1,18 @@
+import React from 'react';
 import logoFile from '../../assets/logo.svg';
 import CreatePost from '../CreatePost/CreatePost';
 
 import './Nav.scss';
-import NavFooter from './NavFooter';
-import NavLinks from './NavLinks';
-import NavProfile from './NavProfile';
+
+const NavFooter = React.lazy(() => import('./NavFooter'));
+const NavLinks = React.lazy(() => import('./NavLinks'));
+const NavProfile = React.lazy(() => import('./NavProfile'));
 
 const Nav = (props) => {
   return (
-    <nav className='nav'>
-      <div className='logo'>
-        <img className='logo' src={logoFile} alt='Keep logo' />
+    <nav className="nav">
+      <div className="logo">
+        <img className="logo" src={logoFile} alt="Keep logo" />
       </div>
       <NavProfile />
       <NavLinks />
