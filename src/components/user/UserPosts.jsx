@@ -14,7 +14,7 @@ const UserPosts = (props) => {
   const { id } = props;
 
   const [loading, setLoading] = useState(true);
-  const [userPosts, setUserPosts] = useState();
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
     async function getUserPosts() {
@@ -28,39 +28,29 @@ const UserPosts = (props) => {
     }
 
     getUserPosts();
-  }, []);
-
-  console.log(props);
+  }, [id]);
 
   return (
-    // <div className="user-posts">
-    //   {loading ? (
-    //     <div className="user-posts__post">
-    //       <Skeleton count={10} />
-    //     </div>
-    //   ) : (
-    //     userPosts.map((post, i) => {
-    //       return (
-    //         <div key={i} className="user-posts__post">
-    //           <img src={post.image.standard.url} alt="Post" />
-    //         </div>
-    //       );
-    //     })
-    //   )}
-    // </div>
     <>
-      {!loading ? (
-        // <Skeleton className="user-posts" count={10} height={200} width={200} />
-        <MyLoader className="user-posts" />
-      ) : (
+      {loading ? (
         <div className="user-posts">
-          {/* {userPosts.map((post, i) => {
+          {userPosts.map((i) => {
             return (
               <div key={i} className="user-posts__post">
-                <img src={post.image.standard.url} alt="Post" />
+                <MyLoader />
               </div>
             );
-          })} */}
+          })}
+        </div>
+      ) : (
+        <div className="user-posts">
+          {userPosts.map((post, i) => {
+            return (
+              <div key={i} className="user-posts__post">
+                <img src={post.image.url} alt="Post" />
+              </div>
+            );
+          })}
         </div>
       )}
     </>

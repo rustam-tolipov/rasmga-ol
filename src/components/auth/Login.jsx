@@ -7,6 +7,7 @@ import { authSuccess } from '../../redux/actions/auth';
 
 import Button from '../UI/Button';
 import logo from '../../assets/logo.svg';
+import Errors from '../UI/Errors';
 
 import './Login.scss';
 
@@ -69,6 +70,7 @@ const Login = (props) => {
         <Link className="login-link" to="/signup">
           If you don't have an account, create one here
         </Link>
+        <Errors errors={errors} />
       </form>
     </div>
   );

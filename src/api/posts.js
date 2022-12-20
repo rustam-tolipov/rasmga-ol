@@ -29,6 +29,13 @@ const postsApi = {
       return e.response;
     }
   },
+  async deletePost(id) {
+    try {
+      return await axios.delete(`posts/${id}`);
+    } catch (e) {
+      return e.response;
+    }
+  },
 };
 
 export default postsApi;

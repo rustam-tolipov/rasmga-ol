@@ -15,6 +15,7 @@ import Verified from '../UI/Verified';
 
 import './Post.scss';
 import Button from '../UI/Button';
+import DeleteBtn from '../UI/DeleteBtn';
 
 const PostOverlay = React.lazy(() => import('./PostOverlay'));
 
@@ -49,8 +50,6 @@ const Post = (props) => {
     }
   };
 
-  console.log(liked);
-
   // close overlay
   const closeOverlay = () => {
     setOpen(false);
@@ -72,6 +71,8 @@ const Post = (props) => {
             {props.user.first_name + ' ' + props.user.last_name}
           </Link>
           <Verified />
+
+          <DeleteBtn postId={props.id} userId={postProfile.id} />
         </div>
         <div
           className="post__img-container"

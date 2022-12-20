@@ -23,10 +23,19 @@ const ExplorePosts = () => {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   return (
     <div className="explore-posts">
       {posts.map((post, index) => {
-        return <ExplorePost src={post.image.medium.url} key={index} id={post.id} user_id={post.user_id} />;
+        return (
+          <ExplorePost
+            src={post.image.medium.url}
+            key={index}
+            id={post.id}
+            user_id={post.user_id}
+          />
+        );
       })}
     </div>
   );

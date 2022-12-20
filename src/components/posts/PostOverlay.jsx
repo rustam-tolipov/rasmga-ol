@@ -8,6 +8,7 @@ import commentsApi from '../../api/comments';
 
 import PostOverlayComment from './PostOverlayComment';
 import Button from '../UI/Button';
+import DeleteBtn from '../UI/DeleteBtn';
 import Follow from '../user/Follow';
 
 import { IoHappyOutline } from 'react-icons/io5';
@@ -37,6 +38,7 @@ const PostOverlay = (props) => {
     // get comments
     async function getComments() {
       const response = await commentsApi.getComments(props.id);
+
       setComments(response.data);
     }
     getComments();
@@ -59,8 +61,6 @@ const PostOverlay = (props) => {
     inputRef.current.value = '';
   };
 
-  console.log(props.user_id);
-
   const component = postData && (
     <div className="post-overlay">
       <div className="overlay-image">
@@ -79,12 +79,23 @@ const PostOverlay = (props) => {
             <span className="overlay-header__username">{props.username}</span>
           </div>
           <Follow id={props.user_id} />
+          <DeleteBtn postId={props.id} userId={props.user_id} />
         </div>
 
         <div className="overlay-content">{postData.content}</div>
 
         {/* overlay comments */}
         <div className="overlay-comments">
+          <div className="overlay-input">
+            <IoHappyOutline className="overlay-input__icon" />
+            <input type="text" id="post-comment" ref={inputRef} />
+            <Button
+              onClick={postCommentHandler}
+              onKeyPress={postCommentHandler}
+            >
+              Post
+            </Button>
+          </div>
           {comments &&
             comments
               .map((comment, id) => {

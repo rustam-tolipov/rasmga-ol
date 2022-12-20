@@ -35,7 +35,7 @@ const usersApi = {
     } catch (e) {
       return e.response;
     }
-  }
+  },
 };
 
 export default usersApi;

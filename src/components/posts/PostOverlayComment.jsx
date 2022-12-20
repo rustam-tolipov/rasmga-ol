@@ -1,38 +1,32 @@
 import { useState, useEffect } from 'react';
-import Axios from 'axios';
-import Cookies from 'js-cookie';
+import usersApi from '../../api/users';
 
 import avatar from '../../assets/avatar.jpg';
 
 const PostOverlayComment = (props) => {
   const [profile, setProfile] = useState('sd');
 
-  // useEffect(() => {
-  //   Axios.get(
-  //     `https://rustam-social-media-rails-app.herokuapp.com/api/v1/users/${props.userId}`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${Cookies.get('jwt')}`,
-  //       },
-  //     }
-  //   ).then((res) => {
-  //     setProfile(res.data);
-  //   });
-  // }, [props.userId]);
+  useEffect(() => {
+    async function getProfile() {
+      const response = await usersApi.getUser(props.userId);
+
+      setProfile(response.data.user);
+    }
+    getProfile();
+  }, [props.userId]);
+
+  console.log(profile);
 
   return (
     profile && (
-      <div className='comment'>
-        <div className='comment__img'>
-          {/* <img
-            src={profile.avatar.url === null ? avatar : profile.avatar.url}
-            alt=''
-          /> */}
+      <div className="comment">
+        <div className="comment__img">
+          <img src={profile.avatar} alt="" />
         </div>
 
-        <div className='comment__content'>
-          <span className='comment__username'>
-            {/* {profile.username || profile.first_name + ' ' + profile.last_name} */}
+        <div className="comment__content">
+          <span className="comment__username">
+            {profile.username || profile.first_name + ' ' + profile.last_name}
           </span>{' '}
           {props.content}
         </div>
