@@ -54,7 +54,7 @@ const Login = (props) => {
   return (
     <div className="login" onSubmit={onSubmit}>
       <form className="login-form" action="">
-        <img className="login-img" src={logo} alt="Instagram logo" />
+        <img className="login-img" src={logo} alt="RasmgaOl logo" />
         <div>
           <input ref={emailInputRef} type="email" placeholder="email" />
         </div>

@@ -4,7 +4,7 @@ import logo from '../../assets/waiting.gif';
 function Loading(loading) {
   return (
     <div className='loading'>
-      <img src={logo} alt='Instagram logo' />
+      <img src={logo} alt='RasmgaOl logo' />
     </div>
   );
 }
