@@ -60,6 +60,8 @@ const Post = (props) => {
     setOpenOverlay(true);
   };
 
+  console.log(props);
+
   return (
     postProfile && (
       <div className='post'>
@@ -119,7 +121,17 @@ const Post = (props) => {
             <IoPaperPlaneOutline className='share' />
             <IoChatbubbleOutline className='comment' />
             {liked ? (
-              <IoHeart className='heart' onClick={unlikePost} />
+              <>
+                <IoHeart className='heart' onClick={unlikePost} />
+                <p
+                  style={{
+                    fontSize: '1.2rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {props.likes.length}
+                </p>
+              </>
             ) : (
               <IoHeartOutline onClick={likePost} />
             )}
