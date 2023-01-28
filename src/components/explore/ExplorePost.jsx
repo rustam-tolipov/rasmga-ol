@@ -11,11 +11,8 @@ const ExplorePost = (props) => {
     setOpen(false);
   };
 
-  console.log(props.src);
-
   return (
     <div className='explore-post'>
-      {/* <img src={props.src} alt="" onClick={() => setOpen(true)} /> */}
       {props.src.includes('mp4') ? (
         <video
           controls

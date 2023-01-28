@@ -17,8 +17,6 @@ const PostOverlayComment = (props) => {
     getProfile();
   }, [props.userId]);
 
-  console.log(profile);
-
   return (
     profile && (
       <div className='comment'>
@@ -29,8 +27,7 @@ const PostOverlayComment = (props) => {
         <div className='comment__content'>
           <Link to={`/users/${profile.username}`} className='comment__name'>
             <span className='comment__username'>
-              {profile.username ||
-                profile.first_name + ' ' + profile.last_name}
+              {profile.username || profile.first_name + ' ' + profile.last_name}
             </span>{' '}
           </Link>
           {props.content}

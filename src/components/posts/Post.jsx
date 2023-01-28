@@ -32,7 +32,6 @@ const Post = (props) => {
   // check if user has liked the post
   useEffect(() => {
     const liked = props.likes.find((like) => like.user_id === currentUser.id);
-    console.log(liked, currentUser.id);
     if (liked) setLiked(true);
   }, [props.likes, currentUser.id]);
 

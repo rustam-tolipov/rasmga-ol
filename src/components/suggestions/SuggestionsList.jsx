@@ -5,7 +5,6 @@ import userApi from '../../api/users';
 import './SuggestionsList.scss';
 
 const SuggestionsList = () => {
-
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -20,10 +19,8 @@ const SuggestionsList = () => {
     fetchUsers();
   }, []);
 
-  console.log(users);
-
   return (
-    <ul className="suggestions-list">
+    <ul className='suggestions-list'>
       {users.map((user) => {
         return (
           <SuggestionsItem

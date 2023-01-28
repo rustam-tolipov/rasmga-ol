@@ -35,39 +35,33 @@ const Login = (props) => {
 
     const response = await authApi.login(data);
 
-    console.log(response);
-
     if (response.status === 200) {
       dispatch(authSuccess(response));
       navigate('/');
     } else {
       response.data.error && setErrors(response.data.error);
-
-      console.log(response);
     }
 
     setIsLoading(false);
   }
 
-  console.log(errors);
-
   return (
-    <div className="login" onSubmit={onSubmit}>
-      <form className="login-form" action="">
-        <img className="login-img" src={logo} alt="RasmgaOl logo" />
+    <div className='login' onSubmit={onSubmit}>
+      <form className='login-form' action=''>
+        <img className='login-img' src={logo} alt='RasmgaOl logo' />
         <div>
-          <input ref={emailInputRef} type="email" placeholder="email" />
+          <input ref={emailInputRef} type='email' placeholder='email' />
         </div>
         <div>
           <input
             ref={passwordInputRef}
-            type="password"
-            placeholder="password"
+            type='password'
+            placeholder='password'
           />
         </div>
 
         <Button>Login</Button>
-        <Link className="login-link" to="/signup">
+        <Link className='login-link' to='/signup'>
           If you don't have an account, create one here
         </Link>
         <Errors errors={errors} />

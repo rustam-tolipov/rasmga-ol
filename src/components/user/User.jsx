@@ -28,15 +28,14 @@ const User = () => {
     }
 
     fetchUser();
-  }, [currentUser]);
-
-  console.log(userData);
+  }, [id]);
 
   if (!userData) return;
+
   return (
-    <div className="user">
+    <div className='user'>
       <Search />
-      <div className="user__header">
+      <div className='user__header'>
         <UserProfile
           id={userData.id}
           username={userData.username}

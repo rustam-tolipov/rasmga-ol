@@ -23,8 +23,6 @@ const ExplorePosts = () => {
     fetchPosts();
   }, []);
 
-  console.log(posts);
-
   return (
     <div className='explore-posts'>
       {posts.map((post, index) => {

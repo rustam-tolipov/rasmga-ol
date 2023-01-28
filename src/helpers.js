@@ -12,7 +12,6 @@ const followUser = (id) => {
     }
   ).then((res) => {
     updateUserLS();
-    console.log('🍉 Followed');
   });
 };
 
@@ -27,7 +26,6 @@ const unfollowUser = (id) => {
   )
     .then((res) => {
       updateUserLS();
-      console.log('🍉 Unfollowed');
     })
     .catch((err) => {
       console.log(err);

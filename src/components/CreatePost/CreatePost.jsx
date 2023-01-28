@@ -23,8 +23,6 @@ const CreatePost = (props) => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  console.log(file);
-
   const uploadHandler = (e) => {
     setFile(e.target.files[0]);
   };
@@ -83,7 +81,9 @@ const CreatePost = (props) => {
         style={{ display: 'none' }}
         onChange={uploadHandler}
       />
-      <label className='upload-file__btn' htmlFor='img'>Click me to upload image</label>
+      <label className='upload-file__btn' htmlFor='img'>
+        Click me to upload image
+      </label>
 
       <textarea
         ref={textareaRef}
