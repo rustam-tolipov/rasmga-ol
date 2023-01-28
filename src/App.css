@@ -13,15 +13,13 @@
   large: 16px
 
   heading 1: 2
- 
-*/
 
+*/
 .app {
   max-width: 1240px;
   margin: 0 auto;
   padding: 3.2rem 2.6rem;
   contain: content;
-
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 3.2rem;
@@ -30,7 +28,7 @@
 }
 
 .loading {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,15 +37,14 @@
 
 .spinner {
   padding: 4rem;
-
-  img {
-    height: 6rem;
-    animation: spin 2.5s linear infinite;
-  }
+}
+.spinner img {
+  height: 6rem;
+  -webkit-animation: spin 2.5s linear infinite;
+          animation: spin 2.5s linear infinite;
 }
 
-// spinning animation
-@keyframes spin {
+@-webkit-keyframes spin {
   0% {
     transform: rotate(0deg);
   }
@@ -55,3 +52,12 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=App.css.map */

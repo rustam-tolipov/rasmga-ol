@@ -26,11 +26,11 @@ const ExplorePosts = () => {
   console.log(posts);
 
   return (
-    <div className="explore-posts">
+    <div className='explore-posts'>
       {posts.map((post, index) => {
         return (
           <ExplorePost
-            src={post.image.medium.url}
+            src={post.image.url}
             key={index}
             id={post.id}
             user_id={post.user_id}

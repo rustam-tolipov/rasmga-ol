@@ -4,9 +4,9 @@ import { authFail } from './redux/actions/auth';
 import store from './redux';
 import { history } from './index';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1'
-// axios.defaults.baseURL =
-//   'https://rustam-social-media-rails-app.herokuapp.com/api/v1';
+// axios.defaults.baseURL = 'http://localhost:3000/api/v1'
+axios.defaults.baseURL =
+  'https://social-media-api.fly.dev/api/v1';
 
 axios.interceptors.request.use(
   (config) => {

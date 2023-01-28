@@ -16,7 +16,7 @@ import { IoHappyOutline } from 'react-icons/io5';
 import avatar from '../../assets/avatar.jpg';
 import './PostOverlay.scss';
 
-const PostOverlay = (props) => {
+const PostOptionsOverlay = (props) => {
   const inputRef = useRef();
   const [postData, setPostData] = useState();
   const [comments, setComments] = useState([]);
@@ -65,20 +65,7 @@ const PostOverlay = (props) => {
   const component = postData && (
     <div className='post-overlay'>
       <div className='overlay-image'>
-        {postData.image.url.includes('mp4') ? (
-          <video
-            controls
-            width='100%'
-            height='100%'
-            autoPlay
-            loop
-            muted
-            playsInline
-            src={props.url}
-          />
-        ) : (
-          <img src={postData.image.url} alt='' />
-        )}
+        <img src={postData.image.url} alt='' />
       </div>
       <div className='overlay-right'>
         <div className='overlay-header'>
@@ -99,32 +86,6 @@ const PostOverlay = (props) => {
         </div>
 
         <div className='overlay-content'>{postData.content}</div>
-
-        {/* overlay comments */}
-        <div className='overlay-comments'>
-          <div className='overlay-input'>
-            <IoHappyOutline className='overlay-input__icon' />
-            <input type='text' id='post-comment' ref={inputRef} />
-            <Button
-              onClick={postCommentHandler}
-              onKeyPress={postCommentHandler}
-            >
-              Post
-            </Button>
-          </div>
-          {comments &&
-            comments
-              .map((comment, id) => {
-                return (
-                  <PostOverlayComment
-                    userId={comment.user_id}
-                    content={comment.content}
-                    key={id}
-                  />
-                );
-              })
-              .reverse()}
-        </div>
 
         {/* overlay input */}
         <div className='overlay-input'>
@@ -150,4 +111,4 @@ const PostOverlay = (props) => {
   );
 };
 
-export default PostOverlay;
+export default PostOptionsOverlay;

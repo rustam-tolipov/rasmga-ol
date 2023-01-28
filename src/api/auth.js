@@ -33,15 +33,15 @@ const authApi = {
     }
   },
 
-  async emailConfirmation(token) {
-    try {
-      return await baseAxios.get(
-        `/auth/confirmation?confirmation_token=${token}`
-      );
-    } catch (e) {
-      return e.response;
-    }
-  },
+  // async emailConfirmation(token) {
+  //   try {
+  //     return await baseAxios.get(
+  //       `/auth/confirmation?confirmation_token=${token}`
+  //     );
+  //   } catch (e) {
+  //     return e.response;
+  //   }
+  // },
 };
 
 export default authApi;

@@ -11,9 +11,26 @@ const ExplorePost = (props) => {
     setOpen(false);
   };
 
+  console.log(props.src);
+
   return (
-    <div className="explore-post">
-      <img src={props.src} alt="" onClick={() => setOpen(true)} />
+    <div className='explore-post'>
+      {/* <img src={props.src} alt="" onClick={() => setOpen(true)} /> */}
+      {props.src.includes('mp4') ? (
+        <video
+          controls
+          width='100%'
+          height='100%'
+          autoPlay
+          loop
+          muted
+          playsInline
+          src={props.url}
+          onClick={() => setOpen(true)}
+        />
+      ) : (
+        <img src={props.src} alt='' onClick={() => setOpen(true)} />
+      )}
 
       {open && (
         <PostOverlay
@@ -27,4 +44,3 @@ const ExplorePost = (props) => {
 };
 
 export default ExplorePost;
-

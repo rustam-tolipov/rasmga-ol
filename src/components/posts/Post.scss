@@ -9,9 +9,16 @@
   &-profile {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    justify-content: space-between;
     font-size: 1.4rem;
+    width: 100%;
 
+    &__info {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    
     &__img {
       border-radius: 50%;
       height: 2.4rem;

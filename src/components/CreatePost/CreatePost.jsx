@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
+import { FileUploader } from 'react-drag-drop-files';
 
 import postsApi from '../../api/posts';
 import { getPosts } from '../../redux/actions/posts';
@@ -11,6 +12,8 @@ import './CreatePost.scss';
 import image from '../../assets/upload.svg';
 import spinner from '../../assets/spinner.svg';
 
+const fileTypes = ['JPG', 'PNG', 'GIF'];
+
 const CreatePost = (props) => {
   const textareaRef = useRef(null);
 
@@ -20,8 +23,14 @@ const CreatePost = (props) => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  console.log(file);
+
   const uploadHandler = (e) => {
     setFile(e.target.files[0]);
+  };
+
+  const handleChange = (file) => {
+    setFile(file);
   };
 
   const postHandler = () => {
@@ -46,7 +55,7 @@ const CreatePost = (props) => {
   // class if from PostOverlay component
   const backdrop = (
     <div
-      className="backdrop"
+      className='backdrop'
       onClick={() => {
         setOpen(false);
       }}
@@ -54,24 +63,36 @@ const CreatePost = (props) => {
   );
 
   const postOverlay = (
-    <div className="create-overlay">
-      {loading ? (
-        <div className="spinner">
-          <img src={spinner} alt="" />
-        </div>
-      ) : (
-        <img className="create-overlay__icon" src={image} alt="" />
-      )}
+    <div className='create-overlay'>
+      <FileUploader types={fileTypes} name='file' handleChanges={handleChange}>
+        {loading ? (
+          <div className='spinner'>
+            <img src={spinner} alt='' />
+          </div>
+        ) : (
+          <img className='create-overlay__icon' src={image} alt='' />
+        )}
 
-      <p className="create-overlay__text">Drag photos here</p>
-      <input type="file" name="file" onChange={uploadHandler} />
+        <p className='create-overlay__text'>Drag photos here</p>
+      </FileUploader>
+
+      <input
+        type='file'
+        name='uploadfile'
+        id='img'
+        style={{ display: 'none' }}
+        onChange={uploadHandler}
+      />
+      <label className='upload-file__btn' htmlFor='img'>Click me to upload image</label>
+
       <textarea
         ref={textareaRef}
-        name="content"
-        placeholder="Whats on your mind?"
-        minLength="15"
-        maxLength="500"
+        name='content'
+        placeholder='Whats on your mind?'
+        minLength='138'
+        maxLength='150'
       ></textarea>
+
       <Button onClick={postHandler}>Post your image</Button>
     </div>
   );
@@ -79,7 +100,7 @@ const CreatePost = (props) => {
   return (
     <>
       <button
-        className="create-overlay__btn"
+        className='create-overlay__btn'
         onClick={() => {
           setOpen(true);
         }}
