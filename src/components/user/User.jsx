@@ -13,7 +13,6 @@ const Search = React.lazy(() => import('../UI/Search'));
 
 const User = () => {
   const { id } = useParams();
-  const currentUser = useSelector((state) => state.auth.currentUser);
 
   const [userData, setUserData] = useState();
 

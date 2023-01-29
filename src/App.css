@@ -16,7 +16,7 @@
 
 */
 .app {
-  max-width: 1240px;
+  /* max-width: 1240px; */
   margin: 0 auto;
   padding: 3.2rem 2.6rem;
   contain: content;

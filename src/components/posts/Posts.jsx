@@ -28,7 +28,6 @@ const Posts = (props) => {
   return (
     <div className="posts">
       <Search />
-      <h1>Posts</h1>
       <div className="posts-list">
         {posts &&
           posts.map((post, i) => {

@@ -1,5 +1,12 @@
 .posts {
   grid-column: 3 / span 5;
+  overflow-y: scroll;
+  height: 95vh;
+}
+
+// hide scrollbar
+.posts::-webkit-scrollbar {
+  display: none;
 }
 
 .posts-list {

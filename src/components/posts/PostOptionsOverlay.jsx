@@ -1,112 +1,65 @@
-import { useRef, useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { createPortal } from 'react-dom';
-import { IoClose } from 'react-icons/io5';
-import postsApi from '../../api/posts';
-import commentsApi from '../../api/comments';
 
-import PostOverlayComment from './PostOverlayComment';
-import Button from '../UI/Button';
-import DeleteBtn from '../UI/DeleteBtn';
-import Follow from '../user/Follow';
-
-import { IoHappyOutline } from 'react-icons/io5';
-import avatar from '../../assets/avatar.jpg';
-import './PostOverlay.scss';
+import { Delete } from '../UI/DeleteBtn';
+import './PostOptionsOverlay.scss';
 
 const PostOptionsOverlay = (props) => {
-  const inputRef = useRef();
-  const [postData, setPostData] = useState();
-  const [comments, setComments] = useState([]);
-  const [rerender, setRerender] = useState(false);
-
   const backdrop = (
     <div className='backdrop' onClick={props.closeOverlay}></div>
   );
 
-  const newPostAdded = useSelector((state) => state.posts.posts);
+  console.log(props.user_id);
 
-  // get this post data
-  useEffect(() => {
-    async function getPostData() {
-      const response = await postsApi.getPost(props.id);
-      setPostData(response.data);
-    }
-    getPostData();
+  const options = (
+    <ul className='options-overlay'>
+      <li className='options-overlay__item'>
+        <a
+          href='https://www.rustam.one/'
+          target='_blank'
+          className='options-overlay__item--link'
+          rel='noreferrer'
+        >
+          🧑🏻‍💻. Check my portfolio
+        </a>
+      </li>
 
-    // get comments
-    async function getComments() {
-      const response = await commentsApi.getComments(props.id);
+      <li className='options-overlay__item'>
+        <a
+          href='https://github.com/Rustamxon7/rasmga-ol'
+          target='_blank'
+          className='options-overlay__item--link'
+          rel='noreferrer'
+        >
+          📄. See the source code
+        </a>
+      </li>
 
-      setComments(response.data);
-    }
-    getComments();
-  }, [props.id, rerender]);
+      <li className='options-overlay__item'>
+        <a
+          href='https://social-media-api.fly.dev/'
+          target='_blank'
+          className='options-overlay__item--link'
+          rel='noreferrer'
+        >
+          ⚙️. Back-end
+        </a>
+      </li>
 
-  // First, post the comment then get the comments
-  const postCommentHandler = async () => {
-    try {
-      const response = await commentsApi.createComment(
-        props.id,
-        inputRef.current.value
-      );
-      if (response.status === 201) {
-        setRerender((state) => !state);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-
-    inputRef.current.value = '';
-  };
-
-  const component = postData && (
-    <div className='post-overlay'>
-      <div className='overlay-image'>
-        <img src={postData.image.url} alt='' />
-      </div>
-      <div className='overlay-right'>
-        <div className='overlay-header'>
-          <div>
-            <img
-              className='overlay-header__img'
-              src={props.avatar === null ? avatar : props.avatar}
-              alt=''
-            />
-          </div>
-          <Link to={`/users/${props.username}`}>
-            <div>
-              <span className='overlay-header__username'>{props.username}</span>
-            </div>
-          </Link>
-          <Follow id={props.user_id} />
-          <DeleteBtn postId={props.id} userId={props.user_id} />
-        </div>
-
-        <div className='overlay-content'>{postData.content}</div>
-
-        {/* overlay input */}
-        <div className='overlay-input'>
-          <IoHappyOutline className='overlay-input__icon' />
-          <input type='text' id='post-comment' ref={inputRef} />
-          <Button onClick={postCommentHandler} onKeyPress={postCommentHandler}>
-            Post
-          </Button>
-        </div>
-      </div>
-      <IoClose
-        className='post-overlay__close-btn'
-        onClick={props.closeOverlay}
-      />
-    </div>
+      {props.user_id && (
+        <li className='options-overlay__item'>
+          <Delete postId={props.id} userId={props.user_id} />
+        </li>
+      )}
+    </ul>
   );
 
   return (
     <>
       {createPortal(backdrop, document.querySelector('#post-portal'))}
-      {createPortal(component, document.querySelector('#post-portal'))}
+      {createPortal(options, document.querySelector('#post-portal'))}
     </>
   );
 };

@@ -23,7 +23,7 @@ const Follow = (props) => {
     }
 
     fetchFollow();
-  }, [props.id]);
+  }, [userData.id, props.id]);
 
   const followUser = async () => {
     const response = await followsApi.followUser(props.id);

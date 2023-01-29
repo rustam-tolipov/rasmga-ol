@@ -12,26 +12,26 @@ const NavProfile = (props) => {
   const user = useSelector((state) => state.auth.currentUser);
 
   return (
-    <div className="nav-profile">
-      <div className="nav-profile__avatar">
+    <div className='nav-profile'>
+      <div className='nav-profile__avatar'>
         <img
-          className="nav-profile__avatar-img"
+          className='nav-profile__avatar-img'
           src={user.avatar}
-          alt="User avatar"
+          alt='User avatar'
         />
       </div>
-      <div className="nav-profile__name-box">
+      <div className='nav-profile__name-box'>
         <NavLink to={`/users/${user.username}`}>
-          <span className="nav-profile__id">
+          <span className='nav-profile__id'>
             {user.username}
             <Verified />
           </span>
         </NavLink>
-        <span className="nav-profile__name">
+        <span className='nav-profile__name'>
           {user.first_name + ' ' + user.last_name}
         </span>
       </div>
-      <div className="nav-profile__icon">
+      <div className='nav-profile__icon'>
         <IoChevronDownOutline />
       </div>
     </div>

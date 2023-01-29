@@ -15,15 +15,14 @@ const ExplorePost = (props) => {
     <div className='explore-post'>
       {props.src.includes('mp4') ? (
         <video
-          controls
           width='100%'
           height='100%'
-          autoPlay
           loop
           muted
           playsInline
-          src={props.url}
+          src={props.src}
           onClick={() => setOpen(true)}
+          // className='video'
         />
       ) : (
         <img src={props.src} alt='' onClick={() => setOpen(true)} />
@@ -33,6 +32,7 @@ const ExplorePost = (props) => {
         <PostOverlay
           id={props.id}
           user_id={props.user_id}
+          src={props.src}
           closeOverlay={closeOverlay}
         />
       )}

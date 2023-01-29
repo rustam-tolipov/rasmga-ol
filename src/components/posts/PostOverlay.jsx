@@ -9,7 +9,7 @@ import commentsApi from '../../api/comments';
 
 import PostOverlayComment from './PostOverlayComment';
 import Button from '../UI/Button';
-import DeleteBtn from '../UI/DeleteBtn';
+import { DeleteBtn } from '../UI/DeleteBtn';
 import Follow from '../user/Follow';
 
 import { IoHappyOutline } from 'react-icons/io5';
@@ -25,8 +25,6 @@ const PostOverlay = (props) => {
   const backdrop = (
     <div className='backdrop' onClick={props.closeOverlay}></div>
   );
-
-  const newPostAdded = useSelector((state) => state.posts.posts);
 
   // get this post data
   useEffect(() => {
@@ -70,11 +68,10 @@ const PostOverlay = (props) => {
             controls
             width='100%'
             height='100%'
-            autoPlay
             loop
             muted
             playsInline
-            src={props.url}
+            src={postData.image.url}
           />
         ) : (
           <img src={postData.image.url} alt='' />
@@ -85,17 +82,21 @@ const PostOverlay = (props) => {
           <div>
             <img
               className='overlay-header__img'
-              src={props.avatar === null ? avatar : props.avatar}
+              src={
+                postData.user.avatar === null ? avatar : postData.user.avatar
+              }
               alt=''
             />
           </div>
-          <Link to={`/users/${props.username}`}>
+          <Link to={`/users/${postData.user.username}`}>
             <div>
-              <span className='overlay-header__username'>{props.username}</span>
+              <span className='overlay-header__username'>
+                {postData.user.username}
+              </span>
             </div>
           </Link>
-          <Follow id={props.user_id} />
-          <DeleteBtn postId={props.id} userId={props.user_id} />
+          <Follow id={postData.user.id} />
+          <DeleteBtn postId={postData.id} userId={postData.user.id} />
         </div>
 
         <div className='overlay-content'>{postData.content}</div>
@@ -126,7 +127,6 @@ const PostOverlay = (props) => {
               .reverse()}
         </div>
 
-        {/* overlay input */}
         <div className='overlay-input'>
           <IoHappyOutline className='overlay-input__icon' />
           <input type='text' id='post-comment' ref={inputRef} />

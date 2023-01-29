@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { IoChatbox } from 'react-icons/io5';
 
 import Verified from '../UI/Verified';
@@ -7,19 +8,22 @@ import Follow from './Follow';
 import './UserProfile.scss';
 
 const UserProfile = (props) => {
+  const currentUser = useSelector((state) => state.auth.currentUser);
+
   return (
-    <div className="user-profile">
-      <div className="user-profile__info">
-        <img className="user-profile__img" src={props.img} alt="" />
+    <div className='user-profile'>
+      <div className='user-profile__info'>
+        <img className='user-profile__img' src={props.img} alt='' />
         <div>
-          <p className="user-profile__name">
+          <p className='user-profile__name'>
             {props.username}
-            <Verified /> <Follow id={props.id} />
-            <Button className="user-profile__button">
+            <Verified />
+            {currentUser.id !== props.id && <Follow id={props.id} />}
+            <Button className='user-profile__button'>
               Message <IoChatbox />
             </Button>
           </p>
-          <p className="user-profile__description">
+          <p className='user-profile__description'>
             {props.bio ||
               'I’m a mysterious individual who has yet to fill out my bio 🥶'}
           </p>

@@ -60,7 +60,9 @@ const Post = (props) => {
     setOpenOverlay(true);
   };
 
-  console.log(props);
+  const closeOverlayHandler = () => {
+    setOpenOverlay(false);
+  };
 
   return (
     postProfile && (
@@ -81,12 +83,6 @@ const Post = (props) => {
             <Verified />
           </div>
 
-          {/* <DeleteBtn
-            postId={props.id}
-            userId={postProfile.id}
-            className='post-profile__options'
-          /> */}
-
           <ion-icon
             className='post-profile__options'
             name='ellipsis-horizontal'
@@ -99,13 +95,25 @@ const Post = (props) => {
             setOpen(true);
           }}
         >
-          {/* <img className='post__img' src={props.url} alt='' /> */}
+          <ion-icon
+            className='post__img-container__icon'
+            name='film-outline'
+            style={{
+              position: 'absolute',
+              top: '2%',
+              right: '2%',
+              fontSize: '3.2rem',
+              color: 'white',
+              opacity: '0.5',
+              display: props.url.includes('mp4') ? 'block' : 'none',
+            }}
+          ></ion-icon>
+
           {props.url.includes('mp4') ? (
             <video
-              controls
+              // controls
               width='100%'
               height='100%'
-              autoPlay
               loop
               muted
               playsInline
@@ -119,7 +127,12 @@ const Post = (props) => {
           <p className='post__content'>{props.content}</p>
           <div className='post__icons'>
             <IoPaperPlaneOutline className='share' />
-            <IoChatbubbleOutline className='comment' />
+            <IoChatbubbleOutline
+              className='comment'
+              onClick={() => {
+                setOpen(true);
+              }}
+            />
             {liked ? (
               <>
                 <IoHeart className='heart' onClick={unlikePost} />
@@ -140,26 +153,16 @@ const Post = (props) => {
 
         {open && (
           <PostOverlay
-            content={props.content}
-            url={props.url}
             closeOverlay={closeOverlay}
-            avatar={props.user.avatar}
-            username={props.user.username}
-            user_id={props.user.id}
-            comments={props.comments}
             id={props.id}
           />
         )}
 
         {openOverlay && (
           <PostOptionsOverlay
-            content={props.content}
-            url={props.url}
-            closeOverlay={closeOverlay}
-            avatar={props.user.avatar}
+            closeOverlay={closeOverlayHandler}
             username={props.user.username}
             user_id={props.user.id}
-            comments={props.comments}
             id={props.id}
           />
         )}

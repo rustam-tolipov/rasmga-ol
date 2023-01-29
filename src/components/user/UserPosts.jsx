@@ -7,7 +7,7 @@ import MyLoader from '../UI/ImageLoader';
 
 import usersApi from '../../api/users';
 
-import Loading from '../UI/Loading';
+import PostOverlay from '../posts/PostOverlay';
 import './UserPosts.scss';
 
 const UserPosts = (props) => {
@@ -15,6 +15,8 @@ const UserPosts = (props) => {
 
   const [loading, setLoading] = useState(true);
   const [userPosts, setUserPosts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [currentPost, setCurrentPost] = useState({});
 
   useEffect(() => {
     async function getUserPosts() {
@@ -33,25 +35,40 @@ const UserPosts = (props) => {
   return (
     <>
       {loading ? (
-        <div className="user-posts">
-          {userPosts.map((i) => {
-            return (
-              <div key={i} className="user-posts__post">
-                <MyLoader />
-              </div>
-            );
-          })}
-        </div>
+        <div className='user-posts'>Loading...</div>
       ) : (
-        <div className="user-posts">
+        <div className='user-posts'>
           {userPosts.map((post, i) => {
             return (
-              <div key={i} className="user-posts__post">
-                <img src={post.image.url} alt="Post" />
+              <div
+                key={i}
+                className='user-posts__post'
+                onClick={() => {
+                  setCurrentPost(post.id);
+                  setOpen(true);
+                }}
+              >
+                {post.image.url.includes('mp4') ? (
+                  <video
+                    // controls
+                    width='100%'
+                    height='100%'
+                    loop
+                    muted
+                    playsInline
+                    src={post.image.url}
+                  />
+                ) : (
+                  <img src={post.image.url} alt='' />
+                )}
               </div>
             );
           })}
         </div>
+      )}
+
+      {open && (
+        <PostOverlay closeOverlay={() => setOpen(false)} id={currentPost} />
       )}
     </>
   );

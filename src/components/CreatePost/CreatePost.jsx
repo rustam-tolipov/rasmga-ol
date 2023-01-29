@@ -14,7 +14,7 @@ import spinner from '../../assets/spinner.svg';
 
 const fileTypes = ['JPG', 'PNG', 'GIF'];
 
-const CreatePost = (props) => {
+const CreatePost = () => {
   const textareaRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -51,9 +51,9 @@ const CreatePost = (props) => {
   };
 
   // class if from PostOverlay component
-  const backdrop = (
+  const overlay = (
     <div
-      className='backdrop'
+      className='create-overlay__backdrop'
       onClick={() => {
         setOpen(false);
       }}
@@ -62,28 +62,12 @@ const CreatePost = (props) => {
 
   const postOverlay = (
     <div className='create-overlay'>
-      <FileUploader types={fileTypes} name='file' handleChanges={handleChange}>
-        {loading ? (
-          <div className='spinner'>
-            <img src={spinner} alt='' />
-          </div>
-        ) : (
-          <img className='create-overlay__icon' src={image} alt='' />
-        )}
-
-        <p className='create-overlay__text'>Drag photos here</p>
-      </FileUploader>
-
       <input
         type='file'
         name='uploadfile'
         id='img'
-        style={{ display: 'none' }}
         onChange={uploadHandler}
       />
-      <label className='upload-file__btn' htmlFor='img'>
-        Click me to upload image
-      </label>
 
       <textarea
         ref={textareaRef}
@@ -107,7 +91,7 @@ const CreatePost = (props) => {
       >
         Post
       </button>
-      {open && createPortal(backdrop, document.querySelector('#post-portal'))}
+      {open && createPortal(overlay, document.querySelector('#post-portal'))}
       {open &&
         createPortal(postOverlay, document.querySelector('#post-portal'))}
     </>
