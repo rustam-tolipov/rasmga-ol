@@ -91,7 +91,7 @@ const PostOverlay = (props) => {
           <Link to={`/users/${postData.user.username}`}>
             <div>
               <span className='overlay-header__username'>
-                {postData.user.username}
+                {postData.user.username.substr(0, 8) + '...'}
               </span>
             </div>
           </Link>
