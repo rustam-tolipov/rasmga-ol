@@ -57,28 +57,30 @@ const Settings = () => {
   };
 
   return (
-    <div className="settings">
+    <div className='settings'>
       <form onSubmit={submitHandler}>
-        <div className="settings__img">
-          <img src={data.avatar} alt="" />
+        <div className='settings__img'>
+          <div className='setting__img--cont'>
+            <img src={data.avatar} alt='' />
+          </div>
         </div>
-        <div className="settings__input-box">
-          <input ref={imgRef} type="file" />
+        <div className='settings__input-box'>
+          <input ref={imgRef} type='file' />
         </div>
 
-        <p className="settings__name">Name</p>
-        <div className="settings__input-box">
+        <p className='settings__name'>Name</p>
+        <div className='settings__input-box'>
           <input
             ref={firstNameRef}
-            type="text"
-            placeholder="First Name"
+            type='text'
+            placeholder='First Name'
             value={data.first_name}
             onChange={(e) => setData({ ...data, first_name: e.target.value })}
           />
           <input
             ref={lastNameRef}
-            type="text"
-            placeholder="Last Name"
+            type='text'
+            placeholder='Last Name'
             value={data.last_name}
             onChange={(e) => setData({ ...data, last_name: e.target.value })}
           />
@@ -88,12 +90,12 @@ const Settings = () => {
           </p>
         </div>
 
-        <p className="settings__name">Username</p>
-        <div className="settings__input-box">
+        <p className='settings__name'>Username</p>
+        <div className='settings__input-box'>
           <input
             ref={usernameRef}
-            type="text"
-            placeholder="Username"
+            type='text'
+            placeholder='Username'
             value={data.username}
             onChange={(e) => setData({ ...data, username: e.target.value })}
           />
@@ -103,13 +105,13 @@ const Settings = () => {
           </p>
         </div>
 
-        <p className="settings__name">Bio</p>
-        <div className="settings__input-box">
+        <p className='settings__name'>Bio</p>
+        <div className='settings__input-box'>
           <textarea
             ref={bioRef}
-            rows="4"
-            cols="50"
-            placeholder="Hello 👋🏼, I am"
+            rows='4'
+            cols='50'
+            placeholder='Hello 👋🏼, I am'
             value={data.bio}
             onChange={(e) => setData({ ...data, bio: e.target.value })}
           />
@@ -119,22 +121,22 @@ const Settings = () => {
           </p>
         </div>
 
-        <p className="settings__name">Email</p>
-        <div className="settings__input-box">
+        <p className='settings__name'>Email</p>
+        <div className='settings__input-box'>
           <input
             ref={emailRef}
-            type="email"
-            placeholder="Email"
+            type='email'
+            placeholder='Email'
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
           />
           <p>This won't be displayed publicly.</p>
         </div>
 
-        <Button className="settings__btn">
+        <Button className='settings__btn'>
           {loading ? (
             <>
-              <img src={spinner} alt="" />
+              <img src={spinner} alt='' />
               <span>Updating</span>
             </>
           ) : (

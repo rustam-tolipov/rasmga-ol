@@ -6,7 +6,7 @@ import searchApi from '../../api/search';
 import './Search.scss';
 import SearchResult from './SearchResults';
 
-const Search = (props) => {
+const Search = () => {
   const inputRef = useRef();
   const [searchResults, setSearchResults] = useState([]);
 
@@ -24,11 +24,7 @@ const Search = (props) => {
           placeholder='Search'
           ref={inputRef}
           onChange={(e) => {
-            if (e.target.value.length > 0) {
-              searchHandler();
-            } else {
-              setSearchResults([]);
-            }
+            searchHandler();
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {

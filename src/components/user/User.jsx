@@ -46,6 +46,9 @@ const User = () => {
           postsCount={userData.posts_count}
           followersCount={userData.followers_count}
           followeesCount={userData.followees_count}
+          userId={userData.id}
+          username={userData.username}
+          userAvatar={userData.avatar}
         />
       </div>
       <UserNav />

@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import MyLoader from '../UI/ImageLoader';
 
 import usersApi from '../../api/users';
 
@@ -50,7 +48,6 @@ const UserPosts = (props) => {
               >
                 {post.image.url.includes('mp4') ? (
                   <video
-                    // controls
                     width='100%'
                     height='100%'
                     loop
