@@ -23,7 +23,7 @@ const NavProfile = (props) => {
       <div className='nav-profile__name-box'>
         <NavLink to={`/users/${user.username}`}>
           <span className='nav-profile__id'>
-            {user.username}
+            {user.username.substr(0, 8) + '...'}
             <Verified />
           </span>
         </NavLink>

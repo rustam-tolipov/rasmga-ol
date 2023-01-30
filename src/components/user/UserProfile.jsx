@@ -13,7 +13,12 @@ const UserProfile = (props) => {
   return (
     <div className='user-profile'>
       <div className='user-profile__info'>
-        <img className='user-profile__img' src={props.img} alt='' />
+        {
+          <span
+            className='user-profile__img'
+            style={{ backgroundImage: `url(${props.img})` }}
+          ></span>
+        }
         <div>
           <p className='user-profile__name'>
             {props.username}
