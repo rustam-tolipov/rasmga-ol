@@ -61,11 +61,11 @@ const Login = (props) => {
         </div>
 
         <Button>Login</Button>
-        <Link className='login-link' to='/signup'>
-          If you don't have an account, create one here
-        </Link>
-        <Errors errors={errors} />
       </form>
+      <Link className='login-link' to='/signup'>
+        If you don't have an account, <span>create one here</span>
+        <Errors errors={errors} />
+      </Link>
     </div>
   );
 };

@@ -52,35 +52,36 @@ const SignUp = () => {
   }
 
   return (
-    <div className="login" onSubmit={onSignUp}>
+    <div className='login' onSubmit={onSignUp}>
       {isLoading ? (
         <Loading loading={isLoading} />
       ) : (
-        <form className="login-form" action="">
-          <img className="login-img" src={logo} alt="Instagram logo" />
-          <div>
-            <input ref={firstNameRef} type="text" placeholder="First Name" />
-          </div>
-          <div>
-            <input ref={lastNameRef} type="text" placeholder="Last Name" />
-          </div>
-          <div>
-            <input ref={userNameRef} type="text" placeholder="Username" />
-          </div>
-          <div>
-            <input ref={emailRef} type="email" placeholder="Email" />
-          </div>
-          <div>
-            <input ref={passwordRef} type="password" placeholder="Password" />
-          </div>
+        <>
+          <form className='login-form' action=''>
+            <img className='login-img' src={logo} alt='Instagram logo' />
+            <div>
+              <input ref={firstNameRef} type='text' placeholder='First Name' />
+            </div>
+            <div>
+              <input ref={lastNameRef} type='text' placeholder='Last Name' />
+            </div>
+            <div>
+              <input ref={userNameRef} type='text' placeholder='Username' />
+            </div>
+            <div>
+              <input ref={emailRef} type='email' placeholder='Email' />
+            </div>
+            <div>
+              <input ref={passwordRef} type='password' placeholder='Password' />
+            </div>
 
-          <Button disabled={isLoading}>Sign Up</Button>
-          <Link className="login-link" to="/login">
+            <Button disabled={isLoading}>Sign Up</Button>
+          </form>
+          <Link className='login-link' to='/login'>
             If you already memberm, please login here
+            <Errors errors={errors} />
           </Link>
-
-          <Errors errors={errors} />
-        </form>
+        </>
       )}
     </div>
   );
