@@ -14,8 +14,8 @@ const SuggestionsItem = (props) => {
           </span>
           <span className='suggestions-item__name'>{props.name}</span>
         </div>
+        <Follow id={props.id} />
       </div>
-      <Follow id={props.id} />
     </li>
   );
 };

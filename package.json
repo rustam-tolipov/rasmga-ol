@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
-    "gsap": "^3.10.4",
+    "gsap": "^3.11.4",
     "history": "^5.3.0",
     "js-cookie": "^3.0.1",
     "react": "^18.2.0",

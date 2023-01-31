@@ -80,12 +80,13 @@ const PostOverlay = (props) => {
       <div className='overlay-right'>
         <div className='overlay-header'>
           <div>
-            <img
+            <span
               className='overlay-header__img'
-              src={
-                postData.user.avatar === null ? avatar : postData.user.avatar
-              }
-              alt=''
+              style={{
+                backgroundImage: `url(${
+                  postData.user.avatar === null ? avatar : postData.user.avatar
+                })`,
+              }}
             />
           </div>
           <Link to={`/users/${postData.user.username}`}>

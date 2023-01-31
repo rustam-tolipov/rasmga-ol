@@ -7,7 +7,6 @@ import usersApi from '../../api/users';
 
 import Button from '../UI/Button';
 
-import avatar from '../../assets/avatar.jpg';
 import spinner from '../../assets/spinner.svg';
 import './Settings.scss';
 
@@ -15,7 +14,6 @@ const Settings = () => {
   const currentUser = useSelector((state) => state.auth.currentUser);
 
   const [data, setData] = useState(currentUser);
-  const [file, setFile] = useState(null);
   const [resData, setResData] = useState();
   const [loading, setLoading] = useState(false);
 
@@ -73,6 +71,7 @@ const Settings = () => {
           <input
             ref={firstNameRef}
             type='text'
+            className='file-input__input'
             placeholder='First Name'
             value={data.first_name}
             onChange={(e) => setData({ ...data, first_name: e.target.value })}
