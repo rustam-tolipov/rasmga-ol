@@ -26,14 +26,15 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Rustamxon7/rasmga-ol">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="">
+    <img src="https://user-images.githubusercontent.com/69011963/216302902-2228b157-8624-4479-88f5-44720f535728.svg" alt="Logo" width="120" height="80">
   </a>
+  
 
 <h3 align="center">Instagram Clone v2.0</h3>
 
   <p align="center">
-    A fully-functional Instagram clone built with the latest web technologies. The project features a React Js frontend with Redux for state management, ...
+A fully-functional Instagram clone built with the latest web technologies. The project features a React Js frontend with Redux for state management, styled with Scss and optimized for performance using React Lazy and GSAP animations. Axios is used for API calls to a custom Rest API, allowing for seamless data transfer between the frontend and backend. Developed in just 6 days, this project showcases a commitment to fast and efficient coding practices, resulting in a smooth and visually stunning user experience.
     <br />
     <a href="https://github.com/Rustamxon7/rasmga-ol"><strong>Explore the docs »</strong></a>
     <br />
@@ -76,7 +77,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![insta](https://user-images.githubusercontent.com/69011963/216302531-5432ca93-dc6e-4a7d-babc-845bbf623858.png)
 
 A fully-functional Instagram clone built with the latest web technologies. The project features a React Js frontend with Redux for state management, styled with Scss and optimized for performance using React Lazy and GSAP animations. Axios is used for API calls to a custom Rest API, allowing for seamless data transfer between the frontend and backend. Developed in just 6 days, this project showcases a commitment to fast and efficient coding practices, resulting in a smooth and visually stunning user experience.
 
