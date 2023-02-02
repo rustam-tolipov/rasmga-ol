@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="">
+  <a href="https://rasmga-ol.rustam.one">
     <img src="https://user-images.githubusercontent.com/69011963/216302902-2228b157-8624-4479-88f5-44720f535728.svg" alt="Logo" width="120" height="80">
   </a>
   
