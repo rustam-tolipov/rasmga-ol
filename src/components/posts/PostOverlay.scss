@@ -45,6 +45,8 @@
   overflow: scroll;
   display: flex;
   align-items: center;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   // scroll bar style
   &::-webkit-scrollbar {

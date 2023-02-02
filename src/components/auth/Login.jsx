@@ -22,6 +22,13 @@ const Login = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState('');
 
+  let guestUser = {
+    user: {
+      email: 'tester@gmail.com',
+      password: 'password',
+    },
+  };
+
   async function onSubmit(data) {
     data.preventDefault();
     setIsLoading(true);
@@ -34,6 +41,22 @@ const Login = (props) => {
     };
 
     const response = await authApi.login(data);
+
+    if (response.status === 200) {
+      dispatch(authSuccess(response));
+      navigate('/');
+    } else {
+      response.data.error && setErrors(response.data.error);
+    }
+
+    setIsLoading(false);
+  }
+
+  async function onSubmitGuest(data) {
+    data.preventDefault();
+    setIsLoading(true);
+
+    const response = await authApi.login(guestUser);
 
     if (response.status === 200) {
       dispatch(authSuccess(response));
@@ -62,6 +85,11 @@ const Login = (props) => {
 
         <Button>Login</Button>
       </form>
+
+      <Link className='login-link' onClick={onSubmitGuest} to='/'>
+        Guest User!
+      </Link>
+
       <Link className='login-link' to='/signup'>
         If you don't have an account, <span>create one here</span>
         <Errors errors={errors} />
