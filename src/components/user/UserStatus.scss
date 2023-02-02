@@ -6,6 +6,10 @@
 
   position: relative;
 
+  div {
+    cursor: pointer;
+  }
+
   &__number {
     font-size: 1.6rem;
     font-weight: 600;
