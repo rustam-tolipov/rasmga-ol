@@ -26,7 +26,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://rasmga-ol.rustam.one">
+  <a href="https://rasmgaol.vercel.app/">
     <img src="https://user-images.githubusercontent.com/69011963/216302902-2228b157-8624-4479-88f5-44720f535728.svg" alt="Logo" width="120" height="80">
   </a>
   
@@ -39,7 +39,7 @@ A fully-functional Instagram clone built with the latest web technologies. The p
     <a href="https://github.com/Rustamxon7/rasmga-ol"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Rustamxon7/rasmga-ol">View Demo</a>
+    <a href="https://rasmgaol.vercel.app/">View Demo</a>
     ·
     <a href="https://github.com/Rustamxon7/rasmga-ol/issues">Report Bug</a>
     ·
