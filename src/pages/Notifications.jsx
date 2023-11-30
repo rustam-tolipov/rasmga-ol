@@ -1,7 +1,7 @@
 import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import useFollowings from "../hooks/useFollowings";
 import useFollowers from "../hooks/useFollowers";
 import useNotifications from "../hooks/useNotifications";
@@ -45,7 +45,10 @@ export default Notifications;
 
 const Notification = ({ notification }) => {
   return (
-    <div className="flex items-center gap-4">
+    <NavLink
+      className="flex items-center gap-4"
+      to={`/profile/${notification.username}/post/${notification.post_id}`}
+    >
       <div className="h-[2.8rem] w-[2.8rem] rounded-[50%]">
         <img
           src={notification.avatar}
@@ -68,6 +71,6 @@ const Notification = ({ notification }) => {
           />
         )}
       </div>
-    </div>
+    </NavLink>
   );
 };
