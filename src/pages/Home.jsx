@@ -27,7 +27,7 @@ export default Home;
 
 const Highlights = () => {
   return (
-    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 pb-4 scrollbar-hide sm:pb-0 2xl:w-[45rem]">
+    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:pb-0 2xl:w-[45rem]">
       {Array.from({ length: 12 }).map((_, index) => (
         <Highlight key={index} />
       ))}
