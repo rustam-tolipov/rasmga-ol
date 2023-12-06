@@ -15,13 +15,14 @@ import { NavLink } from "react-router-dom";
 
 const AppLayout = () => {
   return (
-    <div className="grid select-none h-screen w-full grid-cols-1 text-slate-50 sm:grid-cols-[18%_auto]  2xl:grid-cols-[13vw_auto]">
+    <div className="grid h-screen w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[18%_auto]  2xl:grid-cols-[13vw_auto]">
       <div className="hidden sm:block"></div>
       <Sidebar />
       <main className="overflow-scroll px-0 py-0 pt-0 sm:px-16 sm:pr-28">
         <Outlet />
       </main>
 
+      <div className="h-[8dvh]"></div>
       <Navigation />
     </div>
   );
@@ -32,7 +33,7 @@ export default AppLayout;
 const Navigation = () => {
   return (
     <div className="block sm:hidden">
-      <div className="fixed bottom-0 left-0 w-full  border-t border-slate-800 bg-[#121212] h-[8dvh]">
+      <div className="fixed bottom-0 left-0 h-[8dvh]  w-full border-t border-slate-800 bg-[#121212]">
         <div className="flex h-full items-center justify-around">
           <LinkItem icon={<HiOutlineHome className="text-3xl" />} to="/" />
           <LinkItem

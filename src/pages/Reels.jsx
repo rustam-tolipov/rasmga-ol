@@ -13,7 +13,6 @@ const Reels = () => {
       {Array.from({ length: 12 }).map((_, index) => (
         <Reel key={index} />
       ))}
-      <div className="h-[8dvh]"></div>
     </div>
   );
 };
