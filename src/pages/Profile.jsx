@@ -18,8 +18,8 @@ const Profile = () => {
         <HiOutlineUserPlus className="text-2xl" />
       </div>
 
-      <div className="flex items-center justify-between px-4 py-4 xl:justify-center xl:gap-12">
-        <div className="h-[6rem] w-[6rem] rounded-[50%] xl:mx-16 xl:my-8 xl:h-40 xl:w-40">
+      <div className="flex items-center justify-between px-4 py-4 md:gap-12 md:justify-center">
+        <div className="h-[6rem] w-[6rem] rounded-[50%] md:mx-16 md:my-8 md:h-40 md:w-40">
           <img
             src={`https://randomuser.me/api/portraits/men/${Math.floor(
               Math.random() * 100,
@@ -28,9 +28,9 @@ const Profile = () => {
             className="h-full w-full rounded-[50%]"
           />
         </div>
-        <div className="flex flex-col gap-3 xl:w-[50%]">
-          <div className="flex flex-col gap-4 lg:flex-row">
-            <div className="mr-auto flex items-center gap-4 xl:mr-0">
+        <div className="flex flex-col gap-3 md:w-[50%]">
+          <div className="flex flex-col gap-4 md:flex-row">
+            <div className="mr-auto flex items-center gap-4 md:mr-0">
               <h3 className="text-xl font-light tracking-wide">username</h3>
             </div>
             <div className="flex items-center gap-2">
@@ -57,7 +57,7 @@ const Profile = () => {
 
           <div className="flex flex-col">
             <p className="text-md font-medium">Username</p>
-            <p className="hidden text-sm xl:block">
+            <p className="hidden text-sm md:block">
               Lorem ipsum dolor sit amet, consectetur
               <br />
               adipiscing elit. Sed do eiusmod tempor incididunt.
