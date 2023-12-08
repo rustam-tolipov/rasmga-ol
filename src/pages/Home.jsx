@@ -13,7 +13,7 @@ import {
 
 const Home = () => {
   return (
-    <div className="grid grid-cols-1 gap-20 sm:grid-cols-[63%_auto]">
+    <div className="grid grid-cols-1 gap-28 md:pt-4 lg:grid-cols-[63%_auto]">
       <div className="flex flex-col gap-6 2xl:ml-auto">
         <Highlights />
         <Posts />
@@ -27,7 +27,7 @@ export default Home;
 
 const Highlights = () => {
   return (
-    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:pb-0 sm:border-none 2xl:w-[45rem]">
+    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:border-none sm:pb-0 xl:w-[45rem]">
       {Array.from({ length: 12 }).map((_, index) => (
         <Highlight key={index} />
       ))}
@@ -130,7 +130,7 @@ const Post = () => {
 
 const Suggestions = () => {
   return (
-    <div className="hidden h-full flex-col gap-5 pt-2 sm:flex 2xl:w-[50%]">
+    <div className="hidden h-full flex-col gap-5 pt-8 lg:flex 2xl:w-[50%]">
       <Suggestion />
 
       <div className="flex items-center justify-between text-gray-400">
