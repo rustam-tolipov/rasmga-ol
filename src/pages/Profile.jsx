@@ -8,17 +8,18 @@ import {
   HiOutlinePaperAirplane,
   HiOutlineBookmark,
 } from "react-icons/hi2";
+import TopHeader from "../ui/TopHeader";
 
 const Profile = () => {
   return (
     <div className="flex flex-col">
-      <div className="flex items-center border-b border-slate-600 px-4 py-2 sm:hidden">
+      <TopHeader>
         <HiMiniCog6Tooth className="mr-auto text-2xl" />
         <h1 className="w-full text-center text-xl">username</h1>
         <HiOutlineUserPlus className="text-2xl" />
-      </div>
+      </TopHeader>
 
-      <div className="flex items-center justify-between px-4 py-4 md:gap-12 md:justify-center">
+      <div className="mt-12 flex items-center justify-between px-4 py-4 sm:mt-0 md:justify-center md:gap-12">
         <div className="h-[6rem] w-[6rem] rounded-[50%] md:mx-16 md:my-8 md:h-40 md:w-40">
           <img
             src={`https://randomuser.me/api/portraits/men/${Math.floor(

@@ -1,15 +1,16 @@
 import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
+import TopHeader from "../ui/TopHeader";
 
 const Likes = () => {
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center border-b border-slate-600 p-1">
+      <TopHeader>
         <HiMiniXMark className="mr-auto text-4xl" />
         <h1 className="w-full text-center text-xl">Likes</h1>
-      </div>
+      </TopHeader>
 
-      <div className="flex flex-col gap-6 px-4 pb-3">
+      <div className="mt-12 flex flex-col gap-6 px-4 pb-3 sm:mt-0">
         {Array.from({ length: 12 }).map((_, index) => (
           <Like key={index} />
         ))}

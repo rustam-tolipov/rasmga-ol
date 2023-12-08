@@ -1,7 +1,9 @@
 import React from "react";
 import {
+  HiCamera,
   HiChatBubbleOvalLeft,
   HiHeart,
+  HiMiniCog6Tooth,
   HiMiniEllipsisHorizontal,
   HiOutlineBookmark,
   HiOutlineChatBubbleOvalLeft,
@@ -9,17 +11,25 @@ import {
   HiOutlineHeart,
   HiOutlinePaperAirplane,
   HiShare,
+  HiOutlinePlusCircle,
 } from "react-icons/hi2";
+import TopHeader from "../ui/TopHeader";
 
 const Home = () => {
   return (
-    <div className="grid grid-cols-1 gap-28 md:pt-4 lg:grid-cols-[63%_auto]">
-      <div className="flex flex-col gap-6 2xl:ml-auto">
-        <Highlights />
-        <Posts />
+    <>
+      <TopHeader>
+        <HiCamera className="text-3xl xl:hidden" />
+        <HiOutlinePlusCircle className="ml-auto text-3xl" />
+      </TopHeader>
+      <div className="mt-12 grid grid-cols-1 gap-28 sm:mt-0 md:pt-4 lg:grid-cols-[63%_auto]">
+        <div className="flex flex-col gap-6 2xl:ml-auto">
+          <Highlights />
+          <Posts />
+        </div>
+        <Suggestions className="" />
       </div>
-      <Suggestions className="" />
-    </div>
+    </>
   );
 };
 
@@ -27,7 +37,7 @@ export default Home;
 
 const Highlights = () => {
   return (
-    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:border-none sm:pb-0 xl:w-[45rem]">
+    <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:border-none sm:px-4 sm:pb-0 xl:w-[45rem]">
       {Array.from({ length: 12 }).map((_, index) => (
         <Highlight key={index} />
       ))}

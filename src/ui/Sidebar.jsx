@@ -7,13 +7,15 @@ import {
   HiOutlinePlusCircle,
   HiBars3,
   HiUserCircle,
+  HiCamera,
 } from "react-icons/hi2";
 import { IoCompassOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
+import Logo from "./Logo";
 
 const Sidebar = () => {
   return (
-    <aside className="fixed hidden h-full grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid sm:w-fit xl:w-60 2xl:w-[13vw]">
+    <aside className="fixed hidden h-full grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid sm:w-[4.5rem] xl:w-60 2xl:w-[13vw]">
       <Logo />
       <MainNav />
       <Footer />
@@ -22,18 +24,6 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-const Logo = () => {
-  return (
-    <div className="px-2">
-      <img
-        src="images/logo.svg"
-        alt="Profile"
-        className="hidden h-[1.5rem] xl:block"
-      />
-    </div>
-  );
-};
 
 const MainNav = () => {
   return (
