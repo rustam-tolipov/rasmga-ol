@@ -31,7 +31,7 @@ const Search = () => {
                 Math.random() * 100,
               )}/800/600`}
               alt="post"
-              className="h-32 w-full object-cover"
+              className="h-fit w-full object-cover"
             />
           ))}
       </div>

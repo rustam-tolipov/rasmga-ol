@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <aside className="fixed hidden h-full w-60 grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid 2xl:w-[13vw]">
+    <aside className="fixed hidden h-full grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid sm:w-fit xl:w-60 2xl:w-[13vw]">
       <Logo />
       <MainNav />
       <Footer />
@@ -26,7 +26,11 @@ export default Sidebar;
 const Logo = () => {
   return (
     <div className="px-2">
-      <img src="images/logo.svg" alt="Profile" className="h-[1.5rem]" />
+      <img
+        src="images/logo.svg"
+        alt="Profile"
+        className="hidden h-[1.5rem] xl:block"
+      />
     </div>
   );
 };
@@ -82,7 +86,7 @@ const LinkItem = ({ icon, text, to }) => {
         to={to}
         className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
       >
-        {icon} <span className="text-lg">{text}</span>
+        {icon} <span className="text-lg sm:hidden xl:block">{text}</span>
       </NavLink>
     </li>
   );
