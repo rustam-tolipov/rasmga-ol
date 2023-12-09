@@ -13,7 +13,7 @@ import {
 
 const Home = () => {
   return (
-    <div className="grid grid-cols-[65%_auto] gap-12">
+    <div className="grid grid-cols-[63%_auto] gap-20">
       <div className="flex flex-col gap-6">
         <Highlights />
         <Posts />
@@ -38,7 +38,7 @@ const Highlights = () => {
 const Highlight = () => {
   return (
     <div className="flex flex-col items-center gap-1">
-      <div className="h-[3.8rem] w-[3.8rem] rounded-[50%] border border-gray-50 object-cover p-1">
+      <div className="h-16 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
         <img
           src={`https://randomuser.me/api/portraits/men/${Math.floor(
             Math.random() * 100,
@@ -48,15 +48,6 @@ const Highlight = () => {
         />
       </div>
       <h3 className="text-xs">username</h3>
-    </div>
-  );
-};
-
-const Suggestions = () => {
-  return (
-    // put second column of grid
-    <div className="h-full border">
-      <h1>Suggestions</h1>
     </div>
   );
 };
@@ -133,6 +124,55 @@ const Post = () => {
           <HiOutlineFaceSmile className="text-lg" />
         </div>
       </div>
+    </div>
+  );
+};
+
+const Suggestions = () => {
+  return (
+    <div className="flex h-full flex-col gap-5 pt-2">
+      <Suggestion />
+
+      <div className="flex items-center justify-between text-gray-400">
+        <h3 className="text-sm font-semibold">Suggested For You</h3>
+        <span className="text-xs">See All</span>
+      </div>
+      <div className="flex flex-col gap-4 pl-1">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Suggestion key={index} />
+        ))}
+      </div>
+
+      <div className="text-start text-xs text-gray-600 pt-6">
+        About . Help . Press . API . Jobs . Privacy . Terms . Locations . Top
+        Accounts . Hashtags . Language . English
+        <br />
+        <br />
+        &copy; 2024 RasmgaOl. All rights reserved.
+      </div>
+    </div>
+  );
+};
+
+const Suggestion = () => {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="h-12 w-12 rounded-[50%]">
+        <img
+          src={`https://randomuser.me/api/portraits/men/${Math.floor(
+            Math.random() * 100,
+          )}.jpg`}
+          alt="profile"
+          className="h-full w-full rounded-[50%] object-cover"
+        />
+      </div>
+      <div className="flex flex-col">
+        <h3 className="text-sm font-semibold">username</h3>
+        <span className="text-xs text-gray-400">Follows you</span>
+      </div>
+      <button className="ml-auto text-sm font-semibold text-blue-500">
+        Follow
+      </button>
     </div>
   );
 };
