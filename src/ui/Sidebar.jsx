@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <aside className="fixed grid h-full w-60 grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12">
+    <aside className="fixed grid h-full w-60 grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 2xl:w-[13vw]">
       <Logo />
       <MainNav />
       <Footer />

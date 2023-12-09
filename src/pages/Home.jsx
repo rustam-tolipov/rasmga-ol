@@ -14,7 +14,7 @@ import {
 const Home = () => {
   return (
     <div className="grid grid-cols-[63%_auto] gap-20">
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 2xl:ml-auto">
         <Highlights />
         <Posts />
       </div>
@@ -27,7 +27,7 @@ export default Home;
 
 const Highlights = () => {
   return (
-    <div className="scrollbar-hide flex gap-4 overflow-scroll whitespace-nowrap">
+    <div className="scrollbar-hide flex gap-4 overflow-scroll whitespace-nowrap 2xl:w-[45rem]">
       {Array.from({ length: 12 }).map((_, index) => (
         <Highlight key={index} />
       ))}
@@ -66,7 +66,7 @@ const Posts = () => {
 
 const Post = () => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="ml-auto flex flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
         <div className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1">
           <img
@@ -85,7 +85,7 @@ const Post = () => {
           <HiMiniEllipsisHorizontal className="ml-auto text-xl" />
         </div>
       </div>
-      <div className="h-[30rem] w-full rounded-lg bg-gray-500">
+      <div className="h-[30rem] w-full rounded-lg bg-gray-500 2xl:h-fit ">
         <img
           src={`https://picsum.photos/seed/${Math.floor(
             Math.random() * 100,
@@ -130,7 +130,7 @@ const Post = () => {
 
 const Suggestions = () => {
   return (
-    <div className="flex h-full flex-col gap-5 pt-2">
+    <div className="flex h-full flex-col gap-5 pt-2 2xl:w-[50%]">
       <Suggestion />
 
       <div className="flex items-center justify-between text-gray-400">
@@ -143,7 +143,7 @@ const Suggestions = () => {
         ))}
       </div>
 
-      <div className="text-start text-xs text-gray-600 pt-6">
+      <div className="pt-6 text-start text-xs text-gray-600">
         About . Help . Press . API . Jobs . Privacy . Terms . Locations . Top
         Accounts . Hashtags . Language . English
         <br />
