@@ -9,7 +9,7 @@ import {
 
 const Reels = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center xl:gap-4 xl:py-4">
       {Array.from({ length: 12 }).map((_, index) => (
         <Reel key={index} />
       ))}
@@ -21,13 +21,13 @@ export default Reels;
 
 const Reel = () => {
   return (
-    <div className="relative h-[92dvh]">
+    <div className="relative h-[92dvh] xl:w-[30dvw]">
       <img
         src={`https://picsum.photos/seed/${Math.floor(
           Math.random() * 100,
         )}/800/600`}
         alt="post"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover xl:rounded-md"
       />
 
       <div className="absolute bottom-0 flex w-full flex-col items-end gap-8 px-4 pb-2">

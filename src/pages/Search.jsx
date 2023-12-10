@@ -12,7 +12,7 @@ import TopHeader from "../ui/TopHeader";
 
 const Search = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col xl:items-center">
       <TopHeader>
         <HiMagnifyingGlass className="text-sm" />
         <input
@@ -22,7 +22,7 @@ const Search = () => {
         />
       </TopHeader>
 
-      <div className="mt-12 grid grid-cols-3 border-t border-slate-600 p-1 sm:mt-0">
+      <div className="mt-12 grid grid-cols-3 border-t border-slate-600 p-1 sm:mt-0 xl:w-[70dvw]">
         {Array(120)
           .fill()
           .map((_, i) => (

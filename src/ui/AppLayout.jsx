@@ -13,12 +13,14 @@ import { Outlet } from "react-router";
 import Sidebar from "./Sidebar";
 import { NavLink } from "react-router-dom";
 
+// main... xl:px-16 xl:pr-28
+
 const AppLayout = () => {
   return (
-    <div className="grid h-screen w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[4.5rem_auto] xl:grid-cols-[18%_auto] 2xl:grid-cols-[13vw_auto]">
+    <div className="grid h-screen w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[4.5rem_auto] xl:grid-cols-[16dvw_auto] 2xl:grid-cols-[13vw_auto]">
       <div className="hidden sm:block"></div>
       <Sidebar />
-      <main className="overflow-scroll px-0 py-0 pt-0 xl:px-16 xl:pr-28">
+      <main className="overflow-scroll px-0 py-0 pt-0">
         <Outlet />
       </main>
 

@@ -15,7 +15,7 @@ import Logo from "./Logo";
 
 const Sidebar = () => {
   return (
-    <aside className="fixed hidden h-full grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid sm:w-[4.5rem] xl:w-60 2xl:w-[13vw]">
+    <aside className="fixed hidden h-full grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12 sm:grid sm:w-[4.5rem] xl:w-[16dvw] 2xl:w-[13dvw]">
       <Logo />
       <MainNav />
       <Footer />

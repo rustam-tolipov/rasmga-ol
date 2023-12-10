@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col xl:items-center">
       <TopHeader>
         <NavLink to="/account/settings">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
@@ -38,7 +38,10 @@ const Profile = () => {
               <h3 className="text-xl font-light tracking-wide">username</h3>
             </div>
             <div className="flex items-center gap-2">
-              <NavLink to='/account/edit' className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
+              <NavLink
+                to="/account/edit"
+                className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
+              >
                 Edit Profile
               </NavLink>
               <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
@@ -104,26 +107,28 @@ const Profile = () => {
           <p className="text-xs text-gray-400">Following</p>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-around p-2 px-4 text-gray-400">
-        <HiOutlineHeart className="text-2xl" />
-        <HiOutlineChatBubbleOvalLeft className="text-2xl" />
-        <HiOutlinePaperAirplane className="text-2xl" />
-        <HiOutlineBookmark className="text-2xl" />
-      </div>
+      <div className="flex flex-col xl:w-[70dvw]">
+        <div className="flex flex-row items-center justify-around p-2 px-4 text-gray-400">
+          <HiOutlineHeart className="text-2xl" />
+          <HiOutlineChatBubbleOvalLeft className="text-2xl" />
+          <HiOutlinePaperAirplane className="text-2xl" />
+          <HiOutlineBookmark className="text-2xl" />
+        </div>
 
-      <div className="grid grid-cols-3">
-        {Array(120)
-          .fill()
-          .map((_, i) => (
-            <img
-              key={i}
-              src={`https://picsum.photos/seed/${Math.floor(
-                Math.random() * 100,
-              )}/800/600`}
-              alt="post"
-              className="h-fit w-full object-cover"
-            />
-          ))}
+        <div className="grid grid-cols-3">
+          {Array(120)
+            .fill()
+            .map((_, i) => (
+              <img
+                key={i}
+                src={`https://picsum.photos/seed/${Math.floor(
+                  Math.random() * 100,
+                )}/800/600`}
+                alt="post"
+                className="h-fit w-full object-cover"
+              />
+            ))}
+        </div>
       </div>
     </div>
   );
