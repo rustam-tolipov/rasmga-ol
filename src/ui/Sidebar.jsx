@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <aside className="border-r-[0.5px] border-[#1f1e1e] grid grid-rows-[4rem_auto_3rem] py-3 pt-12 px-3">
+    <aside className="fixed grid h-full w-60 grid-rows-[4rem_auto_3rem] border-r-[0.5px] border-[#1f1e1e] px-3 py-3 pt-12">
       <Logo />
       <MainNav />
       <Footer />
@@ -80,7 +80,7 @@ const LinkItem = ({ icon, text, to }) => {
     <li className="">
       <NavLink
         to={to}
-        className="flex items-center gap-4 py-2 px-2 rounded-md cursor-pointer hover:bg-[#1f1e1e] duration-500"
+        className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
       >
         {icon} <span className="text-lg">{text}</span>
       </NavLink>

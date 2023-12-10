@@ -1,10 +1,20 @@
 import React from "react";
-import { HiMiniEllipsisHorizontal } from "react-icons/hi2";
+import {
+  HiChatBubbleOvalLeft,
+  HiHeart,
+  HiMiniEllipsisHorizontal,
+  HiOutlineBookmark,
+  HiOutlineChatBubbleOvalLeft,
+  HiOutlineFaceSmile,
+  HiOutlineHeart,
+  HiOutlinePaperAirplane,
+  HiShare,
+} from "react-icons/hi2";
 
 const Home = () => {
   return (
     <div className="grid grid-cols-[65%_auto] gap-12">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         <Highlights />
         <Posts />
       </div>
@@ -17,7 +27,7 @@ export default Home;
 
 const Highlights = () => {
   return (
-    <div className="flex gap-4 overflow-scroll">
+    <div className="scrollbar-hide flex gap-4 overflow-scroll whitespace-nowrap">
       {Array.from({ length: 12 }).map((_, index) => (
         <Highlight key={index} />
       ))}
@@ -65,15 +75,15 @@ const Posts = () => {
 
 const Post = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <div className="h-[2.5rem] w-[2.5rem] rounded-[50%] border border-gray-50 object-cover p-1">
+        <div className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1">
           <img
             src={`https://randomuser.me/api/portraits/men/${Math.floor(
               Math.random() * 100,
             )}.jpg`}
             alt="profile"
-            className="h-full w-full rounded-[50%]"
+            className="h-full w-full rounded-[50%] object-cover"
           />
         </div>
         <div className="flex w-full items-center gap-1">
@@ -92,6 +102,36 @@ const Post = () => {
           alt="post"
           className="h-full w-full rounded-lg object-cover"
         />
+      </div>
+      <div className="flex flex-col gap-2">
+        <div className="flex w-full gap-2">
+          <HiOutlineHeart className="text-2xl" />
+          <HiOutlineChatBubbleOvalLeft className="text-2xl" />
+          <HiOutlinePaperAirplane className="text-2xl" />
+          <HiOutlineBookmark className="ml-auto text-2xl" />
+        </div>
+        <div className="text-sm font-semibold">
+          {Math.floor(Math.random() * 1000)} likes
+        </div>
+        <div className="flex gap-1">
+          <span className="text-sm font-semibold">username</span>
+          <p className="text-sm">
+            {`lorem ipsum dolor sit amet, consectetur adipiscing elit.fdafs`.slice(
+              0,
+              56,
+            )}
+          </p>
+          <span className="text-sm text-gray-400">...more</span>
+        </div>
+        <div className="text-sm text-gray-400">View all 12 comments</div>
+        <div className="flex justify-between text-gray-400">
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            className="w-full bg-transparent text-sm outline-none"
+          />
+          <HiOutlineFaceSmile className="text-lg" />
+        </div>
       </div>
     </div>
   );
