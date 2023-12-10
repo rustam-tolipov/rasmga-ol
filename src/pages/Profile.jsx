@@ -9,12 +9,15 @@ import {
   HiOutlineBookmark,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   return (
     <div className="flex flex-col">
       <TopHeader>
-        <HiMiniCog6Tooth className="mr-auto text-2xl" />
+        <NavLink to="/account/settings">
+          <HiMiniCog6Tooth className="mr-auto text-2xl" />
+        </NavLink>
         <h1 className="w-full text-center text-xl">username</h1>
         <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
@@ -35,9 +38,9 @@ const Profile = () => {
               <h3 className="text-xl font-light tracking-wide">username</h3>
             </div>
             <div className="flex items-center gap-2">
-              <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
+              <NavLink to='/account/edit' className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
                 Edit Profile
-              </button>
+              </NavLink>
               <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
                 Follow
               </button>
