@@ -4,9 +4,9 @@ import Sidebar from "./Sidebar";
 
 const AppLayout = () => {
   return (
-    <div className="h-screen bg-[#121212] text-slate-50 grid grid-cols-[18%_auto]">
+    <div className="grid h-screen grid-cols-[18%_auto] bg-[#121212] text-slate-50">
       <Sidebar />
-      <main>
+      <main className="overflow-scroll px-16 py-3 pt-10">
         <Outlet />
       </main>
     </div>
