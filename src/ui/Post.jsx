@@ -8,6 +8,10 @@ import {
   HiOutlinePaperAirplane,
 } from "react-icons/hi2";
 import { format } from "date-fns";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deletePost } from "../services/apiPosts";
+import { Deleting } from "./Loader";
+import toast from "react-hot-toast";
 
 const Post = ({ post }) => {
   const { image, likes, comments, created_at, username, avatar } = post;
@@ -29,6 +33,22 @@ const Post = ({ post }) => {
     return `${days}d`;
   };
 
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deletePost,
+    onSuccess: () => {
+      toast.success("Post deleted successfully");
+
+      queryClient.invalidateQueries({
+        queryKey: ["posts"],
+      });
+    },
+    onError: (error) => {
+      toast.error("An error occurred: " + error.message);
+    },
+  });
+
   return (
     <div className="flex w-fit flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
@@ -44,22 +64,23 @@ const Post = ({ post }) => {
           <span className="text-2xl text-gray-400">·</span>
           <span className="text-sm text-gray-400">{ago()}</span>
 
-          <HiMiniEllipsisHorizontal className="ml-auto text-xl" />
+          {/* THIS BUTTON DELETES POST */}
+          <HiMiniEllipsisHorizontal
+            className="ml-auto text-xl"
+            onClick={() => mutate(post.id)}
+          />
         </div>
       </div>
-      <div className="h-fit w-[30rem] rounded-lg bg-gray-500 2xl:h-fit ">
-        {/* <img
-          src={`https://picsum.photos/seed/${Math.floor(
-            Math.random() * 100,
-          )}/800/600`}
-          alt="post"
-          className="h-full w-full rounded-lg object-cover"
-        /> */}
-        <img
-          src={image.url}
-          alt="post"
-          className="h-fit w-full rounded-lg object-cover"
-        />
+      <div className="h-fit w-[30rem] rounded-lg 2xl:h-fit ">
+        {isDeleting ? (
+          <Deleting />
+        ) : (
+          <img
+            src={image.url}
+            alt="post"
+            className="h-fit w-full rounded-lg object-cover"
+          />
+        )}
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex w-full gap-2">

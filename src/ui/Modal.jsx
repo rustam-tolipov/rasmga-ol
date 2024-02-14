@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
 
-const Modal = ({ children }) => {
-  return createPortal(<Overlay>{children}</Overlay>, document.body);
+const Modal = ({ openModal, onClose, children }) => {
+  if (!openModal) return null;
+
+  return createPortal(
+    <Overlay onClose={onClose}>{children}</Overlay>,
+    document.body,
+  );
 };
 
 export default Modal;
 
-const Overlay = ({ children }) => {
+const Overlay = ({ onClose, children }) => {
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-50">{children}</div>
+    <div className="fixed inset-0 z-20 flex items-center justify-center">
+      <div
+        className="h-full w-full bg-black bg-opacity-50"
+        onClick={() => onClose(false)}
+      ></div>
+      <div className="z-20">{children}</div>
+    </div>
   );
 };
