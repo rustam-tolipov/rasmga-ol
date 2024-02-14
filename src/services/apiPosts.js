@@ -1,25 +1,28 @@
 // http://localhost:3000/api/v1/posts
 
+import axios from "axios";
+
 export async function getPosts() {
-  const response = await fetch("http://localhost:3000/api/v1/posts");
+  const response = await axios.get("http://localhost:3000/api/v1/posts");
+  return response.data;
+}
 
-  if (!response.ok) {
-    console.error(`‼️ ${response.status} ${response.statusText}`);
-    throw new Error("Network response was not ok");
-  }
+export async function createPost(post) {
+  console.log(post);
+  const formData = new FormData();
+  formData.append("image", post.image[0]);
+  formData.append("content", post.content);
 
-  return response.json();
+  const response = await axios.post(
+    "http://localhost:3000/api/v1/posts",
+    formData,
+  );
+  return response.data;
 }
 
 export async function deletePost(postId) {
-  const response = await fetch(`http://localhost:3000/api/v1/post/${postId}`, {
-    method: "DELETE",
-  });
-
-  if (!response.ok) {
-    console.error(`‼️ ${response.status} ${response.statusText}`);
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  const response = await axios.delete(
+    `http://localhost:3000/api/v1/posts/${postId}`,
+  );
+  return response.data;
 }
