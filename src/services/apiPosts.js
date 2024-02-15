@@ -8,9 +8,8 @@ export async function getPosts() {
 }
 
 export async function createPost(post) {
-  console.log(post);
   const formData = new FormData();
-  formData.append("image", post.image[0]);
+  formData.append("image", post.image);
   formData.append("content", post.content);
 
   const response = await axios.post(

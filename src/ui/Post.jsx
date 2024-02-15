@@ -13,25 +13,27 @@ import { deletePost } from "../services/apiPosts";
 import { Deleting } from "./Loader";
 import toast from "react-hot-toast";
 
+const currentDate = new Date();
+
+const ago = (created_at) => {
+  const diff = currentDate - new Date(created_at);
+  const minutes = Math.floor(diff / 1000 / 60);
+  if (minutes < 60) {
+    return `${minutes}m`;
+  }
+  const hours = Math.floor(minutes / 60);
+
+  if (hours < 24) {
+    return `${hours}h`;
+  }
+  const days = Math.floor(hours / 24);
+
+  return `${days}d`;
+};
+
 const Post = ({ post }) => {
-  const { image, likes, comments, created_at, username, avatar } = post;
-  const currentDate = new Date();
-
-  const ago = () => {
-    const diff = currentDate - new Date(created_at);
-    const minutes = Math.floor(diff / 1000 / 60);
-    if (minutes < 60) {
-      return `${minutes}m`;
-    }
-    const hours = Math.floor(minutes / 60);
-
-    if (hours < 24) {
-      return `${hours}h`;
-    }
-    const days = Math.floor(hours / 24);
-
-    return `${days}d`;
-  };
+  const { image, likes, comments, created_at, username, avatar, content } =
+    post;
 
   const queryClient = useQueryClient();
 
@@ -62,7 +64,7 @@ const Post = ({ post }) => {
         <div className="flex w-full items-center gap-1">
           <h3 className="text-sm font-semibold">{username}</h3>
           <span className="text-2xl text-gray-400">·</span>
-          <span className="text-sm text-gray-400">{ago()}</span>
+          <span className="text-sm text-gray-400">{ago(created_at)}</span>
 
           {/* THIS BUTTON DELETES POST */}
           <HiMiniEllipsisHorizontal
@@ -92,12 +94,7 @@ const Post = ({ post }) => {
         <div className="text-sm font-semibold">{likes?.length} likes</div>
         <div className="flex gap-1">
           <span className="text-sm font-semibold">username</span>
-          <p className="text-sm">
-            {`lorem ipsum dolor sit amet, consectetur adipiscing elit.fdafs`.slice(
-              0,
-              56,
-            )}
-          </p>
+          <p className="text-sm">{content.slice(0, 56)}</p>
           <span className="text-sm text-gray-400">...more</span>
         </div>
         {comments?.length && (
