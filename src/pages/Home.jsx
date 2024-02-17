@@ -2,6 +2,8 @@ import React from "react";
 import { HiCamera, HiOutlinePlusCircle } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import Posts from "../ui/Posts";
+import { useQuery } from "@tanstack/react-query";
+import { getHighlights } from "../services/apiUsers";
 
 const Home = () => {
   return (
@@ -24,28 +26,35 @@ const Home = () => {
 export default Home;
 
 const Highlights = () => {
+  const {
+    isLoading,
+    data: highlights,
+    error,
+  } = useQuery({
+    queryKey: ["highlights"],
+    queryFn: getHighlights,
+  });
+
   return (
     <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:border-none sm:px-4 sm:pb-0 xl:w-[45rem]">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <Highlight key={index} />
+      {highlights?.map((highlight, index) => (
+        <Highlight key={index} highlight={highlight} />
       ))}
     </div>
   );
 };
 
-const Highlight = () => {
+const Highlight = ({ highlight }) => {
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="h-16 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
         <img
-          src={`https://randomuser.me/api/portraits/men/${Math.floor(
-            Math.random() * 100,
-          )}.jpg`}
+          src={highlight.avatar}
           alt="profile"
           className="h-full w-full rounded-[50%]"
         />
       </div>
-      <h3 className="text-xs">username</h3>
+      <h3 className="text-xs">{highlight.username}</h3>
     </div>
   );
 };

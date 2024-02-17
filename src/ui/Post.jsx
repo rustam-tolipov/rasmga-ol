@@ -93,7 +93,7 @@ const Post = ({ post }) => {
         </div>
         <div className="text-sm font-semibold">{likes?.length} likes</div>
         <div className="flex gap-1">
-          <span className="text-sm font-semibold">username</span>
+          <span className="text-sm font-semibold">{username}</span>
           <p className="text-sm">{content.slice(0, 56)}</p>
           <span className="text-sm text-gray-400">...more</span>
         </div>

@@ -78,7 +78,12 @@ const CreatePostForm = ({ onClose }) => {
         >
           <div className="flex w-full items-center justify-between border-b border-gray-700 px-2 py-2">
             {currentPage > 0 ? (
-              <HiChevronLeft className="text-xl" onClick={() => handleBack()} />
+              <HiChevronLeft
+                className="text-xl"
+                onClick={() =>
+                  currentPage > 1 ? handleBack() : handleCancel()
+                }
+              />
             ) : null}
 
             <span className="mx-auto">
