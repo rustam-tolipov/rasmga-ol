@@ -62,7 +62,7 @@ const LinkItem = ({ icon, to }) => {
     <NavLink
       to={to}
       className="flex items-center gap-4 text-xl"
-      activeClassName="text-white"
+      // activeClassName="text-white"
     >
       {icon}
     </NavLink>
