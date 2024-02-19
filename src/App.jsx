@@ -3,7 +3,7 @@ import React from "react";
 import { Query, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-/* import Home from "./pages/Home";
+import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
 import Login from "./pages/Login";
@@ -14,20 +14,7 @@ import Post from "./pages/Post";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
-import EditProfile from "./pages/EditProfile"; */
-
-const Home = React.lazy(() => import("./pages/Home"));
-const PageNotFound = React.lazy(() => import("./pages/PageNotFound"));
-const AppLayout = React.lazy(() => import("./ui/AppLayout"));
-const Login = React.lazy(() => import("./pages/Login"));
-const Explore = React.lazy(() => import("./pages/Explore"));
-const Reels = React.lazy(() => import("./pages/Reels"));
-const Likes = React.lazy(() => import("./pages/Likes"));
-const Post = React.lazy(() => import("./pages/Post"));
-const Search = React.lazy(() => import("./pages/Search"));
-const Profile = React.lazy(() => import("./pages/Profile"));
-const Settings = React.lazy(() => import("./pages/Settings"));
-const EditProfile = React.lazy(() => import("./pages/EditProfile"));
+import EditProfile from "./pages/EditProfile";
 
 const queryClient = new QueryClient({
   defaultOptions: {

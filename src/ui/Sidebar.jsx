@@ -12,6 +12,7 @@ import {
 import { IoCompassOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
+import Modal from "./Modal";
 
 const Sidebar = () => {
   return (
@@ -19,6 +20,10 @@ const Sidebar = () => {
       <Logo />
       <MainNav />
       <Footer />
+
+      {/* <Modal>
+        <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800"></div>
+      </Modal> */}
     </aside>
   );
 };
@@ -71,7 +76,7 @@ const MainNav = () => {
 
 const LinkItem = ({ icon, text, to }) => {
   return (
-    <li className="">
+    <li className={text == "Search" ? "sm:hidden" : ""}>
       <NavLink
         to={to}
         className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"

@@ -7,31 +7,47 @@ import {
   HiOutlineHeart,
   HiOutlinePaperAirplane,
 } from "react-icons/hi2";
+import { format } from "date-fns";
 
 const Post = ({ post }) => {
-  const { image, user, likes, comments } = post;
+  const { image, likes, comments, created_at, username, avatar } = post;
+  const currentDate = new Date();
+
+  const ago = () => {
+    const diff = currentDate - new Date(created_at);
+    const minutes = Math.floor(diff / 1000 / 60);
+    if (minutes < 60) {
+      return `${minutes}m`;
+    }
+    const hours = Math.floor(minutes / 60);
+
+    if (hours < 24) {
+      return `${hours}h`;
+    }
+    const days = Math.floor(hours / 24);
+
+    return `${days}d`;
+  };
 
   return (
-    <div className="ml-auto flex flex-col gap-3 2xl:w-[30rem]">
+    <div className="flex w-fit flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
         <div className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1">
           <img
-            src={`https://randomuser.me/api/portraits/men/${Math.floor(
-              Math.random() * 100,
-            )}.jpg`}
+            src={avatar}
             alt="profile"
             className="h-full w-full rounded-[50%] object-cover"
           />
         </div>
         <div className="flex w-full items-center gap-1">
-          <h3 className="text-sm font-semibold">{user.username}</h3>
+          <h3 className="text-sm font-semibold">{username}</h3>
           <span className="text-2xl text-gray-400">·</span>
-          <span className="text-sm text-gray-400">2h</span>
+          <span className="text-sm text-gray-400">{ago()}</span>
 
           <HiMiniEllipsisHorizontal className="ml-auto text-xl" />
         </div>
       </div>
-      <div className="h-[30rem] w-full rounded-lg bg-gray-500 2xl:h-fit ">
+      <div className="h-fit w-[30rem] rounded-lg bg-gray-500 2xl:h-fit ">
         {/* <img
           src={`https://picsum.photos/seed/${Math.floor(
             Math.random() * 100,
@@ -42,7 +58,7 @@ const Post = ({ post }) => {
         <img
           src={image.url}
           alt="post"
-          className="h-full w-full rounded-lg object-cover"
+          className="h-fit w-full rounded-lg object-cover"
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -52,7 +68,7 @@ const Post = ({ post }) => {
           <HiOutlinePaperAirplane className="text-2xl" />
           <HiOutlineBookmark className="ml-auto text-2xl" />
         </div>
-        <div className="text-sm font-semibold">{likes.length} likes</div>
+        <div className="text-sm font-semibold">{likes?.length} likes</div>
         <div className="flex gap-1">
           <span className="text-sm font-semibold">username</span>
           <p className="text-sm">
@@ -63,7 +79,7 @@ const Post = ({ post }) => {
           </p>
           <span className="text-sm text-gray-400">...more</span>
         </div>
-        {comments.length > 0 && (
+        {comments?.length && (
           <div className="text-sm text-gray-400">
             View all {comments.length} comments
           </div>

@@ -10,8 +10,19 @@ import {
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { NavLink } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getPosts } from "../services/apiPosts";
 
 const Profile = () => {
+  const {
+    isLoading,
+    data: posts,
+    error,
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
+
   return (
     <div className="flex flex-col xl:items-center">
       <TopHeader>
@@ -115,19 +126,15 @@ const Profile = () => {
           <HiOutlineBookmark className="text-2xl" />
         </div>
 
-        <div className="grid grid-cols-3">
-          {Array(120)
-            .fill()
-            .map((_, i) => (
-              <img
-                key={i}
-                src={`https://picsum.photos/seed/${Math.floor(
-                  Math.random() * 100,
-                )}/800/600`}
-                alt="post"
-                className="h-fit w-full object-cover"
-              />
-            ))}
+        <div className="grid grid-cols-3 gap-1">
+          {posts.map((post, index) => (
+            <img
+              key={index}
+              src={post.image.url}
+              alt="post"
+              className="h-72 w-full object-cover"
+            />
+          ))}
         </div>
       </div>
     </div>

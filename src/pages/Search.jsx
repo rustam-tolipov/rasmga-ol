@@ -22,7 +22,7 @@ const Search = () => {
         />
       </TopHeader>
 
-      <div className="mt-12 grid grid-cols-3 border-t border-slate-600 p-1 sm:mt-0 xl:w-[70dvw]">
+      <div className="mt-12 grid grid-cols-3 border-t border-slate-600 p-8 sm:mt-0 xl:w-[70dvw]">
         {Array(120)
           .fill()
           .map((_, i) => (
@@ -32,7 +32,11 @@ const Search = () => {
                 Math.random() * 100,
               )}/800/600`}
               alt="post"
-              className="h-fit w-full object-cover"
+              className={
+                i % 7 === 2
+                  ? "row-span-2 h-full w-full object-cover"
+                  : "h-full w-full object-cover"
+              }
             />
           ))}
       </div>

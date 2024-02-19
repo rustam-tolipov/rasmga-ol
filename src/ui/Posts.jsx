@@ -21,11 +21,9 @@ const Posts = () => {
     );
   }
 
-  console.log(posts);
-
   return (
     <div className="col-start-1 col-end-2 px-4 sm:px-24">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col items-center gap-4">
         {posts.map((post, index) => (
           <Post key={index} post={post} />
         ))}
