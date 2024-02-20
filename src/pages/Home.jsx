@@ -3,7 +3,8 @@ import { HiCamera, HiOutlinePlusCircle } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import Posts from "../ui/Posts";
 import { useQuery } from "@tanstack/react-query";
-import { getHighlights } from "../services/apiUsers";
+import { getHighlights, getSuggestions } from "../services/apiUsers";
+import Suggestion from "../ui/Suggestion";
 
 const Home = () => {
   return (
@@ -60,17 +61,34 @@ const Highlight = ({ highlight }) => {
 };
 
 const Suggestions = () => {
+  const {
+    isLoading,
+    data: suggestions,
+    error,
+  } = useQuery({
+    queryKey: ["suggestions"],
+    queryFn: getSuggestions,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="hidden h-full flex-col gap-5 pt-8 lg:flex 2xl:w-[50%]">
-      <Suggestion />
+      <Suggestion suggestedUser={suggestions[0]?.user} />
 
       <div className="flex items-center justify-between text-gray-400">
         <h3 className="text-sm font-semibold">Suggested For You</h3>
         <span className="text-xs">See All</span>
       </div>
       <div className="flex flex-col gap-4 pl-1">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Suggestion key={index} />
+        {suggestions?.map((suggestedUser, index) => (
+          <Suggestion key={index} suggestedUser={suggestedUser?.user} />
         ))}
       </div>
 
@@ -81,29 +99,6 @@ const Suggestions = () => {
         <br />
         &copy; 2024 RasmgaOl. All rights reserved.
       </div>
-    </div>
-  );
-};
-
-const Suggestion = () => {
-  return (
-    <div className="flex items-center gap-4">
-      <div className="h-12 w-12 rounded-[50%]">
-        <img
-          src={`https://randomuser.me/api/portraits/men/${Math.floor(
-            Math.random() * 100,
-          )}.jpg`}
-          alt="profile"
-          className="h-full w-full rounded-[50%] object-cover"
-        />
-      </div>
-      <div className="flex flex-col">
-        <h3 className="text-sm font-semibold">username</h3>
-        <span className="text-xs text-gray-400">Follows you</span>
-      </div>
-      <button className="ml-auto text-sm font-semibold text-blue-500">
-        Follow
-      </button>
     </div>
   );
 };

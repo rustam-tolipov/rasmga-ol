@@ -11,3 +11,8 @@ export async function getMe() {
   const response = await axios.get(`${BASE_URL}/auth/me`);
   return response.data;
 }
+
+export async function getSuggestions() {
+  const response = await axios.get(`${BASE_URL}/suggestions`);
+  return response.data;
+}
