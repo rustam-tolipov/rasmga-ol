@@ -69,8 +69,12 @@ const CreatePostForm = ({ onClose }) => {
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">
       <AnimatePresence>
-        <div
-          className={`flex h-[26rem] flex-col font-medium text-gray-50 ${currentPage === 2 ? "w-[40rem]" : "w-[25rem]"}`}
+        <motion.div
+          className={`flex h-[26rem] w-[25rem] flex-col font-medium text-gray-50`}
+          initial={{ width: "25rem" }}
+          animate={currentPage === 2 ? { width: "40rem" } : { width: "25rem" }}
+          exit={{ width: 0 }}
+          transition={{ duration: 0.5 }}
         >
           <div className="flex w-full items-center justify-between border-b border-gray-700 px-2 py-2">
             {currentPage > 0 ? (
@@ -81,12 +85,16 @@ const CreatePostForm = ({ onClose }) => {
               {currentPage === 0 ? "Create Post" : "Crop"}
             </span>
 
-            <button
-              className="rounded-sm px-2 text-blue-500"
-              onClick={() => (currentPage === 2 ? handleShare() : handleNext())}
-            >
-              {currentPage === 2 ? "Share" : "Next"}
-            </button>
+            {file && (
+              <button
+                className="rounded-sm px-2 text-blue-500"
+                onClick={() =>
+                  currentPage === 2 ? handleShare() : handleNext()
+                }
+              >
+                {currentPage === 2 ? "Share" : "Next"}
+              </button>
+            )}
           </div>
 
           {currentPage === 0 && (
@@ -158,7 +166,7 @@ const CreatePostForm = ({ onClose }) => {
               </div>
             </motion.div>
           )}
-        </div>
+        </motion.div>
       </AnimatePresence>
     </div>
   );
