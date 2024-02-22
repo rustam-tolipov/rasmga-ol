@@ -25,3 +25,17 @@ export async function deletePost(postId) {
   );
   return response.data;
 }
+
+export async function likePost(postId) {
+  const response = await axios.post(
+    `http://localhost:3000/api/v1/posts/${postId}/like`,
+  );
+  return response.data;
+}
+
+export async function unlikePost(postId) {
+  const response = await axios.delete(
+    `http://localhost:3000/api/v1/posts/${postId}/like`,
+  );
+  return response.data;
+}

@@ -43,22 +43,26 @@ const Reels = () => {
 export default Reels;
 
 const Reel = ({ reel }) => {
+  const { id, image, likes, comments, created_at, username, avatar, content } =
+    reel;
+
   return (
-    <div
-      className="relative h-full w-full xl:w-[30dvw]"
-      key={reel.id}
-    >
-      <LoadMedia media={reel.image?.url} />
+    <div className="relative h-full w-full xl:w-[30dvw]" key={id}>
+      <LoadMedia media={image?.url} />
 
       <div className="absolute bottom-4 flex w-full flex-col items-end gap-8 px-4 pb-2">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
             <HiOutlineHeart className="text-2xl" />
-            <span className="text-xs">{Math.floor(Math.random() * 100)}k</span>
+            <span className="text-xs">
+              {likes.length === 0 ? "" : `${likes.length} `}
+            </span>
           </div>
           <div className="flex flex-col items-center">
             <HiOutlineChatBubbleOvalLeft className="text-2xl" />
-            <span className="text-xs">{Math.floor(Math.random() * 100)}</span>
+            <span className="text-xs">
+              {comments.length === 0 ? "" : `${comments.length} `}
+            </span>
           </div>
           <HiOutlinePaperAirplane className="text-2xl" />
         </div>
@@ -111,7 +115,7 @@ const LoadMedia = ({ media }) => {
       <video
         src={media}
         alt="post"
-        className="h-[93dvh] md:h-[100dvh] w-full object-cover xl:rounded-lg"
+        className="h-[93dvh] w-full object-cover md:h-[100dvh] xl:rounded-lg"
         ref={ref}
         onClick={() => setPlayVideo(!playVideo)}
         loop
