@@ -1,6 +1,4 @@
 const Suggestion = ({ suggestedUser }) => {
-  console.log(suggestedUser);
-
   return (
     <div className="flex items-center gap-4">
       <div className="h-12 w-12 rounded-[50%]">

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   HiMiniEllipsisHorizontal,
   HiOutlineBookmark,
@@ -12,6 +12,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deletePost } from "../services/apiPosts";
 import { Deleting } from "./Loader";
 import toast from "react-hot-toast";
+import Reveal from "./Reveal";
+import { useInView } from "framer-motion";
 
 const currentDate = new Date();
 
@@ -74,15 +76,7 @@ const Post = ({ post }) => {
         </div>
       </div>
       <div className="h-fit w-[30rem] rounded-lg 2xl:h-fit ">
-        {isDeleting ? (
-          <Deleting />
-        ) : (
-          <img
-            src={image.url}
-            alt="post"
-            className="h-fit w-full rounded-lg object-cover"
-          />
-        )}
+        {isDeleting ? <Deleting /> : <LoadMedia media={image.url} />}
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex w-full gap-2">
@@ -116,3 +110,44 @@ const Post = ({ post }) => {
 };
 
 export default Post;
+
+const LoadMedia = ({ media }) => {
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+  const [playVideo, setPlayVideo] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      if (media.includes("video")) {
+        ref.current.play();
+      }
+    }
+  }, [isInView, media]);
+
+  if (media.includes("video")) {
+    return (
+      <Reveal>
+        <video
+          src={media}
+          alt="post"
+          className="h-full w-full rounded-lg object-cover"
+          ref={ref}
+          onClick={() => setPlayVideo(!playVideo)}
+          loop
+          muted
+        />
+      </Reveal>
+    );
+  }
+
+  return (
+    <Reveal>
+      <img
+        src={media.replace("upload", "upload/w_500,h_500,c_fill,g_face")}
+        alt="post"
+        className="h-full w-full rounded-lg object-cover"
+        ref={ref}
+      />
+    </Reveal>
+  );
+};

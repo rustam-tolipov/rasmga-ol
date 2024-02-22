@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
 
-const fileTypes = ["JPG", "PNG", "GIF"];
+const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
 
 const CreatePostForm = ({ onClose }) => {
   const queryClient = useQueryClient();
@@ -16,6 +16,7 @@ const CreatePostForm = ({ onClose }) => {
   const [isCreating, setIsCreating] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(null);
+  const [fileType, setFileType] = useState("");
   const [content, setContent] = useState("");
 
   const { isLoading, mutate } = useMutation({
@@ -42,6 +43,7 @@ const CreatePostForm = ({ onClose }) => {
 
   const handleChange = (file) => {
     setFile(file);
+    setFileType(file.type);
   };
 
   const handleContent = (e) => {
@@ -51,11 +53,12 @@ const CreatePostForm = ({ onClose }) => {
   const handleCancel = () => {
     alert("Are you sure you want to cancel?");
     setFile(null);
+    setCurrentPage(0);
+    setIsCreating(false);
     onClose(false);
   };
 
   const handleBack = () => {
-    console.log(currentPage);
     setCurrentPage((prev) => prev - 1);
   };
 
@@ -138,11 +141,7 @@ const CreatePostForm = ({ onClose }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img
-                src={URL.createObjectURL(file)}
-                alt="post"
-                className="h-full w-full object-cover"
-              />
+              <LoadMedia media={URL.createObjectURL(file)} type={fileType} />
             </motion.div>
           )}
           {currentPage === 2 && (
@@ -153,11 +152,9 @@ const CreatePostForm = ({ onClose }) => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <img
-                src={URL.createObjectURL(file)}
-                alt="post"
-                className="h-full w-1/2 object-cover"
-              />
+              <div className="flex h-full w-1/2">
+                <LoadMedia media={URL.createObjectURL(file)} type={fileType} />
+              </div>
 
               <div className="flex w-1/2 p-4">
                 <textarea
@@ -178,3 +175,16 @@ const CreatePostForm = ({ onClose }) => {
 };
 
 export default CreatePostForm;
+
+const LoadMedia = ({ media, type }) => {
+  return type === "video/mp4" ? (
+    <video
+      src={media}
+      alt="post"
+      className="h-full w-full object-cover"
+      controls
+    />
+  ) : (
+    <img src={media} alt="post" className="h-full w-full object-cover" />
+  );
+};

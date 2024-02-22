@@ -2,7 +2,7 @@ import React from "react";
 import {
   HiMiniCog6Tooth,
   HiOutlineUserPlus,
-
+  HiMiniEllipsisHorizontal,
   HiOutlineHeart,
   HiOutlineChatBubbleOvalLeft,
   HiOutlinePaperAirplane,
@@ -139,12 +139,7 @@ const Profile = () => {
 
         <div className="grid grid-cols-3 gap-1">
           {posts?.map((post, index) => (
-            <img
-              key={index}
-              src={post.image.url}
-              alt="post"
-              className="h-72 w-full object-cover"
-            />
+            <LoadMedia key={index} media={post.image.url} />
           ))}
         </div>
       </div>
@@ -153,3 +148,13 @@ const Profile = () => {
 };
 
 export default Profile;
+
+const LoadMedia = ({ media }) => {
+  if (media.includes("mp4")) {
+    return (
+      <video src={media} className="h-80 w-full object-cover" controls />
+    );
+  }
+
+  return <img src={media} alt="post" className="h-80 w-full object-cover" />;
+};

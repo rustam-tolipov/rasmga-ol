@@ -1,4 +1,5 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useRef, useState } from "react";
 import {
   HiOutlineHeart,
   HiOutlineChatBubbleOvalLeft,
@@ -6,12 +7,34 @@ import {
   HiOutlineBookmark,
   HiMiniEllipsisHorizontal,
 } from "react-icons/hi2";
+import { getPosts } from "../services/apiPosts";
+import { useInView } from "framer-motion";
+import Reveal from "../ui/Reveal";
 
 const Reels = () => {
+  const {
+    isLoading,
+    data: posts,
+    error,
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const reels = posts.filter((post) => post.image?.url.includes("mp4"));
+
   return (
-    <div className="flex flex-col items-center xl:gap-4 xl:py-4">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <Reel key={index} />
+    <div className="flex flex-col items-center xl:gap-8 xl:py-4">
+      {reels.map((reel, index) => (
+        <Reel key={index} reel={reel} />
       ))}
     </div>
   );
@@ -19,18 +42,15 @@ const Reels = () => {
 
 export default Reels;
 
-const Reel = () => {
+const Reel = ({ reel }) => {
   return (
-    <div className="relative h-[92dvh] xl:w-[30dvw]">
-      <img
-        src={`https://picsum.photos/seed/${Math.floor(
-          Math.random() * 100,
-        )}/800/600`}
-        alt="post"
-        className="h-full w-full object-cover xl:rounded-md"
-      />
+    <div
+      className="relative h-full w-full xl:w-[30dvw]"
+      key={reel.id}
+    >
+      <LoadMedia media={reel.image?.url} />
 
-      <div className="absolute bottom-0 flex w-full flex-col items-end gap-8 px-4 pb-2">
+      <div className="absolute bottom-4 flex w-full flex-col items-end gap-8 px-4 pb-2">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
             <HiOutlineHeart className="text-2xl" />
@@ -70,5 +90,33 @@ const Reel = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const LoadMedia = ({ media }) => {
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+  const [playVideo, setPlayVideo] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      if (media.includes("video")) {
+        ref.current.play();
+      }
+    }
+  }, [isInView, media]);
+
+  return (
+    <Reveal>
+      <video
+        src={media}
+        alt="post"
+        className="h-[93dvh] md:h-[100dvh] w-full object-cover xl:rounded-lg"
+        ref={ref}
+        onClick={() => setPlayVideo(!playVideo)}
+        loop
+        muted
+      />
+    </Reveal>
   );
 };
