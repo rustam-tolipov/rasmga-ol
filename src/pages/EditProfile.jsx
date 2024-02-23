@@ -2,12 +2,51 @@ import React from "react";
 import TopHeader from "../ui/TopHeader";
 import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
+import { useForm } from "react-hook-form";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { editProfile, getMe } from "../services/apiUsers";
+import toast from "react-hot-toast";
 
 const EditProfile = () => {
+  const {
+    isLoading: meLoading,
+    data: me,
+    error: meError,
+  } = useQuery({
+    queryKey: ["me"],
+    queryFn: getMe,
+  });
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      id: me?.id,
+      username: me?.username,
+      bio: me?.bio,
+      firstName: me?.first_name,
+      lastName: me?.last_name,
+    },
+  });
+
+  console.log(me);
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: editProfile,
+    onSuccess: () => {
+      toast.success("Profile updated successfully");
+    },
+    onError: (error) => {
+      toast.error("An error occurred: " + error.message);
+    },
+  });
+
   const navigate = useNavigate();
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const onSubmit = (data) => {
+    mutate(data);
   };
 
   return (
@@ -21,7 +60,7 @@ const EditProfile = () => {
           <li className="text-lg">Your Activity</li>
         </ul>
       </div>
-      <div className="flex xl:w-1/2 flex-col xl:pl-12 xl:pt-12">
+      <div className="flex flex-col xl:w-1/2 xl:pl-12 xl:pt-12">
         <TopHeader>
           <HiChevronLeft className="mr-auto text-2xl" onClick={handleBack} />
 
@@ -30,7 +69,10 @@ const EditProfile = () => {
           </h1>
         </TopHeader>
 
-        <div className="mt-12 flex h-full flex-col gap-4 px-4 py-4 sm:mt-0">
+        <form
+          className="mt-12 flex h-full flex-col gap-4 px-4 py-4 sm:mt-0"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <h1 className="text-2xl tracking-wide">Edit Profile</h1>
 
           <div className="mt-10 flex flex-row items-center gap-4">
@@ -52,22 +94,34 @@ const EditProfile = () => {
           </div>
 
           <div className="flex flex-col gap-4">
-            {/* <div>
-            <label htmlFor="name" className="text-md font-medium">
-              Website
-            </label>
+            <div>
+              <label htmlFor="firstName" className="text-md font-medium">
+                First Name
+              </label>
 
-            <input
-              type="text"
-              id="name"
-              className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
-              placeholder="Website"
-            />
+              <input
+                type="text"
+                id="firstName"
+                className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
+                placeholder="First Name"
+                {...register("firstName")}
+              />
+            </div>
 
-            <p className="mt-1 text-xs text-gray-400">
-              Change your website or blog
-            </p>
-          </div> */}
+            <div>
+              <label htmlFor="lastName" className="text-md font-medium">
+                Last Name
+              </label>
+
+              <input
+                type="text"
+                id="lastName"
+                className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
+                placeholder="Last Name"
+                {...register("lastName")}
+              />
+            </div>
+
             <div>
               <label htmlFor="name" className="text-md font-medium">
                 Username
@@ -78,6 +132,7 @@ const EditProfile = () => {
                 id="name"
                 className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
                 placeholder="Username"
+                {...register("username")}
               />
 
               <p className="mt-1 text-xs text-gray-400">Change your username</p>
@@ -91,13 +146,14 @@ const EditProfile = () => {
                 id="name"
                 className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
                 placeholder="Bio"
+                {...register("bio")}
               />
 
               <p className="mt-1 text-xs text-gray-400">
                 Add a bio to your profile
               </p>
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="name" className="text-md font-medium">
                 Gender
               </label>
@@ -105,6 +161,7 @@ const EditProfile = () => {
               <select
                 id="name"
                 className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
+                {...register("gender")}
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -113,13 +170,13 @@ const EditProfile = () => {
               <p className="mt-1 text-xs text-gray-400">
                 This won’t be part of your public profile.
               </p>
-            </div>
+            </div> */}
           </div>
 
           <button className="mt-10 w-fit rounded-lg bg-blue-500 px-4 py-2 text-gray-50">
             Submit
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

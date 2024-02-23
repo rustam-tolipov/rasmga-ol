@@ -16,3 +16,8 @@ export async function getSuggestions() {
   const response = await axios.get(`${BASE_URL}/suggestions`);
   return response.data;
 }
+
+export async function editProfile(profile) {
+  const response = await axios.put(`${BASE_URL}/auth/edit`, profile);
+  return response.data;
+}
