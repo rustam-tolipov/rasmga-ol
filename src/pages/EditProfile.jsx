@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TopHeader from "../ui/TopHeader";
 import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
@@ -17,17 +17,17 @@ const EditProfile = () => {
     queryFn: getMe,
   });
 
+  const [file, setFile] = useState(null);
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       id: me?.id,
       username: me?.username,
       bio: me?.bio,
-      firstName: me?.first_name,
-      lastName: me?.last_name,
+      first_name: me?.first_name,
+      last_name: me?.last_name,
     },
   });
-
-  console.log(me);
 
   const { mutate, isLoading } = useMutation({
     mutationFn: editProfile,
@@ -46,7 +46,7 @@ const EditProfile = () => {
   };
 
   const onSubmit = (data) => {
-    mutate(data);
+    mutate({ ...data, avatar: file });
   };
 
   return (
@@ -87,9 +87,18 @@ const EditProfile = () => {
             </div>
             <div className="flex flex-col font-medium">
               <h3 className="text-md">username</h3>
-              <button className="rounded-lg text-sm text-blue-500">
+              {/* <button className="rounded-lg text-sm text-blue-500">
                 Change profile photo
-              </button>
+              </button> */}
+
+              <input
+                type="file"
+                id="file"
+                name="avatar"
+                className="rounded-lg text-sm text-blue-500"
+                placeholder="Change profile photo"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             </div>
           </div>
 
@@ -104,7 +113,7 @@ const EditProfile = () => {
                 id="firstName"
                 className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
                 placeholder="First Name"
-                {...register("firstName")}
+                {...register("first_name")}
               />
             </div>
 
@@ -118,7 +127,7 @@ const EditProfile = () => {
                 id="lastName"
                 className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
                 placeholder="Last Name"
-                {...register("lastName")}
+                {...register("last_name")}
               />
             </div>
 

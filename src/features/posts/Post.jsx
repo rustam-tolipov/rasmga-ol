@@ -35,7 +35,7 @@ const Post = ({ post }) => {
     post;
 
   return (
-    <div className="flex w-fit flex-col gap-3 2xl:w-[30rem]">
+    <div className="flex w-full flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
         <div className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1">
           <img
@@ -53,7 +53,7 @@ const Post = ({ post }) => {
           <DeletePost id={post.id} />
         </div>
       </div>
-      <div className="h-fit w-[30rem] rounded-lg 2xl:h-fit ">
+      <div className="h-fit w-full rounded-lg md:w-[30rem] 2xl:h-fit ">
         <LoadMedia media={image.url} />
       </div>
       <div className="flex flex-col gap-2">
@@ -122,7 +122,7 @@ const LoadMedia = ({ media }) => {
   return (
     <Reveal>
       <img
-        src={media.replace("upload", "upload/w_500,h_500,c_fill,g_face")}
+        src={media}
         alt="post"
         className="h-full w-full rounded-lg object-cover"
         ref={ref}

@@ -51,7 +51,7 @@ const Profile = () => {
   } = me;
 
   return (
-    <div className="flex flex-col xl:items-center">
+    <div className="flex flex-col xl:items-center xl:justify-center">
       <TopHeader>
         <NavLink to="/account/settings">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
@@ -60,15 +60,15 @@ const Profile = () => {
         <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
 
-      <div className="mt-12 flex items-center justify-between px-4 py-4 sm:mt-0 md:justify-center md:gap-12">
-        <div className="h-[6rem] w-[6rem] rounded-[50%] md:mx-16 md:my-8 md:h-40 md:w-40">
+      <div className="mt-12 flex w-full items-center justify-between px-4 py-4 md:mt-0 md:h-[40dvh] md:justify-start xl:w-[70dvw]">
+        <div className="flex items-center justify-center">
           <img
             src={avatar}
             alt="profile"
-            className="h-full w-full rounded-[50%]"
+            className="h-[6rem] w-[6rem] rounded-[50%] md:m-24 md:h-[12rem] md:w-[12rem]"
           />
         </div>
-        <div className="flex flex-col gap-3 md:w-[50%]">
+        <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-4 md:flex-row">
             <div className="mr-auto flex items-center gap-4 md:mr-0">
               <h3 className="text-xl font-light tracking-wide">{username}</h3>
@@ -152,9 +152,15 @@ export default Profile;
 const LoadMedia = ({ media }) => {
   if (media.includes("mp4")) {
     return (
-      <video src={media} className="h-80 w-full object-cover" controls />
+      <video
+        src={media}
+        className="h-32 w-full object-cover xl:h-80"
+        controls
+      />
     );
   }
 
-  return <img src={media} alt="post" className="h-80 w-full object-cover" />;
+  return (
+    <img src={media} alt="post" className="h-32 w-full object-cover xl:h-80" />
+  );
 };

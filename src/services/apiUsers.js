@@ -18,6 +18,14 @@ export async function getSuggestions() {
 }
 
 export async function editProfile(profile) {
-  const response = await axios.put(`${BASE_URL}/auth/edit`, profile);
+  const formData = new FormData();
+  formData.append("avatar", profile.avatar);
+  formData.append("username", profile.username);
+  formData.append("bio", profile.bio);
+  formData.append("first_name", profile.first_name);
+  formData.append("last_name", profile.last_name);
+  formData.append("id", profile.id);
+
+  const response = await axios.put(`${BASE_URL}/auth/edit`, formData);
   return response.data;
 }
