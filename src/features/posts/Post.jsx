@@ -1,20 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  HiHeart,
-  HiMiniEllipsisHorizontal,
   HiOutlineBookmark,
   HiOutlineChatBubbleOvalLeft,
   HiOutlineFaceSmile,
-  HiOutlineHeart,
   HiOutlinePaperAirplane,
 } from "react-icons/hi2";
-import { format } from "date-fns";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deletePost, likePost, unlikePost } from "../services/apiPosts";
-import { Deleting } from "./Loader";
-import toast from "react-hot-toast";
-import Reveal from "./Reveal";
+
+import Reveal from "../../ui/Reveal";
 import { useInView } from "framer-motion";
+
+import Like from "../../ui/Like";
+import DeletePost from "./DeletePost";
 
 const currentDate = new Date();
 
@@ -38,70 +34,6 @@ const Post = ({ post }) => {
   const { image, likes, comments, created_at, username, avatar, content } =
     post;
 
-  const queryClient = useQueryClient();
-
-  const { isLoading: isDeleting, mutate } = useMutation({
-    mutationFn: deletePost,
-    onSuccess: () => {
-      toast.success("Post deleted successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
-
-  const { isLoading: isLiking, mutate: mutateLike } = useMutation({
-    mutationFn: likePost,
-    onSuccess: () => {
-      toast.success("Post liked successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["me"],
-      });
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
-
-  const { isLoading: isUnLiking, mutate: mutateUnLike } = useMutation({
-    mutationFn: unlikePost,
-    onSuccess: () => {
-      toast.success("Post unliked successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
-
-      queryClient.invalidateQueries({
-        queryKey: ["me"],
-      });
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
-
-  const handleLike = () => {
-    mutateLike(post.id);
-  };
-
-  const handleUnLike = () => {
-    mutateUnLike(post.id);
-  };
-
-  const handleLiked = () => {
-    return likes?.some((like) => like.user_id === 1);
-  };
-
   return (
     <div className="flex w-fit flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
@@ -118,24 +50,15 @@ const Post = ({ post }) => {
           <span className="text-sm text-gray-400">{ago(created_at)}</span>
 
           {/* THIS BUTTON DELETES POST */}
-          <HiMiniEllipsisHorizontal
-            className="ml-auto text-xl"
-            onClick={() => mutate(post.id)}
-          />
+          <DeletePost id={post.id} />
         </div>
       </div>
       <div className="h-fit w-[30rem] rounded-lg 2xl:h-fit ">
-        {isDeleting ? <Deleting /> : <LoadMedia media={image.url} />}
+        <LoadMedia media={image.url} />
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex w-full gap-2">
-          {/* <HiOutlineHeart className="text-2xl" onClick={handleLike} /> */}
-
-          {handleLiked() ? (
-            <HiHeart className="text-2xl text-red-500" onClick={handleUnLike} />
-          ) : (
-            <HiOutlineHeart className="text-2xl" onClick={handleLike} />
-          )}
+          <Like likes={likes} id={post.id} />
 
           <HiOutlineChatBubbleOvalLeft className="text-2xl" />
           <HiOutlinePaperAirplane className="text-2xl" />
@@ -186,7 +109,7 @@ const LoadMedia = ({ media }) => {
         <video
           src={media}
           alt="post"
-          className="h-full max-h-[80dvh] w-full rounded-lg object-cover"
+          className="h-full w-full rounded-lg object-cover lg:max-h-[80dvh]"
           ref={ref}
           onClick={() => setPlayVideo(!playVideo)}
           loop

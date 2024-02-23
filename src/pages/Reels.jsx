@@ -10,6 +10,7 @@ import {
 import { getPosts } from "../services/apiPosts";
 import { useInView } from "framer-motion";
 import Reveal from "../ui/Reveal";
+import Like from "../ui/Like";
 
 const Reels = () => {
   const {
@@ -53,16 +54,12 @@ const Reel = ({ reel }) => {
       <div className="absolute bottom-4 flex w-full flex-col items-end gap-8 px-4 pb-2">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
-            <HiOutlineHeart className="text-2xl" />
-            <span className="text-xs">
-              {likes.length === 0 ? "" : `${likes.length} `}
-            </span>
+            <Like likes={likes} id={id} />
+            <span className="text-xs">{likes.length}</span>
           </div>
           <div className="flex flex-col items-center">
             <HiOutlineChatBubbleOvalLeft className="text-2xl" />
-            <span className="text-xs">
-              {comments.length === 0 ? "" : `${comments.length} `}
-            </span>
+            <span className="text-xs">{comments.length}</span>
           </div>
           <HiOutlinePaperAirplane className="text-2xl" />
         </div>

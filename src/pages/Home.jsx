@@ -1,7 +1,7 @@
 import React from "react";
 import { HiCamera, HiOutlinePlusCircle } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import Posts from "../ui/Posts";
+import Posts from "../features/posts/Posts";
 import { useQuery } from "@tanstack/react-query";
 import { getHighlights, getSuggestions } from "../services/apiUsers";
 import Suggestion from "../ui/Suggestion";

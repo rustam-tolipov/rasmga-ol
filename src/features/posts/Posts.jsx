@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getPosts } from "../services/apiPosts";
+import { getPosts } from "../../services/apiPosts";
 import Post from "./Post";
 
 const Posts = () => {
