@@ -39,3 +39,13 @@ export async function getFollowings(id) {
   const response = await axios.get(`${BASE_URL}/users/${1}/followings`);
   return response.data;
 }
+
+export async function followUser(id) {
+  const response = await axios.post(`${BASE_URL}/users/${id}/follow`);
+  return response.data;
+}
+
+export async function unfollowUser(id) {
+  const response = await axios.post(`${BASE_URL}/users/${id}/unfollow`);
+  return response.data;
+}

@@ -1,4 +1,8 @@
+import useFollow from "../hooks/useFollow";
+
 const Suggestion = ({ suggestedUser }) => {
+  const { isFollowing, followUser } = useFollow();
+
   return (
     <div className="flex items-center gap-4">
       <div className="h-12 w-12 rounded-[50%]">
@@ -12,7 +16,10 @@ const Suggestion = ({ suggestedUser }) => {
         <h3 className="text-sm font-semibold">{suggestedUser.username}</h3>
         <span className="text-xs text-gray-400">Follows you</span>
       </div>
-      <button className="ml-auto text-sm font-semibold text-blue-500">
+      <button
+        className="ml-auto text-sm font-semibold text-blue-500"
+        onClick={() => followUser(suggestedUser.id)}
+      >
         Follow
       </button>
     </div>
