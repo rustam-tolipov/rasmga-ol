@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { followUser as followUserApi } from "../services/apiUsers";
+import { unfollowUser as unFollowUserApi } from "../services/apiUsers";
 import toast from "react-hot-toast";
 
-const useFollow = () => {
+const useUnFollow = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isFollowing, mutate: followUser } = useMutation({
-    mutationFn: followUserApi,
+  const { isLoading: isUnFollowing, mutate: unFollowUser } = useMutation({
+    mutationFn: unFollowUserApi,
     onSuccess: () => {
-      toast.success("Followed successfully");
-      
+      toast.success("Unfollowed successfully");
+
       queryClient.invalidateQueries(["me"]);
       queryClient.invalidateQueries(["suggestions"]);
     },
@@ -19,7 +19,7 @@ const useFollow = () => {
     },
   });
 
-  return { isFollowing, followUser };
+  return { isUnFollowing, unFollowUser };
 };
 
-export default useFollow;
+export default useUnFollow;

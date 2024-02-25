@@ -1,9 +1,11 @@
 import React from "react";
 import { HiChevronLeft } from "react-icons/hi2";
 import useFollowings from "../../hooks/useFollowings";
+import useUnFollow from "../../hooks/useUnFollow";
 
 const Followings = () => {
   const { followingsLoading, followings, followingsError } = useFollowings();
+  const { isUnFollowing, unFollowUser } = useUnFollow();
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">
@@ -26,8 +28,11 @@ const Followings = () => {
                 />
                 <h3>{following.username}</h3>
               </div>
-              <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
-                Follow
+              <button
+                className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
+                onClick={() => unFollowUser(following.id)}
+              >
+                Unfollow
               </button>
             </div>
           ))}

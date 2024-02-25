@@ -47,6 +47,8 @@ const Profile = () => {
     followers_count,
   } = me;
 
+  console.log(me);
+
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
       {openModal && (

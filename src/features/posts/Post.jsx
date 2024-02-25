@@ -11,6 +11,7 @@ import { useInView } from "framer-motion";
 
 import Like from "../../ui/Like";
 import DeletePost from "./DeletePost";
+import useFollow from "../../hooks/useFollow";
 
 const currentDate = new Date();
 
@@ -31,8 +32,19 @@ const ago = (created_at) => {
 };
 
 const Post = ({ post }) => {
-  const { image, likes, comments, created_at, username, avatar, content } =
-    post;
+  const {
+    image,
+    likes,
+    comments,
+    created_at,
+    username,
+    avatar,
+    content,
+    is_followed,
+    user_id,
+  } = post;
+
+  const { isFollowing, followUser } = useFollow();
 
   return (
     <div className="flex w-full flex-col gap-3 2xl:w-[30rem]">
@@ -48,12 +60,26 @@ const Post = ({ post }) => {
           <h3 className="text-sm font-semibold">{username}</h3>
           <span className="text-2xl text-gray-400">·</span>
           <span className="text-sm text-gray-400">{ago(created_at)}</span>
-
+          {!is_followed ? (
+            <button
+              className="text-sm font-semibold text-blue-500"
+              onClick={() => followUser(user_id)}
+            >
+              Follow
+            </button>
+          ) : (
+            <button
+              className="text-sm font-semibold text-blue-500"
+              onClick={() => followUser(user_id)}
+            >
+              Unfollow
+            </button>
+          )}
           {/* THIS BUTTON DELETES POST */}
           <DeletePost id={post.id} />
         </div>
       </div>
-      <div className="h-fit w-full rounded-lg md:w-[30rem] 2xl:h-fit ">
+      <div className="h-fit w-full rounded-lg 2xl:h-fit ">
         <LoadMedia media={image.url} />
       </div>
       <div className="flex flex-col gap-2">

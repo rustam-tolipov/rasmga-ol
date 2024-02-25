@@ -4,7 +4,6 @@ import useFollowers from "../../hooks/useFollowers";
 
 const Followers = () => {
   const { followersLoading, followers, followersError } = useFollowers();
-  console.log(followers);
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">

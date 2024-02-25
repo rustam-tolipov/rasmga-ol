@@ -46,6 +46,6 @@ export async function followUser(id) {
 }
 
 export async function unfollowUser(id) {
-  const response = await axios.post(`${BASE_URL}/users/${id}/unfollow`);
+  const response = await axios.delete(`${BASE_URL}/users/${id}/unfollow`);
   return response.data;
 }
