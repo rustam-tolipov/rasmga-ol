@@ -29,3 +29,13 @@ export async function editProfile(profile) {
   const response = await axios.put(`${BASE_URL}/auth/edit`, formData);
   return response.data;
 }
+
+export async function getFollowers(id) {
+  const response = await axios.get(`${BASE_URL}/users/${1}/followers`);
+  return response.data;
+}
+
+export async function getFollowings(id) {
+  const response = await axios.get(`${BASE_URL}/users/${1}/followings`);
+  return response.data;
+}
