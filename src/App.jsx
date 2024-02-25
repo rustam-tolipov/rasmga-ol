@@ -16,6 +16,8 @@ import Search from "./pages/Search";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import EditProfile from "./pages/EditProfile";
+import Followers from "./pages/Followers";
+import Followings from "./pages/Followings";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +41,9 @@ function App() {
             <Route path="notifications" element={<Likes />} />
             <Route path="create" element={<Post />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="followers" element={<Followers />} />
+            <Route path="followings" element={<Followings />} />
+
             <Route path="account/">
               <Route path="settings" element={<Settings />} />
               <Route path="edit" element={<EditProfile />} />

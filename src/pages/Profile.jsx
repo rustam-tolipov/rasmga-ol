@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   HiMiniCog6Tooth,
   HiOutlineUserPlus,
@@ -7,31 +7,28 @@ import {
   HiOutlineChatBubbleOvalLeft,
   HiOutlinePaperAirplane,
   HiOutlineBookmark,
+  HiChevronLeft,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../services/apiPosts";
 import { getMe } from "../services/apiUsers";
+import Modal from "../ui/Modal";
+import usePosts from "../hooks/usePosts";
+import useProfile from "../hooks/useProfile";
+import useFollowers from "../hooks/useFollowers";
+import Followers from "../features/profile/Followers";
+import Followings from "../features/profile/Followings";
 
 const Profile = () => {
-  const {
-    isLoading,
-    data: posts,
-    error,
-  } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-  });
+  const [openModal, setOpenModal] = useState(false);
 
-  const {
-    isLoading: meLoading,
-    data: me,
-    error: meError,
-  } = useQuery({
-    queryKey: ["me"],
-    queryFn: getMe,
-  });
+  const { isLoading, posts, error } = usePosts();
+
+  const { meLoading, me, meError } = useProfile();
+
+  const { followersLoading, followers, followersError } = useFollowers();
 
   if (isLoading || meLoading) {
     return <div>Loading...</div>;
@@ -52,6 +49,16 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
+      {openModal && (
+        <Modal openModal={openModal} onClose={setOpenModal}>
+          {openModal === "followers" ? (
+            <Followers followers={followers} />
+          ) : (
+            <Followings followings={followers} />
+          )}
+        </Modal>
+      )}
+
       <TopHeader>
         <NavLink to="/account/settings">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
@@ -86,12 +93,22 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="hidden gap-6 lg:flex">
+          <div className="hidden gap-6 md:flex">
             <p className="text-md font-medium">
               {posts_count} {posts_count > 1 ? "posts" : "post"}
             </p>
-            <p className="text-md font-medium">{followers_count} followers</p>
-            <p className="text-md font-medium">{followees_count} following</p>
+            <p
+              className="text-md cursor-pointer font-medium"
+              onClick={() => setOpenModal("followers")}
+            >
+              {followers_count} followers
+            </p>
+            <p
+              className="text-md font-medium"
+              onClick={() => setOpenModal("followings")}
+            >
+              {followees_count} following
+            </p>
           </div>
 
           <div className="flex flex-col">
@@ -120,14 +137,14 @@ const Profile = () => {
           <h3 className="text-md font-semibold">{posts_count}</h3>
           <p className="text-xs text-gray-400">Posts</p>
         </div>
-        <div className="flex flex-col items-center">
+        <NavLink className="flex flex-col items-center" to="/followers">
           <h3 className="text-md font-semibold">{followers_count}</h3>
-          <p className="text-xs text-gray-400">Followers</p>
-        </div>
-        <div className="flex flex-col items-center">
+          <p className="cursor-pointer text-xs text-gray-400">Followers</p>
+        </NavLink>
+        <NavLink className="flex flex-col items-center" to="/followings">
           <h3 className="text-md font-semibold">{followees_count}</h3>
-          <p className="text-xs text-gray-400">Following</p>
-        </div>
+          <p className="cursor-pointer text-xs text-gray-400">Following</p>
+        </NavLink>
       </div>
       <div className="flex flex-col xl:w-[70dvw]">
         <div className="flex flex-row items-center justify-around p-2 px-4 text-gray-400">
