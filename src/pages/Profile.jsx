@@ -10,7 +10,7 @@ import {
   HiChevronLeft,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../services/apiPosts";
 import { getMe } from "../services/apiUsers";
@@ -20,22 +20,24 @@ import useProfile from "../hooks/useProfile";
 import useFollowers from "../hooks/useFollowers";
 import Followers from "../features/profile/Followers";
 import Followings from "../features/profile/Followings";
+import useUnFollow from "../hooks/useUnFollow";
+import useFollow from "../hooks/useFollow";
 
 const Profile = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { username: profileName } = useParams();
 
   const { isLoading, posts, error } = usePosts();
+  const { userLoading, user, userError } = useProfile();
+  const { isUnFollowing, unFollowUser } = useUnFollow();
+  const { isFollowing, followUser } = useFollow();
 
-  const { meLoading, me, meError } = useProfile();
-
-  const { followersLoading, followers, followersError } = useFollowers();
-
-  if (isLoading || meLoading) {
+  if (isLoading || userLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error || meError) {
-    return <div>Error: {error?.message || meError?.message}</div>;
+  if (error || userError) {
+    return <div>Error: {error?.message || userError?.message}</div>;
   }
 
   const {
@@ -45,18 +47,18 @@ const Profile = () => {
     posts_count,
     followees_count,
     followers_count,
-  } = me;
-
-  console.log(me);
+    is_followed,
+    id,
+  } = user;
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
       {openModal && (
         <Modal openModal={openModal} onClose={setOpenModal}>
           {openModal === "followers" ? (
-            <Followers followers={followers} />
+            <Followers id={id} />
           ) : (
-            <Followings followings={followers} />
+            <Followings id={id} />
           )}
         </Modal>
       )}
@@ -89,9 +91,21 @@ const Profile = () => {
               >
                 Edit Profile
               </NavLink>
-              <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
-                Follow
-              </button>
+              {is_followed ? (
+                <button
+                  className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
+                  onClick={() => unFollowUser(user.id)}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
+                  onClick={() => followUser(user.id)}
+                >
+                  Follow
+                </button>
+              )}
             </div>
           </div>
 

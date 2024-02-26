@@ -1,18 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getMe } from "../services/apiUsers";
+import { getMe, getUser } from "../services/apiUsers";
+import { useParams } from "react-router-dom";
 
 const useProfile = () => {
+  const { username } = useParams();
+
+  console.log("username", username);
+
   const {
-    isLoading: meLoading,
-    data: me,
-    error: meError,
+    isLoading: userLoading,
+    data: user,
+    error: userError,
   } = useQuery({
-    queryKey: ["me"],
-    queryFn: getMe,
+    queryKey: ["user", username],
+    queryFn: () => getUser(username),
+    retry: false,
   });
 
-  return { meLoading, me, meError };
+  return { userLoading, user, userError };
 };
 
 export default useProfile;

@@ -12,6 +12,9 @@ import { useInView } from "framer-motion";
 import Like from "../../ui/Like";
 import DeletePost from "./DeletePost";
 import useFollow from "../../hooks/useFollow";
+import useUnFollow from "../../hooks/useUnFollow";
+
+import { NavLink } from "react-router-dom";
 
 const currentDate = new Date();
 
@@ -46,18 +49,28 @@ const Post = ({ post }) => {
 
   const { isFollowing, followUser } = useFollow();
 
+  const { isUnFollowing, unFollowUser } = useUnFollow();
+
   return (
     <div className="flex w-full flex-col gap-3 2xl:w-[30rem]">
       <div className="flex items-center gap-2">
-        <div className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1">
+        <NavLink
+          className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1"
+          to={`/profile/${username}`}
+        >
           <img
             src={avatar}
             alt="profile"
             className="h-full w-full rounded-[50%] object-cover"
           />
-        </div>
+        </NavLink>
         <div className="flex w-full items-center gap-1">
-          <h3 className="text-sm font-semibold">{username}</h3>
+          <NavLink
+            className="text-sm font-semibold"
+            to={`/profile/${username}`}
+          >
+            {username}
+          </NavLink>
           <span className="text-2xl text-gray-400">·</span>
           <span className="text-sm text-gray-400">{ago(created_at)}</span>
           {!is_followed ? (
@@ -70,7 +83,7 @@ const Post = ({ post }) => {
           ) : (
             <button
               className="text-sm font-semibold text-blue-500"
-              onClick={() => followUser(user_id)}
+              onClick={() => unFollowUser(user_id)}
             >
               Unfollow
             </button>

@@ -36,6 +36,10 @@ const Highlights = () => {
     queryFn: getHighlights,
   });
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="flex gap-4 overflow-scroll whitespace-nowrap border-b border-gray-600 py-4 scrollbar-hide sm:border-none sm:px-4 sm:pb-0 xl:w-[45rem]">
       {highlights?.map((highlight, index) => (
@@ -76,6 +80,10 @@ const Suggestions = () => {
 
   if (error) {
     return <div>Error: {error.message}</div>;
+  }
+
+  if (!suggestions?.length) {
+    return <div>No suggestions</div>;
   }
 
   return (

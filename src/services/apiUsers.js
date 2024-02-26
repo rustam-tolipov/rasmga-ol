@@ -12,6 +12,11 @@ export async function getMe() {
   return response.data;
 }
 
+export async function getUser(username) {
+  const response = await axios.get(`${BASE_URL}/users/show/${username}`);
+  return response.data;
+}
+
 export async function getSuggestions() {
   const response = await axios.get(`${BASE_URL}/suggestions`);
   return response.data;
@@ -31,12 +36,12 @@ export async function editProfile(profile) {
 }
 
 export async function getFollowers(id) {
-  const response = await axios.get(`${BASE_URL}/users/${1}/followers`);
+  const response = await axios.get(`${BASE_URL}/users/${id}/followers`);
   return response.data;
 }
 
 export async function getFollowings(id) {
-  const response = await axios.get(`${BASE_URL}/users/${1}/followings`);
+  const response = await axios.get(`${BASE_URL}/users/${id}/followings`);
   return response.data;
 }
 

@@ -59,11 +59,11 @@ const MainNav = ({ openModal }) => {
           text="Reels"
           to="/reels"
         />
-        <LinkItem
+        {/* <LinkItem
           icon={<HiOutlineHeart className="text-3xl" />}
           text="Notifications"
           to="/notifications"
-        />
+        /> */}
         <li
           className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
           onClick={() => openModal(true)}

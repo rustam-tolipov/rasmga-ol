@@ -40,7 +40,6 @@ function App() {
             <Route path="reels" element={<Reels />} />
             <Route path="notifications" element={<Likes />} />
             <Route path="create" element={<Post />} />
-            <Route path="profile" element={<Profile />} />
             <Route path="followers" element={<Followers />} />
             <Route path="followings" element={<Followings />} />
 
@@ -50,6 +49,12 @@ function App() {
               {/* <Route path="password" element={<Password />} />
             <Route path="privacy" element={<Privacy />} />
             <Route path="activity" element={<Activity />} /> */}
+            </Route>
+
+            <Route path="profile/">
+              <Route path=":username" element={<Profile />} />
+              <Route path=":username/followers" element={<Followers />} />
+              <Route path=":username/followings" element={<Followings />} />
             </Route>
           </Route>
 

@@ -2,9 +2,10 @@ import React from "react";
 import { HiChevronLeft } from "react-icons/hi2";
 import useFollowings from "../../hooks/useFollowings";
 import useUnFollow from "../../hooks/useUnFollow";
+import { NavLink } from "react-router-dom";
 
-const Followings = () => {
-  const { followingsLoading, followings, followingsError } = useFollowings();
+const Followings = ({ id }) => {
+  const { followingsLoading, followings, followingsError } = useFollowings(id);
   const { isUnFollowing, unFollowUser } = useUnFollow();
 
   return (
@@ -20,14 +21,17 @@ const Followings = () => {
               key={index}
               className="flex items-center justify-between px-4 py-2"
             >
-              <div className="flex items-center gap-2">
+              <NavLink
+                className="flex items-center gap-2"
+                to={`/profile/${following.username}`}
+              >
                 <img
                   src={following.avatar}
                   alt="profile"
                   className="h-10 w-10 rounded-[50%]"
                 />
                 <h3>{following.username}</h3>
-              </div>
+              </NavLink>
               <button
                 className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
                 onClick={() => unFollowUser(following.id)}
