@@ -27,7 +27,10 @@ const Info = ({ likes, comments, handleModal, id, username, content }) => {
         <span className="text-sm text-gray-400">...more</span>
       </div>
       {comments?.length > 0 && (
-        <div className="text-sm text-gray-400">
+        <div
+          className="cursor-pointer text-sm text-gray-400"
+          onClick={handleModal}
+        >
           View all {comments.length} comments
         </div>
       )}

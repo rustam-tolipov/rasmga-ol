@@ -39,3 +39,13 @@ export async function unlikePost(postId) {
   );
   return response.data;
 }
+
+export async function postComment(data) {
+  console.log("te", data);
+
+  const response = await axios.post(
+    `http://localhost:3000/api/v1/posts/${data.post_id}/comments`,
+    { content: data.content },
+  );
+  return response.data;
+}

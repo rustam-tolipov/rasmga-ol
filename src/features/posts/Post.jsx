@@ -24,6 +24,7 @@ import { LoadMedia, LoadModalMedia } from "./LoadMedia";
 import TopHeader from "../../ui/TopHeader";
 import Header from "./Header";
 import Info from "./Info";
+import useCommentPost from "../../hooks/useCommentPost";
 
 const currentDate = new Date();
 
@@ -54,6 +55,7 @@ const Post = ({ post }) => {
     content,
     is_followed,
     user_id,
+    id,
   } = post;
 
   const [openModal, setOpenModal] = useState(false);
@@ -92,6 +94,7 @@ const Post = ({ post }) => {
                 avatar={avatar}
                 username={username}
                 comments={comments}
+                postId={id}
               />
             </div>
           </div>
@@ -103,7 +106,16 @@ const Post = ({ post }) => {
 
 export default Post;
 
-const Comments = ({ avatar, username, comments }) => {
+const Comments = ({ avatar, username, comments, postId }) => {
+  const { isCommenting, postComment } = useCommentPost();
+
+  const handlePostComment = (e) => {
+    if (e.key === "Enter") {
+      postComment({ post_id: postId, content: e.target.value });
+      e.target.value = "";
+    }
+  };
+
   return (
     <div className="flex h-full w-full flex-col overflow-y-auto pb-12 pt-12 sm:p-0">
       <div className="hidden h-fit border-b border-gray-600 sm:block">
@@ -161,6 +173,7 @@ const Comments = ({ avatar, username, comments }) => {
             type="text"
             placeholder="Add a comment..."
             className="h-12 w-full bg-transparent text-sm outline-none"
+            onKeyUp={handlePostComment}
           />
           <HiOutlineFaceSmile className="text-2xl" />
         </div>
