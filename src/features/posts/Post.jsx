@@ -22,6 +22,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../ui/Modal";
 import { LoadMedia, LoadModalMedia } from "./LoadMedia";
 import TopHeader from "../../ui/TopHeader";
+import Header from "./Header";
+import Info from "./Info";
 
 const currentDate = new Date();
 
@@ -54,9 +56,6 @@ const Post = ({ post }) => {
     user_id,
   } = post;
 
-  const { isFollowing, followUser } = useFollow();
-  const { isUnFollowing, unFollowUser } = useUnFollow();
-
   const [openModal, setOpenModal] = useState(false);
 
   const handleModal = () => {
@@ -67,80 +66,12 @@ const Post = ({ post }) => {
 
   return (
     <div className="flex w-full flex-col gap-3 2xl:w-[30rem]">
-      <div className="flex items-center gap-2">
-        <NavLink
-          className="h-[2.4rem] w-[2.5rem] rounded-[50%] border border-gray-50 p-1"
-          to={`/profile/${username}`}
-        >
-          <img
-            src={avatar}
-            alt="profile"
-            className="h-full w-full rounded-[50%] object-cover"
-          />
-        </NavLink>
-        <div className="flex w-full items-center gap-1">
-          <NavLink
-            className="text-sm font-semibold"
-            to={`/profile/${username}`}
-          >
-            {username}
-          </NavLink>
-          <span className="text-2xl text-gray-400">·</span>
-          <span className="text-sm text-gray-400">{ago(created_at)}</span>
-          {!is_followed ? (
-            <button
-              className="text-sm font-semibold text-blue-500"
-              onClick={() => followUser(user_id)}
-            >
-              Follow
-            </button>
-          ) : (
-            <button
-              className="text-sm font-semibold text-blue-500"
-              onClick={() => unFollowUser(user_id)}
-            >
-              Unfollow
-            </button>
-          )}
-          {/* THIS BUTTON DELETES POST */}
-          <DeletePost id={post.id} />
-        </div>
-      </div>
+      <Header {...post} />
       <div className="h-fit w-full rounded-lg bg-black 2xl:h-fit">
         <LoadMedia media={image.url} />
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex w-full gap-2">
-          <Like likes={likes} id={post.id} />
 
-          <HiOutlineChatBubbleOvalLeft
-            className="text-2xl hover:text-gray-500"
-            onClick={handleModal}
-          />
-          <HiOutlinePaperAirplane className="text-2xl hover:text-gray-500" />
-          <HiOutlineBookmark className="ml-auto text-2xl hover:text-gray-500" />
-        </div>
-        <div className="text-sm font-semibold">{likes?.length} likes</div>
-        <div className="flex gap-1">
-          <span className="text-sm font-semibold">{username}</span>
-          <p className="text-sm">{content.slice(0, 56)}</p>
-          <span className="text-sm text-gray-400">...more</span>
-        </div>
-        {comments?.length && (
-          <div className="text-sm text-gray-400">
-            View all {comments.length} comments
-          </div>
-        )}
-        <div className="flex justify-between text-gray-400">
-          <input
-            type="text"
-            placeholder="Add a comment..."
-            className="w-full bg-transparent text-sm outline-none"
-          />
-          <HiOutlineFaceSmile className="text-lg" />
-        </div>
-      </div>
-
+      <Info {...post} handleModal={handleModal} />
       {openModal && (
         <Modal openModal={openModal} onClose={handleModal}>
           <div className="absolute left-1/2 top-1/2 z-10 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform sm:max-h-[80dvh] sm:w-[80dvw]">
@@ -224,7 +155,7 @@ const Comments = ({ avatar, username, comments }) => {
         ))}
       </div>
 
-      <div className="h-fit mt-auto border-t border-gray-600">
+      <div className="mt-auto h-fit border-t border-gray-600">
         <div className="flex items-center justify-between px-4">
           <input
             type="text"

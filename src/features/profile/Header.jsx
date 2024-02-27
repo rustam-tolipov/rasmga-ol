@@ -114,11 +114,17 @@ const Header = () => {
           <h3 className="text-md font-semibold">{posts_count}</h3>
           <p className="text-xs text-gray-400">Posts</p>
         </div>
-        <NavLink className="flex flex-col items-center" to="/followers">
+        <NavLink
+          className="flex flex-col items-center"
+          to={`/profile/${username}/followers`}
+        >
           <h3 className="text-md font-semibold">{followers_count}</h3>
           <p className="cursor-pointer text-xs text-gray-400">Followers</p>
         </NavLink>
-        <NavLink className="flex flex-col items-center" to="/followings">
+        <NavLink
+          className="flex flex-col items-center"
+          to={`/profile/${username}/followings`}
+        >
           <h3 className="text-md font-semibold">{followees_count}</h3>
           <p className="cursor-pointer text-xs text-gray-400">Following</p>
         </NavLink>

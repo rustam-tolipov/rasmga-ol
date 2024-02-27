@@ -12,6 +12,7 @@ import { Outlet } from "react-router";
 
 import Sidebar from "./Sidebar";
 import { NavLink } from "react-router-dom";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 // main... xl:px-16 xl:pr-28
 
@@ -33,8 +34,15 @@ const AppLayout = () => {
 export default AppLayout;
 
 const Navigation = () => {
+  const { currentUserLoading, currentUser, currentUserError } =
+    useCurrentUser();
+
+  if (currentUserLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="block z-30 sm:hidden">
+    <div className="z-30 block sm:hidden">
       <div className="fixed bottom-0 left-0 h-12  w-full border-t border-slate-800 bg-[#121212]">
         <div className="flex h-full items-center justify-around">
           <LinkItem icon={<HiOutlineHome className="text-3xl" />} to="/" />
@@ -48,8 +56,18 @@ const Navigation = () => {
             to="/notifications"
           />
           <LinkItem
-            icon={<HiUserCircle className="text-3xl" />}
-            to="/profile"
+            icon={
+              currentUser?.avatar ? (
+                <img
+                  src={currentUser?.avatar}
+                  alt="profile"
+                  className="aspect-h-1 w-8 rounded-full"
+                />
+              ) : (
+                <HiUserCircle className="text-3xl" />
+              )
+            }
+            to={`/profile/${currentUser?.username}`}
           />
         </div>
       </div>

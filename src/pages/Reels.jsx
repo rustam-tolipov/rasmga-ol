@@ -67,14 +67,8 @@ const Reel = ({ reel }) => {
         <div className="flex w-full">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="h-[2.4rem] w-[2.5rem] rounded-[50%]">
-                <img
-                  src={`https://randomuser.me/api/portraits/men/${Math.floor(
-                    Math.random() * 100,
-                  )}.jpg`}
-                  alt="profile"
-                  className="h-full w-full rounded-[50%] object-cover"
-                />
+              <div className="aspect-h-1 w-10">
+                <img src={avatar} alt="profile" className="rounded-full" />
               </div>
               <h3 className="text-sm font-semibold">username</h3>
               <span className="text-2xl text-gray-400">·</span>

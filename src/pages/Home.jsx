@@ -52,11 +52,11 @@ const Highlights = () => {
 const Highlight = ({ highlight }) => {
   return (
     <div className="flex flex-col items-center gap-1">
-      <div className="h-16 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
+      <div className="aspect-h-1 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
         <img
           src={highlight.avatar}
           alt="profile"
-          className="h-full w-full rounded-[50%]"
+          className="w-full rounded-[50%]"
         />
       </div>
       <h3 className="text-xs">{highlight.username}</h3>

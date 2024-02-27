@@ -13,34 +13,19 @@ import {
   HiOutlineSquares2X2,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { NavLink, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getPosts } from "../services/apiPosts";
-import { getMe } from "../services/apiUsers";
-import Modal from "../ui/Modal";
+import { NavLink } from "react-router-dom";
 import usePosts from "../hooks/usePosts";
 import useProfile from "../hooks/useProfile";
-import useFollowers from "../hooks/useFollowers";
-import Followers from "../features/profile/Followers";
-import Followings from "../features/profile/Followings";
-import useUnFollow from "../hooks/useUnFollow";
-import useFollow from "../hooks/useFollow";
-import useCurrentUser from "../hooks/useCurrentUser";
+
 import Header from "../features/profile/Header";
 
 const Profile = () => {
-  const [openModal, setOpenModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("posts");
-  const { username: profileName } = useParams();
 
-  const { currentUserLoading, currentUser, currentUserError } =
-    useCurrentUser();
   const { isLoading, posts, error } = usePosts();
   const { userLoading, user, userError } = useProfile();
-  const { isUnFollowing, unFollowUser } = useUnFollow();
-  const { isFollowing, followUser } = useFollow();
 
-  if (isLoading || userLoading || currentUserLoading) {
+  if (isLoading || userLoading) {
     return <div>Loading...</div>;
   }
 

@@ -85,7 +85,7 @@ const MainNav = ({ openModal }) => {
               <img
                 src={currentUser?.avatar}
                 alt="profile"
-                className="h-[2rem] w-[2rem] rounded-[50%]"
+                className="aspect-h-1 w-8 rounded-full"
               />
             ) : (
               <HiUserCircle className="text-3xl" />
