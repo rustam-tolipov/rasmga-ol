@@ -22,17 +22,20 @@ import Followers from "../features/profile/Followers";
 import Followings from "../features/profile/Followings";
 import useUnFollow from "../hooks/useUnFollow";
 import useFollow from "../hooks/useFollow";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const Profile = () => {
   const [openModal, setOpenModal] = useState(false);
   const { username: profileName } = useParams();
 
+  const { currentUserLoading, currentUser, currentUserError } =
+    useCurrentUser();
   const { isLoading, posts, error } = usePosts();
   const { userLoading, user, userError } = useProfile();
   const { isUnFollowing, unFollowUser } = useUnFollow();
   const { isFollowing, followUser } = useFollow();
 
-  if (isLoading || userLoading) {
+  if (isLoading || userLoading || currentUserLoading) {
     return <div>Loading...</div>;
   }
 
@@ -91,20 +94,8 @@ const Profile = () => {
               >
                 Edit Profile
               </NavLink>
-              {is_followed ? (
-                <button
-                  className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
-                  onClick={() => unFollowUser(user.id)}
-                >
-                  Unfollow
-                </button>
-              ) : (
-                <button
-                  className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
-                  onClick={() => followUser(user.id)}
-                >
-                  Follow
-                </button>
+              {currentUser?.id !== id && (
+                <FollowButton is_followed={is_followed} id={id} />
               )}
             </div>
           </div>
@@ -183,17 +174,44 @@ const Profile = () => {
 export default Profile;
 
 const LoadMedia = ({ media }) => {
+  const handleHover = () => {
+    console.log("hovered");
+  };
+
   if (media.includes("mp4")) {
     return (
       <video
         src={media}
         className="h-32 w-full object-cover xl:h-80"
         controls
+        onMouseOver={handleHover}
       />
     );
   }
 
   return (
     <img src={media} alt="post" className="h-32 w-full object-cover xl:h-80" />
+  );
+};
+
+const FollowButton = ({ is_followed, id }) => {
+  const { isUnFollowing, unFollowUser } = useUnFollow();
+  const { isFollowing, followUser } = useFollow();
+
+  return (
+    <button
+      onClick={() => {
+        if (is_followed) {
+          unFollowUser(id);
+        } else {
+          followUser(id);
+        }
+      }}
+      className={`rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50 ${
+        is_followed ? "bg-red-500" : ""
+      }`}
+    >
+      {is_followed ? "Unfollow" : "Follow"}
+    </button>
   );
 };

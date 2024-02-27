@@ -3,29 +3,26 @@ import TopHeader from "../ui/TopHeader";
 import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { editProfile, getMe } from "../services/apiUsers";
 import toast from "react-hot-toast";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const EditProfile = () => {
-  const {
-    isLoading: meLoading,
-    data: me,
-    error: meError,
-  } = useQuery({
-    queryKey: ["me"],
-    queryFn: getMe,
-  });
+  const { currentUserLoading, currentUser, currentUserError } =
+    useCurrentUser();
+
+  const queryClient = useQueryClient();
 
   const [file, setFile] = useState(null);
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: me?.id,
-      username: me?.username,
-      bio: me?.bio,
-      first_name: me?.first_name,
-      last_name: me?.last_name,
+      id: currentUser?.id,
+      username: currentUser?.username,
+      bio: currentUser?.bio,
+      first_name: currentUser?.first_name,
+      last_name: currentUser?.last_name,
     },
   });
 
@@ -33,6 +30,14 @@ const EditProfile = () => {
     mutationFn: editProfile,
     onSuccess: () => {
       toast.success("Profile updated successfully");
+
+      queryClient.invalidateQueries({
+        queryKey: ["me"],
+      });
+
+      setTimeout(() => {
+        navigate(-1);
+      }, 3000);
     },
     onError: (error) => {
       toast.error("An error occurred: " + error.message);
@@ -78,9 +83,7 @@ const EditProfile = () => {
           <div className="mt-10 flex flex-row items-center gap-4">
             <div className="h-10 w-10 rounded-[50%]">
               <img
-                src={`https://randomuser.me/api/portraits/men/${Math.floor(
-                  Math.random() * 100,
-                )}.jpg`}
+                src={currentUser?.avatar}
                 alt="profile"
                 className="h-full w-full rounded-[50%]"
               />

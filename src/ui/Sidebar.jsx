@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import Modal from "./Modal";
 import CreatePostForm from "./CreatePostForm";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const Sidebar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -36,6 +37,13 @@ const Sidebar = () => {
 export default Sidebar;
 
 const MainNav = ({ openModal }) => {
+  const { currentUserLoading, currentUser, currentUserError } =
+    useCurrentUser();
+
+  if (currentUserLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <nav className="">
       <ul className="flex flex-col gap-2">
@@ -72,9 +80,19 @@ const MainNav = ({ openModal }) => {
           <span className="text-lg sm:hidden xl:block">Create</span>
         </li>
         <LinkItem
-          icon={<HiUserCircle className="text-3xl" />}
+          icon={
+            currentUser?.avatar ? (
+              <img
+                src={currentUser?.avatar}
+                alt="profile"
+                className="h-[2rem] w-[2rem] rounded-[50%]"
+              />
+            ) : (
+              <HiUserCircle className="text-3xl" />
+            )
+          }
           text="Profile"
-          to="/profile"
+          to={`/profile/${currentUser?.username}`}
         />
       </ul>
     </nav>
