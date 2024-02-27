@@ -8,6 +8,8 @@ import {
   HiOutlinePaperAirplane,
   HiOutlineBookmark,
   HiChevronLeft,
+  HiHeart,
+  HiChatBubbleOvalLeft,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { NavLink, useParams } from "react-router-dom";
@@ -163,7 +165,12 @@ const Profile = () => {
 
         <div className="grid grid-cols-3 gap-1">
           {posts?.map((post, index) => (
-            <LoadMedia key={index} media={post.image.url} />
+            <LoadMedia
+              key={index}
+              media={post.image.url}
+              comments={post.comments.length}
+              likes={post.likes.length}
+            />
           ))}
         </div>
       </div>
@@ -173,24 +180,68 @@ const Profile = () => {
 
 export default Profile;
 
-const LoadMedia = ({ media }) => {
+const LoadMedia = ({ media, comments, likes }) => {
+  const [hover, setHover] = useState(false);
+
   const handleHover = () => {
-    console.log("hovered");
+    setHover(!hover);
   };
 
   if (media.includes("mp4")) {
     return (
-      <video
-        src={media}
-        className="h-32 w-full object-cover xl:h-80"
-        controls
-        onMouseOver={handleHover}
-      />
+      <div className="relative">
+        <video
+          src={media}
+          className="h-32 w-full object-cover md:h-80"
+          controls
+          onMouseOver={handleHover}
+        />
+
+        <PostInfo
+          hover={hover}
+          handleHover={handleHover}
+          comments={comments}
+          likes={likes}
+        />
+      </div>
     );
   }
 
   return (
-    <img src={media} alt="post" className="h-32 w-full object-cover xl:h-80" />
+    <div className="relative">
+      <PostInfo
+        hover={hover}
+        handleHover={handleHover}
+        comments={comments}
+        likes={likes}
+      />
+      <img
+        src={media}
+        alt="post"
+        className="h-32 w-full object-cover md:h-80"
+        onMouseOver={handleHover}
+      />
+    </div>
+  );
+};
+
+const PostInfo = ({ hover, handleHover, comments, likes }) => {
+  return (
+    hover && (
+      <div
+        className="absolute top-0 flex h-full w-full items-center justify-center gap-8 bg-black bg-opacity-50"
+        onMouseLeave={handleHover}
+      >
+        <div className="flex items-center gap-2">
+          <HiHeart className="text-2xl text-gray-50" />
+          <p className="text-gray-50">{likes}</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <HiChatBubbleOvalLeft className="text-2xl text-gray-50" />
+          <p className="text-gray-50">{comments}</p>
+        </div>
+      </div>
+    )
   );
 };
 
