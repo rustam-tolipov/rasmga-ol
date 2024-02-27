@@ -10,6 +10,7 @@ import {
   HiChevronLeft,
   HiHeart,
   HiChatBubbleOvalLeft,
+  HiOutlineSquares2X2,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { NavLink, useParams } from "react-router-dom";
@@ -25,9 +26,11 @@ import Followings from "../features/profile/Followings";
 import useUnFollow from "../hooks/useUnFollow";
 import useFollow from "../hooks/useFollow";
 import useCurrentUser from "../hooks/useCurrentUser";
+import Header from "../features/profile/Header";
 
 const Profile = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState("posts");
   const { username: profileName } = useParams();
 
   const { currentUserLoading, currentUser, currentUserError } =
@@ -45,29 +48,12 @@ const Profile = () => {
     return <div>Error: {error?.message || userError?.message}</div>;
   }
 
-  const {
-    avatar,
-    username,
-    bio,
-    posts_count,
-    followees_count,
-    followers_count,
-    is_followed,
-    id,
-  } = user;
+  const { username, id } = user;
+
+  const reels = posts.filter((post) => post.image.url.includes("mp4"));
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
-      {openModal && (
-        <Modal openModal={openModal} onClose={setOpenModal}>
-          {openModal === "followers" ? (
-            <Followers id={id} />
-          ) : (
-            <Followings id={id} />
-          )}
-        </Modal>
-      )}
-
       <TopHeader>
         <NavLink to="/account/settings">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
@@ -76,109 +62,68 @@ const Profile = () => {
         <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
 
-      <div className="mt-12 flex w-full items-center justify-between px-4 py-4 md:mt-0 md:h-[40dvh] md:justify-start xl:w-[70dvw]">
-        <div className="flex items-center justify-center">
-          <img
-            src={avatar}
-            alt="profile"
-            className="h-[6rem] w-[6rem] rounded-[50%] md:m-24 md:h-[12rem] md:w-[12rem]"
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-4 md:flex-row">
-            <div className="mr-auto flex items-center gap-4 md:mr-0">
-              <h3 className="text-xl font-light tracking-wide">{username}</h3>
-            </div>
-            <div className="flex items-center gap-2">
-              <NavLink
-                to="/account/edit"
-                className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
-              >
-                Edit Profile
-              </NavLink>
-              {currentUser?.id !== id && (
-                <FollowButton is_followed={is_followed} id={id} />
-              )}
-            </div>
-          </div>
+      <Header />
 
-          <div className="hidden gap-6 md:flex">
-            <p className="text-md font-medium">
-              {posts_count} {posts_count > 1 ? "posts" : "post"}
-            </p>
-            <p
-              className="text-md cursor-pointer font-medium"
-              onClick={() => setOpenModal("followers")}
-            >
-              {followers_count} followers
-            </p>
-            <p
-              className="text-md font-medium"
-              onClick={() => setOpenModal("followings")}
-            >
-              {followees_count} following
-            </p>
-          </div>
-
-          <div className="flex flex-col">
-            <p className="text-md font-medium">{username}</p>
-            <p className="hidden text-sm md:block">
-              {bio || "Lorem ipsum dolor sit amet, consectetur"}
-            </p>
-
-            <p className="text-xs text-gray-400">
-              5000 accounts reached in the last 30 <br /> days.
-              <strong>View insights</strong>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="px-4 py-4 sm:hidden">
-        <p className="text-md font-medium">{username}</p>
-        <p className="text-sm">
-          {bio || "Lorem ipsum dolor sit amet, consectetur"}
-        </p>
-      </div>
-
-      <div className="flex flex-row items-center justify-around border-y border-slate-600 p-2 px-4 sm:hidden">
-        <div className="flex flex-col items-center">
-          <h3 className="text-md font-semibold">{posts_count}</h3>
-          <p className="text-xs text-gray-400">Posts</p>
-        </div>
-        <NavLink className="flex flex-col items-center" to="/followers">
-          <h3 className="text-md font-semibold">{followers_count}</h3>
-          <p className="cursor-pointer text-xs text-gray-400">Followers</p>
-        </NavLink>
-        <NavLink className="flex flex-col items-center" to="/followings">
-          <h3 className="text-md font-semibold">{followees_count}</h3>
-          <p className="cursor-pointer text-xs text-gray-400">Following</p>
-        </NavLink>
-      </div>
       <div className="flex flex-col xl:w-[70dvw]">
-        <div className="flex flex-row items-center justify-around p-2 px-4 text-gray-400">
-          <HiOutlineHeart className="text-2xl" />
-          <HiOutlineChatBubbleOvalLeft className="text-2xl" />
-          <HiOutlinePaperAirplane className="text-2xl" />
-          <HiOutlineBookmark className="text-2xl" />
+        <div className="flex flex-row items-center justify-center gap-12 p-2 px-4 text-gray-400">
+          <div
+            className={`flex flex-row items-center gap-1 py-1 text-gray-400 ${currentPage === "posts" ? "border-t border-gray-200 text-gray-200" : ""}`}
+            onClick={() => setCurrentPage("posts")}
+          >
+            <HiOutlineSquares2X2 className="text-xl" />
+            Posts
+          </div>
+
+          <div
+            className={`flex flex-row items-center gap-1 py-1 text-gray-400 ${currentPage === "reels" ? "border-t border-gray-200 text-gray-200" : ""}`}
+            onClick={() => setCurrentPage("reels")}
+          >
+            <HiOutlineHeart className="text-xl" />
+            Reels
+          </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-1">
-          {posts?.map((post, index) => (
-            <LoadMedia
-              key={index}
-              media={post.image.url}
-              comments={post.comments.length}
-              likes={post.likes.length}
-            />
-          ))}
-        </div>
+        {currentPage === "posts" ? (
+          <Posts posts={posts} />
+        ) : (
+          <Reels reels={reels} />
+        )}
       </div>
     </div>
   );
 };
 
 export default Profile;
+
+const Posts = ({ posts }) => {
+  return (
+    <div className="grid grid-cols-3 gap-1">
+      {posts?.map((post, index) => (
+        <LoadMedia
+          key={index}
+          media={post.image.url}
+          comments={post.comments.length}
+          likes={post.likes.length}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Reels = ({ reels }) => {
+  return (
+    <div className="grid grid-cols-3 gap-1">
+      {reels?.map((reel, index) => (
+        <LoadMedia
+          key={index}
+          media={reel.image.url}
+          comments={reel.comments.length}
+          likes={reel.likes.length}
+        />
+      ))}
+    </div>
+  );
+};
 
 const LoadMedia = ({ media, comments, likes }) => {
   const [hover, setHover] = useState(false);
@@ -242,27 +187,5 @@ const PostInfo = ({ hover, handleHover, comments, likes }) => {
         </div>
       </div>
     )
-  );
-};
-
-const FollowButton = ({ is_followed, id }) => {
-  const { isUnFollowing, unFollowUser } = useUnFollow();
-  const { isFollowing, followUser } = useFollow();
-
-  return (
-    <button
-      onClick={() => {
-        if (is_followed) {
-          unFollowUser(id);
-        } else {
-          followUser(id);
-        }
-      }}
-      className={`rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50 ${
-        is_followed ? "bg-red-500" : ""
-      }`}
-    >
-      {is_followed ? "Unfollow" : "Follow"}
-    </button>
   );
 };
