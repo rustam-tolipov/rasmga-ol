@@ -55,6 +55,7 @@ function App() {
               <Route path=":username" element={<Profile />} />
               <Route path=":username/followers" element={<Followers />} />
               <Route path=":username/followings" element={<Followings />} />
+              <Route path=":username/post/:id" element={<Post />} />
             </Route>
           </Route>
 

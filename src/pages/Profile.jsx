@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import {
   HiMiniCog6Tooth,
   HiOutlineUserPlus,
-  HiMiniEllipsisHorizontal,
   HiOutlineHeart,
-  HiOutlineChatBubbleOvalLeft,
-  HiOutlinePaperAirplane,
-  HiOutlineBookmark,
-  HiChevronLeft,
   HiHeart,
   HiChatBubbleOvalLeft,
   HiOutlineSquares2X2,
@@ -35,7 +30,10 @@ const Profile = () => {
 
   const { username, id } = user;
 
-  const reels = posts.filter((post) => post.image.url.includes("mp4"));
+  let reels = [];
+  if (posts.length > 0) {
+    reels = posts.filter((post) => post.image?.url.includes("mp4"));
+  }
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
@@ -83,14 +81,17 @@ export default Profile;
 const Posts = ({ posts }) => {
   return (
     <div className="grid grid-cols-3 gap-1">
-      {posts?.map((post, index) => (
-        <LoadMedia
-          key={index}
-          media={post.image.url}
-          comments={post.comments.length}
-          likes={post.likes.length}
-        />
-      ))}
+      {posts.length > 0 &&
+        posts.map((post, index) => (
+          <NavLink key={index} to={`/profile/${post.username}/post/${post.id}`}>
+            <LoadMedia
+              key={index}
+              media={post.image.url}
+              comments={post.comments.length}
+              likes={post.likes.length}
+            />
+          </NavLink>
+        ))}
     </div>
   );
 };

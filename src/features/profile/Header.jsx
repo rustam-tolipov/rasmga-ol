@@ -55,7 +55,7 @@ const Header = () => {
           <img
             src={avatar}
             alt="profile"
-            className="h-[6rem] w-[6rem] rounded-[50%] md:m-24 md:h-[12rem] md:w-[12rem]"
+            className="aspect-h-1 w-24 rounded-full md:m-24 md:h-48 md:w-48"
           />
         </div>
         <div className="flex flex-col gap-3">

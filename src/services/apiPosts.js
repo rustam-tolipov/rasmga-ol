@@ -7,6 +7,13 @@ export async function getPosts() {
   return response.data;
 }
 
+export async function getPost(postId) {
+  const response = await axios.get(
+    `http://localhost:3000/api/v1/posts/${postId}`,
+  );
+  return response.data;
+}
+
 export async function createPost(post) {
   const formData = new FormData();
   formData.append("image", post.image);
@@ -41,8 +48,6 @@ export async function unlikePost(postId) {
 }
 
 export async function postComment(data) {
-  console.log("te", data);
-
   const response = await axios.post(
     `http://localhost:3000/api/v1/posts/${data.post_id}/comments`,
     { content: data.content },

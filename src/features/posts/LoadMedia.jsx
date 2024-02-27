@@ -9,7 +9,7 @@ export const LoadMedia = ({ media }) => {
   const [playVideo, setPlayVideo] = useState(false);
 
   useEffect(() => {
-    if (media.includes("video")) {
+    if (media && media.includes("video")) {
       if (!isInView) {
         ref.current.pause();
         setPlayVideo(false);
@@ -29,7 +29,7 @@ export const LoadMedia = ({ media }) => {
     setPlayVideo(true);
   };
 
-  if (media.includes("video")) {
+  if (media && media.includes("video")) {
     return (
       <Reveal>
         <video
@@ -79,7 +79,7 @@ export const LoadModalMedia = ({ media }) => {
     setPlayVideo(!playVideo);
   };
 
-  if (media.includes("video")) {
+  if (media && media.includes("video")) {
     return (
       <div className="relative">
         <video

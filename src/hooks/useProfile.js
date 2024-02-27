@@ -6,8 +6,6 @@ import { useParams } from "react-router-dom";
 const useProfile = () => {
   const { username } = useParams();
 
-  console.log("username", username);
-
   const {
     isLoading: userLoading,
     data: user,

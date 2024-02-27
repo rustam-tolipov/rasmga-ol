@@ -10,7 +10,6 @@ const Followings = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    console.log("handleBack");
     navigate(-1);
   };
 

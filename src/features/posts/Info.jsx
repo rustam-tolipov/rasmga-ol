@@ -6,8 +6,18 @@ import {
   HiOutlineFaceSmile,
   HiOutlinePaperAirplane,
 } from "react-icons/hi2";
+import useCommentPost from "../../hooks/useCommentPost";
 
 const Info = ({ likes, comments, handleModal, id, username, content }) => {
+  const { isCommenting, postComment } = useCommentPost();
+
+  const handlePostComment = (e) => {
+    if (e.key === "Enter") {
+      postComment({ post_id: id, content: e.target.value });
+      e.target.value = "";
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2 px-2">
       <div className="flex w-full gap-2">
@@ -23,7 +33,7 @@ const Info = ({ likes, comments, handleModal, id, username, content }) => {
       <div className="text-sm font-semibold">{likes?.length} likes</div>
       <div className="flex gap-1">
         <span className="text-sm font-semibold">{username}</span>
-        <p className="text-sm">{content.slice(0, 56)}</p>
+        <p className="text-sm">{content?.slice(0, 56)}</p>
         <span className="text-sm text-gray-400">...more</span>
       </div>
       {comments?.length > 0 && (
@@ -39,6 +49,7 @@ const Info = ({ likes, comments, handleModal, id, username, content }) => {
           type="text"
           placeholder="Add a comment..."
           className="w-full bg-transparent text-sm outline-none"
+          onKeyPress={handlePostComment}
         />
         <HiOutlineFaceSmile className="text-lg" />
       </div>
