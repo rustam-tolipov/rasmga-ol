@@ -16,7 +16,7 @@ const Reveal = ({ children }) => {
   }, [isInView, mainControls]);
 
   return (
-    <div className="overflow-hidden" ref={ref}>
+    <div className="overflow-hidden relative" ref={ref}>
       <motion.div
         variants={{
           hidden: {
