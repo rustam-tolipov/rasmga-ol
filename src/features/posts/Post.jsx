@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   HiEllipsisHorizontal,
+  HiMiniCog6Tooth,
   HiMiniPlay,
+  HiMiniXMark,
   HiOutlineBookmark,
   HiOutlineChatBubbleOvalLeft,
   HiOutlineFaceSmile,
@@ -16,8 +18,10 @@ import DeletePost from "./DeletePost";
 import useFollow from "../../hooks/useFollow";
 import useUnFollow from "../../hooks/useUnFollow";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../ui/Modal";
+import { LoadMedia, LoadModalMedia } from "./LoadMedia";
+import TopHeader from "../../ui/TopHeader";
 
 const currentDate = new Date();
 
@@ -58,6 +62,8 @@ const Post = ({ post }) => {
   const handleModal = () => {
     setOpenModal(!openModal);
   };
+
+  console.log(comments);
 
   return (
     <div className="flex w-full flex-col gap-3 2xl:w-[30rem]">
@@ -137,75 +143,25 @@ const Post = ({ post }) => {
 
       {openModal && (
         <Modal openModal={openModal} onClose={handleModal}>
-          <div className="absolute left-1/2 top-1/2 flex max-h-[80dvh] w-[80dvw] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center bg-gray-800">
-            <div className="grid h-full w-full grid-cols-[auto_50%] font-medium text-gray-50">
-              <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-black">
+          <div className="absolute left-1/2 top-1/2 z-10 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform sm:max-h-[80dvh] sm:w-[80dvw]">
+            <div className="grid h-full w-full grid-cols-1 bg-gray-800 font-medium text-gray-50 sm:grid-cols-[auto_50%]">
+              <TopHeader>
+                <HiMiniXMark
+                  className="mr-auto text-4xl"
+                  onClick={handleModal}
+                />
+                <h1 className="w-full text-center text-xl">Comments</h1>
+              </TopHeader>
+
+              <div className="relative hidden h-full w-full items-center justify-center overflow-hidden bg-black sm:flex">
                 <LoadModalMedia media={image.url} />
               </div>
 
-              <div className="flex h-full max-h-[80dvh] w-full flex-col overflow-y-auto">
-                <div className="h-fit border-b border-gray-600">
-                  <div className="flex items-center justify-between px-4 py-2">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={avatar}
-                        alt="profile"
-                        className="h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover"
-                      />
-                      <NavLink
-                        to={`/profile/${username}`}
-                        className="text-sm font-semibold"
-                      >
-                        {username}
-                      </NavLink>
-                    </div>
-                    <HiEllipsisHorizontal className="text-2xl" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center justify-between gap-2 overflow-y-scroll px-4 py-2">
-                  {Array.from({ length: 50 }).map((_, index) => (
-                    <div className="flex h-fit gap-3" key={index}>
-                      <img
-                        src={avatar}
-                        alt="profile"
-                        className="h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover"
-                      />
-
-                      <div className="flex flex-col">
-                        <div className="flex gap-2">
-                          <NavLink
-                            to={`/profile/${username}`}
-                            className="text-sm font-semibold"
-                          >
-                            {username}
-                          </NavLink>
-
-                          <p className="text-sm font-normal text-gray-50">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Quisquam, quos. Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Quisquam, quos.
-                          </p>
-                        </div>
-                        <div className="text-xs font-normal text-gray-400">
-                          3hs
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="h-fit border-t border-gray-600">
-                  <div className="flex items-center justify-between px-4 py-2">
-                    <input
-                      type="text"
-                      placeholder="Add a comment..."
-                      className="w-full bg-transparent text-sm outline-none"
-                    />
-                    <HiOutlineFaceSmile className="text-2xl" />
-                  </div>
-                </div>
-              </div>
+              <Comments
+                avatar={avatar}
+                username={username}
+                comments={comments}
+              />
             </div>
           </div>
         </Modal>
@@ -216,109 +172,68 @@ const Post = ({ post }) => {
 
 export default Post;
 
-const LoadMedia = ({ media }) => {
-  const ref = useRef();
-  const isInView = useInView(ref);
-  const [playVideo, setPlayVideo] = useState(false);
-
-  useEffect(() => {
-    if (media.includes("video")) {
-      if (!isInView) {
-        ref.current.pause();
-        setPlayVideo(false);
-      } else {
-        ref.current.play();
-      }
-    }
-  }, [isInView, media]);
-
-  const handlePlayVideo = () => {
-    ref.current.play();
-    setPlayVideo(false);
-  };
-
-  const handlePauseVideo = () => {
-    ref.current.pause();
-    setPlayVideo(true);
-  };
-
-  if (media.includes("video")) {
-    return (
-      <Reveal>
-        <video
-          src={media}
-          alt="post"
-          className="h-full w-full rounded-lg object-cover lg:max-h-[80dvh]"
-          ref={ref}
-          onClick={handlePauseVideo}
-          loop
-          muted
-        />
-
-        {playVideo && (
-          <div className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform items-center justify-center">
-            <HiMiniPlay
-              className="text-8xl text-white"
-              onClick={handlePlayVideo}
-            />
-          </div>
-        )}
-      </Reveal>
-    );
-  }
-
+const Comments = ({ avatar, username, comments }) => {
   return (
-    <Reveal>
-      <img
-        src={media}
-        alt="post"
-        className="h-full w-full rounded-lg object-cover"
-      />
-    </Reveal>
-  );
-};
-
-const LoadModalMedia = ({ media }) => {
-  const videoRef = useRef();
-  const [playVideo, setPlayVideo] = useState(false);
-
-  const handlePlayVideo = () => {
-    videoRef.current.play();
-    setPlayVideo(!playVideo);
-  };
-
-  const handlePauseVideo = () => {
-    videoRef.current.pause();
-    setPlayVideo(!playVideo);
-  };
-
-  if (media.includes("video")) {
-    return (
-      <div className="relative">
-        <video
-          src={media}
-          alt="post"
-          className="z-10 max-h-[80dvh] w-full"
-          loop
-          muted
-          autoPlay
-          ref={videoRef}
-          onClick={handlePauseVideo}
-        />
-
-        {playVideo && (
-          <div className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform items-center justify-center">
-            <HiMiniPlay
-              className="text-8xl text-white"
-              onClick={handlePlayVideo}
+    <div className="flex h-full w-full flex-col overflow-y-auto pb-12 pt-12 sm:p-0">
+      <div className="hidden h-fit border-b border-gray-600 sm:block">
+        <div className="flex items-center justify-between px-4 py-2">
+          <div className="flex items-center gap-2">
+            <img
+              src={avatar}
+              alt="profile"
+              className="h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover"
             />
+            <NavLink
+              to={`/profile/${username}`}
+              className="text-sm font-semibold"
+            >
+              {username}
+            </NavLink>
           </div>
-        )}
+          <HiEllipsisHorizontal className="text-2xl" />
+        </div>
       </div>
-    );
-  }
 
-  return (
-    <img src={media} alt="post" className="z-10 h-fit max-h-[80dvh] w-fit" />
+      <div className="flex flex-col gap-2 overflow-y-scroll px-4 py-2">
+        {comments?.map((comment, index) => (
+          <div className="flex h-fit gap-3" key={index}>
+            <img
+              src={avatar}
+              alt="profile"
+              className="h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover"
+            />
+
+            <div className="flex flex-col">
+              <div className="flex gap-2">
+                <NavLink
+                  to={`/profile/${username}`}
+                  className="text-sm font-semibold"
+                >
+                  {username}
+                </NavLink>
+
+                <p className="text-sm font-normal text-gray-50">
+                  {comment.content}
+                </p>
+              </div>
+              <div className="text-xs font-normal text-gray-400">
+                {ago(comment.created_at)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="h-fit mt-auto border-t border-gray-600">
+        <div className="flex items-center justify-between px-4">
+          <input
+            type="text"
+            placeholder="Add a comment..."
+            className="h-12 w-full bg-transparent text-sm outline-none"
+          />
+          <HiOutlineFaceSmile className="text-2xl" />
+        </div>
+      </div>
+    </div>
   );
 };

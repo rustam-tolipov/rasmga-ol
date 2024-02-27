@@ -34,7 +34,7 @@ export default AppLayout;
 
 const Navigation = () => {
   return (
-    <div className="block sm:hidden">
+    <div className="block z-30 sm:hidden">
       <div className="fixed bottom-0 left-0 h-12  w-full border-t border-slate-800 bg-[#121212]">
         <div className="flex h-full items-center justify-around">
           <LinkItem icon={<HiOutlineHome className="text-3xl" />} to="/" />
