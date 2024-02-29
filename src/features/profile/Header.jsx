@@ -38,6 +38,8 @@ const Header = () => {
     id,
   } = user;
 
+  console.log(id);
+
   return (
     <>
       {openModal && (
@@ -51,11 +53,11 @@ const Header = () => {
       )}
 
       <div className="mt-12 flex w-full items-center justify-between px-4 py-4 md:mt-0 md:h-[40dvh] md:justify-start xl:w-[70dvw]">
-        <div className="flex items-center justify-center">
+        <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full md:m-24 md:h-48 md:w-48">
           <img
             src={avatar}
             alt="profile"
-            className="aspect-h-1 w-24 rounded-full md:m-24 md:h-48 md:w-48"
+            className="h-full w-full object-cover"
           />
         </div>
         <div className="flex flex-col gap-3">

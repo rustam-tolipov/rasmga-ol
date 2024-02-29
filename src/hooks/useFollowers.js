@@ -13,7 +13,6 @@ const useFollowers = () => {
   } = useQuery({
     queryKey: ["followers"],
     queryFn: () => getFollowers(user?.id),
-    retry: false,
   });
 
   return { followersLoading, followers, followersError };

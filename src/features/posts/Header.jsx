@@ -35,12 +35,16 @@ const Header = ({
   const { isUnFollowing, unFollowUser } = useUnFollow();
 
   return (
-    <div className="flex items-center gap-2 px-2">
+    <div className="flex items-center gap-2 px-2 sm:p-0">
       <NavLink
-        className="aspect-h-1 w-10 rounded-full border border-gray-50 p-1"
+        className="aspect-h-1 w-10 overflow-hidden rounded-full border border-gray-50 p-1"
         to={`/profile/${username}`}
       >
-        <img src={avatar} alt="profile" className="rounded-full object-cover" />
+        <img
+          src={avatar}
+          alt="profile"
+          className="h-full w-full rounded-full object-cover"
+        />
       </NavLink>
       <div className="flex w-full items-center gap-1">
         <NavLink className="text-sm font-semibold" to={`/profile/${username}`}>

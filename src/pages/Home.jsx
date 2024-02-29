@@ -5,6 +5,7 @@ import Posts from "../features/posts/Posts";
 import { useQuery } from "@tanstack/react-query";
 import { getHighlights, getSuggestions } from "../services/apiUsers";
 import Suggestion from "../ui/Suggestion";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -51,7 +52,10 @@ const Highlights = () => {
 
 const Highlight = ({ highlight }) => {
   return (
-    <div className="flex flex-col items-center gap-1">
+    <NavLink
+      className="flex cursor-pointer flex-col items-center gap-1"
+      to={`/profile/${highlight.username}`}
+    >
       <div className="aspect-h-1 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
         <img
           src={highlight.avatar}
@@ -60,7 +64,7 @@ const Highlight = ({ highlight }) => {
         />
       </div>
       <h3 className="text-xs">{highlight.username}</h3>
-    </div>
+    </NavLink>
   );
 };
 
@@ -83,12 +87,12 @@ const Suggestions = () => {
   }
 
   if (!suggestions?.length) {
-    return <div>No suggestions</div>;
+    return <div className="hidden pt-8 sm:block">No suggestions</div>;
   }
 
   return (
     <div className="hidden h-full flex-col gap-5 pt-8 lg:flex 2xl:w-[50%]">
-      <Suggestion suggestedUser={suggestions[0]?.user} />
+      {/* <Suggestion suggestedUser={suggestions[0]?.user} /> */}
 
       <div className="flex items-center justify-between text-gray-400">
         <h3 className="text-sm font-semibold">Suggested For You</h3>

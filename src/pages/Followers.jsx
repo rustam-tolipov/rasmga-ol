@@ -13,6 +13,8 @@ const Followers = () => {
     navigate(-1);
   };
 
+  console.log(followers);
+
   return (
     <div className="flex flex-col gap-3 xl:px-4">
       <TopHeader>

@@ -13,7 +13,6 @@ const useProfile = () => {
   } = useQuery({
     queryKey: ["user", username],
     queryFn: () => getUser(username),
-    retry: false,
   });
 
   return { userLoading, user, userError };

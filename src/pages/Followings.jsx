@@ -13,6 +13,10 @@ const Followings = () => {
     navigate(-1);
   };
 
+  if (followingsLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="flex flex-col gap-3 xl:px-4">
       <TopHeader>

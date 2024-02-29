@@ -58,11 +58,13 @@ const Navigation = () => {
           <LinkItem
             icon={
               currentUser?.avatar ? (
-                <img
-                  src={currentUser?.avatar}
-                  alt="profile"
-                  className="aspect-h-1 w-8 rounded-full"
-                />
+                <div className="h-8 w-8 overflow-hidden rounded-full">
+                  <img
+                    src={currentUser?.avatar}
+                    alt="profile"
+                    className="h-full w-full"
+                  />
+                </div>
               ) : (
                 <HiUserCircle className="text-3xl" />
               )

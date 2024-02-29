@@ -13,7 +13,6 @@ const usePost = () => {
   } = useQuery({
     queryKey: ["posts"],
     queryFn: () => getPost(id),
-    retry: false,
   });
 
   return { isLoading, post, error };

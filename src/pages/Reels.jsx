@@ -6,6 +6,9 @@ import {
   HiOutlinePaperAirplane,
   HiOutlineBookmark,
   HiMiniEllipsisHorizontal,
+  HiMiniPlay,
+  HiMiniSpeakerWave,
+  HiMiniSpeakerXMark,
 } from "react-icons/hi2";
 import { getPosts } from "../services/apiPosts";
 import { useInView } from "framer-motion";
@@ -92,6 +95,7 @@ const LoadMedia = ({ media }) => {
   const ref = useRef();
   const isInView = useInView(ref, { once: true });
   const [playVideo, setPlayVideo] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     if (isInView) {
@@ -101,6 +105,21 @@ const LoadMedia = ({ media }) => {
     }
   }, [isInView, media]);
 
+  const handlePlayVideo = () => {
+    ref.current.play();
+    setPlayVideo(false);
+  };
+
+  const handlePauseVideo = () => {
+    ref.current.pause();
+    setPlayVideo(true);
+  };
+
+  const handleMuteVideo = () => {
+    ref.current.muted = !muted;
+    setMuted(!muted);
+  };
+
   return (
     <Reveal>
       <video
@@ -108,10 +127,31 @@ const LoadMedia = ({ media }) => {
         alt="post"
         className="h-[93dvh] w-full object-cover md:h-[100dvh] xl:rounded-lg"
         ref={ref}
-        onClick={() => setPlayVideo(!playVideo)}
+        onClick={handlePauseVideo}
         loop
         muted
       />
+
+      {playVideo && (
+        <div
+          className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform items-center justify-center"
+          onClick={handlePlayVideo}
+        >
+          <HiMiniPlay className="text-8xl text-white" />
+        </div>
+      )}
+
+      {muted ? (
+        <HiMiniSpeakerXMark
+          className="absolute right-4 top-4 text-2xl text-white"
+          onClick={handleMuteVideo}
+        />
+      ) : (
+        <HiMiniSpeakerWave
+          className="absolute right-4 top-4 text-2xl text-white"
+          onClick={handleMuteVideo}
+        />
+      )}
     </Reveal>
   );
 };

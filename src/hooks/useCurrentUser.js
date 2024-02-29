@@ -10,8 +10,7 @@ const useCurrentUser = () => {
     error: currentUserError,
   } = useQuery({
     queryKey: ["user", "me"],
-    queryFn: () => getMe(),
-    retry: false,
+    queryFn: getMe,
   });
 
   return { currentUserLoading, currentUser, currentUserError };

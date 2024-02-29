@@ -16,7 +16,7 @@ const Reveal = ({ children }) => {
   }, [isInView, mainControls]);
 
   return (
-    <div className="overflow-hidden relative" ref={ref}>
+    <div className="overflow-hidden relative sm:border border-gray-800 rounded sm:dropShadow" ref={ref}>
       <motion.div
         variants={{
           hidden: {

@@ -1,26 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import Reveal from "../../ui/Reveal";
-import { HiMiniPlay } from "react-icons/hi2";
+import {
+  HiMiniPlay,
+  HiMiniSpeakerWave,
+  HiMiniSpeakerXMark,
+} from "react-icons/hi2";
 import { useInView } from "framer-motion";
 
-export const LoadMedia = ({ media }) => {
+export const LoadMedia = ({ media, inModal }) => {
   const ref = useRef();
-  const isInView = useInView(ref);
+  const testRef = useRef();
+  const isInView = useInView(testRef);
   const [playVideo, setPlayVideo] = useState(false);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     if (media && media.includes("video")) {
-      if (!isInView) {
+      if (!isInView || inModal) {
         ref.current.pause();
         setPlayVideo(false);
       } else {
         ref.current.play();
       }
     }
-  }, [isInView, media]);
+  }, [inModal, isInView, media]);
 
   const handlePlayVideo = () => {
     ref.current.play();
+    ref.current.muted = false;
     setPlayVideo(false);
   };
 
@@ -29,13 +36,18 @@ export const LoadMedia = ({ media }) => {
     setPlayVideo(true);
   };
 
+  const handleMuteVideo = () => {
+    ref.current.muted = !muted;
+    setMuted(!muted);
+  };
+
   if (media && media.includes("video")) {
     return (
       <Reveal>
         <video
           src={media}
           alt="post"
-          className="h-full w-full rounded-lg object-cover lg:max-h-[80dvh]"
+          className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
           ref={ref}
           onClick={handlePauseVideo}
           loop
@@ -50,6 +62,23 @@ export const LoadMedia = ({ media }) => {
             />
           </div>
         )}
+
+        {muted ? (
+          <HiMiniSpeakerXMark
+            className="absolute bottom-4 right-4 text-2xl text-white"
+            onClick={handleMuteVideo}
+          />
+        ) : (
+          <HiMiniSpeakerWave
+            className="absolute bottom-4 right-4 text-2xl text-white"
+            onClick={handleMuteVideo}
+          />
+        )}
+
+        <div
+          className="absolute left-1/2 top-1/2 flex h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform items-center justify-center"
+          ref={testRef}
+        ></div>
       </Reveal>
     );
   }
@@ -59,7 +88,7 @@ export const LoadMedia = ({ media }) => {
       <img
         src={media}
         alt="post"
-        className="h-full w-full rounded-lg object-cover"
+        className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
       />
     </Reveal>
   );
@@ -71,6 +100,7 @@ export const LoadModalMedia = ({ media }) => {
 
   const handlePlayVideo = () => {
     videoRef.current.play();
+    videoRef.current.muted = false;
     setPlayVideo(!playVideo);
   };
 

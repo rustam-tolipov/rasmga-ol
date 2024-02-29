@@ -18,7 +18,6 @@ const EditProfile = () => {
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: currentUser?.id,
       username: currentUser?.username,
       bio: currentUser?.bio,
       first_name: currentUser?.first_name,
@@ -28,7 +27,7 @@ const EditProfile = () => {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: editProfile,
-    onSuccess: () => {
+    onSuccess: (user) => {
       toast.success("Profile updated successfully");
 
       queryClient.invalidateQueries({
@@ -36,7 +35,7 @@ const EditProfile = () => {
       });
 
       setTimeout(() => {
-        navigate(-1);
+        navigate("/profile/" + user.username);
       }, 3000);
     },
     onError: (error) => {
