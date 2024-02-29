@@ -12,7 +12,9 @@ const Home = () => {
     <>
       <TopHeader>
         <HiCamera className="text-3xl xl:hidden" />
-        <HiOutlinePlusCircle className="ml-auto text-3xl" />
+        <NavLink to="/create" className="ml-auto cursor-pointer">
+          <HiOutlinePlusCircle className="text-3xl" />
+        </NavLink>
       </TopHeader>
       <div className="mt-12 grid grid-cols-1 gap-28 sm:mt-0 md:pt-4 lg:grid-cols-[63%_auto] xl:px-16 xl:pr-28">
         <div className="flex flex-col gap-6 2xl:ml-auto">
