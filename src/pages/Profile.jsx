@@ -14,6 +14,8 @@ import useProfile from "../hooks/useProfile";
 
 import Header from "../features/profile/Header";
 import useUserPosts from "../hooks/useUserPosts";
+import LoadingMedia from "../features/loading/LoadingMedia";
+import LoadingProfile from "../features/loading/LoadingProfile";
 
 const Profile = () => {
   const [currentPage, setCurrentPage] = useState("posts");
@@ -21,8 +23,8 @@ const Profile = () => {
   const { isLoading, posts, error } = useUserPosts();
   const { userLoading, user, userError } = useProfile();
 
-  if (isLoading || userLoading) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return <LoadingProfile />;
   }
 
   if (error || userError) {
@@ -80,9 +82,6 @@ const Profile = () => {
 export default Profile;
 
 const Posts = ({ posts }) => {
-
-  console.log(posts);
-
   return (
     <div className="grid grid-cols-3 gap-1">
       {posts.length > 0 &&

@@ -1,26 +1,17 @@
 import React from "react";
-import {
-  HiOutlineHome,
-  HiMagnifyingGlass,
-  HiOutlineFilm,
-  HiOutlineHeart,
-  HiOutlinePlusCircle,
-  HiBars3,
-  HiUserCircle,
-} from "react-icons/hi2";
+import { HiMagnifyingGlass } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "../services/apiPosts";
+import usePosts from "../hooks/usePosts";
+import LoadingSearch from "../features/loading/LoadingSearch";
 
 const Search = () => {
-  const {
-    isLoading,
-    data: posts,
-    error,
-  } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-  });
+  const { isLoading, posts, error } = usePosts();
+
+  if (isLoading) {
+    return <LoadingSearch />;
+  }
 
   return (
     <div className="flex flex-col xl:items-center">
@@ -63,7 +54,7 @@ const LoadMedia = ({ media, i }) => {
       alt="post"
       className={
         i % 7 === 2
-          ? "h-64 row-span-2 w-full object-cover"
+          ? "row-span-2 h-64 w-full object-cover"
           : "h-32 w-full object-cover"
       }
     />
