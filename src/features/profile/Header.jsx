@@ -38,8 +38,6 @@ const Header = () => {
     id,
   } = user;
 
-  console.log(id);
-
   return (
     <>
       {openModal && (

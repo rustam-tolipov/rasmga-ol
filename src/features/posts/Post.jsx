@@ -1,49 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  HiEllipsisHorizontal,
-  HiMiniCog6Tooth,
-  HiMiniPlay,
-  HiMiniXMark,
-  HiOutlineBookmark,
-  HiOutlineChatBubbleOvalLeft,
-  HiOutlineFaceSmile,
-  HiOutlinePaperAirplane,
-} from "react-icons/hi2";
+import React, { useState } from "react";
+import { HiMiniXMark } from "react-icons/hi2";
 
-import Reveal from "../../ui/Reveal";
-import { useInView } from "framer-motion";
-
-import Like from "../../ui/Like";
-import DeletePost from "./DeletePost";
-import useFollow from "../../hooks/useFollow";
-import useUnFollow from "../../hooks/useUnFollow";
-
-import { NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../ui/Modal";
 import { LoadMedia, LoadModalMedia } from "./LoadMedia";
 import TopHeader from "../../ui/TopHeader";
 import Header from "./Header";
 import Info from "./Info";
-import useCommentPost from "../../hooks/useCommentPost";
 import Comments from "./Comments";
-
-const currentDate = new Date();
-
-const ago = (created_at) => {
-  const diff = currentDate - new Date(created_at);
-  const minutes = Math.floor(diff / 1000 / 60);
-  if (minutes < 60) {
-    return `${minutes}m`;
-  }
-  const hours = Math.floor(minutes / 60);
-
-  if (hours < 24) {
-    return `${hours}h`;
-  }
-  const days = Math.floor(hours / 24);
-
-  return `${days}d`;
-};
 
 const Post = ({ post }) => {
   const { image, comments, username, avatar, id } = post;

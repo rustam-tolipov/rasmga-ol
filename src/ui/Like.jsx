@@ -7,6 +7,7 @@ const Like = ({ likes, id }) => {
   const { likePost } = useLikePost();
   const { unlikePost } = useUnlikePost();
 
+
   const isLiked = likes?.some((like) => like.user_id === 1);
 
   return isLiked ? (

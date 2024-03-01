@@ -40,6 +40,20 @@ export async function unlikePost(postId) {
   return response.data;
 }
 
+export async function likeComment({ postId, commentId }) {
+  const response = await axios.post(
+    `${BASE_URL}/posts/${postId}/comments/${commentId}/like`,
+  );
+  return response.data;
+}
+
+export async function unLikeComment({ postId, commentId }) {
+  const response = await axios.delete(
+    `${BASE_URL}/posts/${postId}/comments/${commentId}/like`,
+  );
+  return response.data;
+}
+
 export async function postComment(data) {
   const response = await axios.post(
     `${BASE_URL}/posts/${data.post_id}/comments`,

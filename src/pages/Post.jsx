@@ -7,24 +7,6 @@ import { LoadModalMedia } from "../features/posts/LoadMedia";
 import { useNavigate } from "react-router-dom";
 import PostComponent from "../features/posts/Post";
 
-const currentDate = new Date();
-
-const ago = (created_at) => {
-  const diff = currentDate - new Date(created_at);
-  const minutes = Math.floor(diff / 1000 / 60);
-  if (minutes < 60) {
-    return `${minutes}m`;
-  }
-  const hours = Math.floor(minutes / 60);
-
-  if (hours < 24) {
-    return `${hours}h`;
-  }
-  const days = Math.floor(hours / 24);
-
-  return `${days}d`;
-};
-
 const Post = () => {
   const { isLoading, post, error } = usePost();
 
