@@ -105,6 +105,10 @@ const LoadMedia = ({ media, muted, setMuted }) => {
     }
   }, [isInView, media]);
 
+  useEffect(() => {
+    ref.current.muted = muted;
+  }, [muted]);
+
   const handlePlayVideo = () => {
     ref.current.play();
     setPlayVideo(false);
