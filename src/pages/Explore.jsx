@@ -1,16 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { getPosts } from "../services/apiPosts";
+import usePosts from "../hooks/usePosts";
+import LoadingExplore from "../features/loading/LoadingExplore";
 
 const Explore = () => {
-  const {
-    isLoading,
-    data: posts,
-    error,
-  } = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
-  });
+  const { isLoading, posts, error } = usePosts();
+
+  if (isLoading) {
+    return <LoadingExplore />;
+  }
 
   return (
     <div className="flex flex-col xl:items-center">

@@ -55,7 +55,7 @@ const Post = ({ post }) => {
   };
 
   return (
-    <div className="flex w-full flex-col gap-3 2xl:w-[30rem] sm:border-b border-gray-800 pb-3">
+    <div className="flex w-full flex-col gap-3 border-gray-800 pb-3 sm:border-b 2xl:w-[30rem]">
       <Header {...post} />
       <div className="h-fit w-full rounded-lg bg-black 2xl:h-fit">
         <LoadMedia media={image?.url} inModal={openModal} />

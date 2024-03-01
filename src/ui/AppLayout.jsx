@@ -13,8 +13,7 @@ import { Outlet } from "react-router";
 import Sidebar from "./Sidebar";
 import { NavLink } from "react-router-dom";
 import useCurrentUser from "../hooks/useCurrentUser";
-
-// main... xl:px-16 xl:pr-28
+import LoadingNavigation from "../features/loading/LoadingNavigation";
 
 const AppLayout = () => {
   return (
@@ -34,11 +33,10 @@ const AppLayout = () => {
 export default AppLayout;
 
 const Navigation = () => {
-  const { currentUserLoading, currentUser, currentUserError } =
-    useCurrentUser();
+  const { currentUserLoading, currentUser } = useCurrentUser();
 
   if (currentUserLoading) {
-    return <div>Loading...</div>;
+    return <LoadingNavigation />;
   }
 
   return (
@@ -79,11 +77,7 @@ const Navigation = () => {
 
 const LinkItem = ({ icon, to }) => {
   return (
-    <NavLink
-      to={to}
-      className="flex items-center gap-4 text-xl"
-      // activeClassName="text-white"
-    >
+    <NavLink to={to} className="flex items-center gap-4 text-xl">
       {icon}
     </NavLink>
   );

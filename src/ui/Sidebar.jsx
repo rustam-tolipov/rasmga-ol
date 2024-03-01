@@ -15,6 +15,7 @@ import Logo from "./Logo";
 import Modal from "./Modal";
 import CreatePostForm from "./CreatePostForm";
 import useCurrentUser from "../hooks/useCurrentUser";
+import LoadingItem from "../features/loading/LoadingItem";
 
 const Sidebar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -41,7 +42,15 @@ const MainNav = ({ openModal }) => {
     useCurrentUser();
 
   if (currentUserLoading) {
-    return <div>Loading...</div>;
+    return (
+      <ul className="flex flex-col gap-2">
+        <LoadingItem />
+        <LoadingItem />
+        <LoadingItem />
+        <LoadingItem />
+        <LoadingItem />
+      </ul>
+    );
   }
 
   return (
@@ -79,10 +88,11 @@ const MainNav = ({ openModal }) => {
           <HiOutlinePlusCircle className="text-3xl" />
           <span className="text-lg sm:hidden xl:block">Create</span>
         </li>
+
         <LinkItem
           icon={
             currentUser?.avatar ? (
-              <div className="h-8 w-8 rounded-full overflow-hidden">
+              <div className="h-8 w-8 overflow-hidden rounded-full">
                 <img
                   src={currentUser?.avatar}
                   alt="profile"

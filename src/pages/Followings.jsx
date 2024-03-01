@@ -3,6 +3,7 @@ import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import useFollowings from "../hooks/useFollowings";
 import { useNavigate } from "react-router-dom";
+import LoadingFollowers from "../features/loading/LoadingFollowers";
 
 const Followings = () => {
   const { followingsLoading, followings, followingsError } = useFollowings();
@@ -14,7 +15,7 @@ const Followings = () => {
   };
 
   if (followingsLoading) {
-    return <p>Loading...</p>;
+    return  <LoadingFollowers title="Followings" />;
   }
 
   return (

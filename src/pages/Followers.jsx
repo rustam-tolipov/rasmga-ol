@@ -3,9 +3,10 @@ import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import useFollowers from "../hooks/useFollowers";
 import { useNavigate } from "react-router-dom";
+import LoadingFollowers from "../features/loading/LoadingFollowers";
 
 const Followers = () => {
-  const { followersLoading, followers, followersError } = useFollowers();
+  const { followersLoading, followers } = useFollowers();
 
   const navigate = useNavigate();
 
@@ -13,7 +14,9 @@ const Followers = () => {
     navigate(-1);
   };
 
-  console.log(followers);
+  if (followersLoading) {
+    return <LoadingFollowers title="Followers" />;
+  }
 
   return (
     <div className="flex flex-col gap-3 xl:px-4">

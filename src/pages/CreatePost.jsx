@@ -51,6 +51,7 @@ const CreatePost = () => {
   const handleShare = () => {
     setIsCreating(true);
     mutate({ image: file, content });
+    navigate("/");
   };
 
   const handleChange = (file) => {
