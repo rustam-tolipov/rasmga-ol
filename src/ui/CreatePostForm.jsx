@@ -6,6 +6,7 @@ import { createPost } from "../services/apiPosts";
 import toast from "react-hot-toast";
 import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
 
@@ -18,6 +19,7 @@ const CreatePostForm = ({ onClose }) => {
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
   const [content, setContent] = useState("");
+  const [size, setSize] = useState("standard");
 
   const { isLoading, mutate } = useMutation({
     mutationFn: createPost,
@@ -37,13 +39,21 @@ const CreatePostForm = ({ onClose }) => {
     },
   });
 
+  const navigate = useNavigate();
+
   const handleShare = () => {
-    mutate({ image: file, content });
+    const is_video = fileType === "video/mp4" ? true : false;
+    mutate({ image: file, content, size, is_video });
+    navigate("/");
   };
 
   const handleChange = (file) => {
     setFile(file);
     setFileType(file.type);
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.value);
   };
 
   const handleContent = (e) => {
@@ -107,7 +117,7 @@ const CreatePostForm = ({ onClose }) => {
 
           {currentPage === 0 && (
             <motion.div
-              className="flex h-full w-full items-center justify-center rounded-b-md"
+              className="relative flex h-full w-full items-center justify-center rounded-b-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -142,6 +152,17 @@ const CreatePostForm = ({ onClose }) => {
               transition={{ duration: 0.5 }}
             >
               <LoadMedia media={URL.createObjectURL(file)} type={fileType} />
+
+              <select
+                className="absolute right-2 top-12 w-fit rounded-lg bg-gray-700 px-4 py-2 text-sm text-gray-50"
+                disabled={isLoading}
+                onChange={handleSize}
+              >
+                <option value="standard">Standard</option>
+                <option value="horizontal">Horizontal</option>
+                <option value="vertical">Vertical</option>
+                <option value="reels">reels</option>
+              </select>
             </motion.div>
           )}
           {currentPage === 2 && (

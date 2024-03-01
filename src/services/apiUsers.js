@@ -25,8 +25,12 @@ export async function getSuggestions() {
   return response.data;
 }
 
-export async function editProfile(profile) {
+export async function getNotifications() {
+  const response = await axios.get(`${BASE_URL}/notifications`);
+  return response.data;
+}
 
+export async function editProfile(profile) {
   const formData = new FormData();
   formData.append("avatar", profile.avatar);
   formData.append("username", profile.username);

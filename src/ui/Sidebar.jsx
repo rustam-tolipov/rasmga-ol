@@ -16,6 +16,8 @@ import Modal from "./Modal";
 import CreatePostForm from "./CreatePostForm";
 import useCurrentUser from "../hooks/useCurrentUser";
 import LoadingItem from "../features/loading/LoadingItem";
+import Notifications from "../pages/Notifications";
+import { createPortal } from "react-dom";
 
 const Sidebar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -26,11 +28,14 @@ const Sidebar = () => {
       <MainNav openModal={setOpenModal} />
       <Footer />
 
-      {openModal && (
+      {openModal === "create" && (
         <Modal openModal={openModal} onClose={setOpenModal}>
           <CreatePostForm onClose={setOpenModal} />
         </Modal>
       )}
+
+      {openModal === "notifications" &&
+        <Notifications onClose={setOpenModal} />}
     </aside>
   );
 };
@@ -76,14 +81,17 @@ const MainNav = ({ openModal }) => {
           text="Reels"
           to="/reels"
         />
-        {/* <LinkItem
-          icon={<HiOutlineHeart className="text-3xl" />}
-          text="Notifications"
-          to="/notifications"
-        /> */}
         <li
           className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
-          onClick={() => openModal(true)}
+          onClick={() => openModal("notifications")}
+        >
+          <HiOutlineHeart className="text-3xl" />
+          <span className="text-lg sm:hidden xl:block">Notifications</span>
+        </li>
+
+        <li
+          className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+          onClick={() => openModal("create")}
         >
           <HiOutlinePlusCircle className="text-3xl" />
           <span className="text-lg sm:hidden xl:block">Create</span>

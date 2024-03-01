@@ -7,7 +7,7 @@ import {
 } from "react-icons/hi2";
 import { useInView } from "framer-motion";
 
-export const LoadMedia = ({ media, inModal }) => {
+export const LoadMedia = ({ media, inModal, is_video, size }) => {
   const ref = useRef();
   const testRef = useRef();
   const isInView = useInView(testRef);
@@ -15,19 +15,20 @@ export const LoadMedia = ({ media, inModal }) => {
   const [muted, setMuted] = useState(true);
 
   useEffect(() => {
-    if (media && media.includes("video")) {
-      if (!isInView || inModal) {
+    if (is_video) {
+      if (!isInView || inModal || muted) {
         ref.current.pause();
         setPlayVideo(false);
       } else {
         ref.current.play();
       }
     }
-  }, [inModal, isInView, media]);
+  }, [inModal, isInView, is_video, muted]);
 
   const handlePlayVideo = () => {
     ref.current.play();
     ref.current.muted = false;
+    setMuted(false);
     setPlayVideo(false);
   };
 
@@ -41,11 +42,19 @@ export const LoadMedia = ({ media, inModal }) => {
     setMuted(!muted);
   };
 
-  if (media && media.includes("video")) {
+  if (is_video) {
     return (
       <Reveal>
         <video
-          src={media}
+          src={
+            size === "standard"
+              ? media.standard?.url
+              : size === "vertical"
+                ? media.vertical?.url
+                : size === "horizontal"
+                  ? media.horizontal?.url
+                  : media.reels?.url
+          }
           alt="post"
           className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
           ref={ref}
@@ -86,7 +95,15 @@ export const LoadMedia = ({ media, inModal }) => {
   return (
     <Reveal>
       <img
-        src={media}
+        src={
+          size === "standard"
+            ? media.standard?.url
+            : size === "vertical"
+              ? media.vertical?.url
+              : size === "horizontal"
+                ? media.horizontal?.url
+                : media.reels?.url
+        }
         alt="post"
         className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
       />

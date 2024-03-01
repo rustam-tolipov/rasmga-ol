@@ -9,7 +9,7 @@ import Info from "./Info";
 import Comments from "./Comments";
 
 const Post = ({ post }) => {
-  const { image, comments, username, avatar, id } = post;
+  const { image, comments, username, avatar, id, is_video, size } = post;
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -21,7 +21,7 @@ const Post = ({ post }) => {
     <div className="flex w-full flex-col gap-3 border-gray-800 pb-3 sm:border-b 2xl:w-[30rem]">
       <Header {...post} />
       <div className="h-fit w-full rounded-lg bg-black 2xl:h-fit">
-        <LoadMedia media={image?.url} inModal={openModal} />
+        <LoadMedia media={image} inModal={openModal}  is_video={is_video} size={size} />
       </div>
 
       <Info {...post} handleModal={handleModal} />

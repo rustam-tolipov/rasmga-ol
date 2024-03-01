@@ -19,6 +19,7 @@ import EditProfile from "./pages/EditProfile";
 import Followers from "./pages/Followers";
 import Followings from "./pages/Followings";
 import CreatePost from "./pages/CreatePost";
+import Notifications from "./pages/Notifications";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,7 +40,6 @@ function App() {
             <Route path="explore" element={<Explore />} />
             <Route path="search" element={<Search />} />
             <Route path="reels" element={<Reels />} />
-            <Route path="notifications" element={<Likes />} />
             <Route path="followers" element={<Followers />} />
             <Route path="followings" element={<Followings />} />
             <Route path="create" element={<CreatePost />} />

@@ -20,6 +20,8 @@ export async function createPost(post) {
   const formData = new FormData();
   formData.append("image", post.image);
   formData.append("caption", post.content);
+  formData.append("size", post.size);
+  formData.append("is_video", post.is_video);
 
   const response = await axios.post(`${BASE_URL}/posts`, formData);
   return response.data;
