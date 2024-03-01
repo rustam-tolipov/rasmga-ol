@@ -25,7 +25,7 @@ const Reels = () => {
     queryFn: getPosts,
   });
 
-  if (!isLoading) {
+  if (isLoading) {
     return <LoadingReels />;
   }
 
@@ -159,7 +159,7 @@ const LoadMedia = ({ media }) => {
 const LoadingReel = () => {
   return (
     <div className="flex w-full animate-pulse flex-col border xl:w-[30dvw]">
-      <div className="h-[93dvh] w-full bg-slate-300">
+      <div className="relative h-[93dvh] w-full bg-slate-300">
         <div className="absolute left-1/2 top-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform items-center justify-center">
           <HiMiniPlay className="text-8xl text-white" />
         </div>
@@ -189,7 +189,7 @@ const LoadingReel = () => {
               </div>
 
               <div className="text-sm">
-                <div className="h-4 w-24 animate-pulse rounded-lg bg-slate-300"></div>
+                <div className="h-4 w-24 animate-pulse rounded-lg bg-slate-900"></div>
               </div>
             </div>
 
