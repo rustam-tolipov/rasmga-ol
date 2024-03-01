@@ -23,7 +23,7 @@ const Profile = () => {
   const { isLoading, posts, error } = useUserPosts();
   const { userLoading, user, userError } = useProfile();
 
-  if (isLoading) {
+  if (isLoading || userLoading) {
     return <LoadingProfile />;
   }
 
