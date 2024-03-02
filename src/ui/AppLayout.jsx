@@ -15,14 +15,14 @@ import LoadingNavigation from "../features/loading/LoadingNavigation";
 
 const AppLayout = () => {
   return (
-    <div className="grid h-screen w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[4.5rem_auto] xl:grid-cols-[16dvw_auto] 2xl:grid-cols-[13vw_auto]">
+    <div className="grid h-[100dvh] w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[4.5rem_auto] xl:grid-cols-[16dvw_auto] 2xl:grid-cols-[13vw_auto]">
       <div className="hidden sm:block"></div>
       <Sidebar />
-      <main className="overflow-scroll">
+      <main className="h-[94dvh] sm:h-full overflow-scroll">
         <Outlet />
       </main>
 
-      {/* <div className="h-12 sm:hidden"></div> */}
+      <div className="h-[6dvh] sm:hidden"></div>
       <Navigation />
     </div>
   );
@@ -38,8 +38,8 @@ const Navigation = () => {
   }
 
   return (
-    <div className="z-30 block sm:hidden">
-      <div className="h-12  w-full border-t border-slate-800 bg-[#121212]">
+    <div className="fixed bottom-0 z-30 block h-[7dvh] w-full sm:hidden">
+      <div className="h-full w-full border-t border-slate-800 bg-[#121212]">
         <div className="flex h-full items-center justify-around">
           <LinkItem icon={<HiOutlineHome className="text-3xl" />} to="/" />
           <LinkItem

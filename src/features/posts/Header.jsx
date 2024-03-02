@@ -4,29 +4,21 @@ import useFollow from "../../hooks/useFollow";
 import DeletePost from "./DeletePost";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
-const Header = ({
-  username,
-  avatar,
-  created_at,
-  user_id,
-  is_followed,
-  id,
-}) => {
+const Header = ({ username, avatar, created_at, user_id, is_followed, id }) => {
   const { isFollowing, followUser } = useFollow();
 
   const { timeAgo } = useTimeAgo();
 
   return (
-    <div className="flex items-center gap-2 px-2 sm:p-0">
-      <NavLink
-        className="aspect-h-1 w-10 overflow-hidden rounded-full border border-gray-50 p-1"
-        to={`/profile/${username}`}
-      >
-        <img
-          src={avatar}
-          alt="profile"
-          className="h-full w-full rounded-full object-cover"
-        />
+    <div className="flex w-full gap-2 px-2 sm:p-0">
+      <NavLink to={`/profile/${username}`}>
+        <div className="h-8 w-8 overflow-hidden rounded-full border border-gray-50 p-1">
+          <img
+            src={avatar}
+            alt="profile"
+            className="h-full w-full rounded-full object-cover"
+          />
+        </div>
       </NavLink>
       <div className="flex w-full items-center gap-1">
         <NavLink className="text-sm font-semibold" to={`/profile/${username}`}>

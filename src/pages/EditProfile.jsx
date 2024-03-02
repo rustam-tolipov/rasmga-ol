@@ -33,10 +33,6 @@ const EditProfile = () => {
       queryClient.invalidateQueries({
         queryKey: ["me"],
       });
-
-      setTimeout(() => {
-        navigate("/profile/" + user.username);
-      }, 3000);
     },
     onError: (error) => {
       toast.error("An error occurred: " + error.message);
@@ -51,6 +47,7 @@ const EditProfile = () => {
 
   const onSubmit = (data) => {
     mutate({ ...data, avatar: file });
+    navigate("/profile/" + data.username);
   };
 
   return (

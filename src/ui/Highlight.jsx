@@ -7,11 +7,11 @@ const Highlight = ({ highlight }) => {
       className="flex cursor-pointer flex-col items-center gap-1"
       to={`/profile/${highlight.username}`}
     >
-      <div className="aspect-h-1 w-16 rounded-[50%] border border-gray-50 object-cover p-1">
+      <div className="h-16 w-16 overflow-hidden rounded-full border border-gray-50 p-1">
         <img
           src={highlight.avatar}
           alt="profile"
-          className="w-full rounded-[50%]"
+          className="h-full w-full object-cover rounded-full"
         />
       </div>
       <h3 className="text-xs">{highlight.username}</h3>

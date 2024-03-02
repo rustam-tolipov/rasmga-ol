@@ -12,6 +12,7 @@ import Reveal from "../ui/Reveal";
 import Like from "../ui/Like";
 import LoadingReels from "../features/loading/LoadingReels";
 import usePosts from "../hooks/usePosts";
+import { NavLink } from "react-router-dom";
 
 const Reels = () => {
   const [muted, setMuted] = useState(true);
@@ -29,7 +30,7 @@ const Reels = () => {
   const reels = posts.filter((post) => post.image?.url.includes("mp4"));
 
   return (
-    <div className="flex snap-y snap-mandatory flex-col items-center gap-4 overflow-scroll sm:h-[100dvh] sm:py-12">
+    <div className="flex h-[94dvh] snap-y snap-mandatory flex-col items-center gap-4 overflow-scroll sm:h-[100dvh] sm:py-12">
       {reels.map((reel, index) => (
         <Reel key={index} reel={reel} muted={muted} setMuted={setMuted} />
       ))}
@@ -45,12 +46,12 @@ const Reel = ({ reel, muted, setMuted }) => {
 
   return (
     <div
-      className="reel relative h-full w-full shrink-0 snap-center sm:h-fit sm:w-fit"
+      className="relative h-full w-full shrink-0 snap-center sm:h-fit sm:w-fit"
       key={id}
     >
       <LoadMedia media={image?.url} muted={muted} setMuted={setMuted} />
 
-      <div className="absolute bottom-2 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4">
+      <div className="absolute bottom-2 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4 md:w-[115%]">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
             <Like likes={likes} id={id} />
@@ -65,11 +66,20 @@ const Reel = ({ reel, muted, setMuted }) => {
 
         <div className="flex w-full">
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="aspect-h-1 w-10">
-                <img src={avatar} alt="profile" className="rounded-full" />
-              </div>
-              <h3 className="text-sm font-semibold">{username}</h3>
+            <div className="flex cursor-pointer items-center gap-2">
+              <NavLink
+                to={`/profile/${username}`}
+                className="flex items-center gap-3"
+              >
+                <div className="h-10 w-10 overflow-hidden rounded-full">
+                  <img
+                    src={avatar}
+                    alt="profile"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <h3 className="text-sm font-semibold">{username}</h3>
+              </NavLink>
               <span className="text-2xl text-gray-400">·</span>
               <button className="text-sm text-gray-400">Follow</button>
             </div>
