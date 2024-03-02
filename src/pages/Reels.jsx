@@ -29,7 +29,7 @@ const Reels = () => {
   const reels = posts.filter((post) => post.image?.url.includes("mp4"));
 
   return (
-    <div className="flex flex-col items-center xl:gap-8 xl:py-4">
+    <div className="flex h-screen snap-y snap-mandatory flex-col items-center overflow-scroll sm:gap-2 xl:py-4">
       {reels.map((reel, index) => (
         <Reel key={index} reel={reel} muted={muted} setMuted={setMuted} />
       ))}
@@ -44,10 +44,13 @@ const Reel = ({ reel, muted, setMuted }) => {
     reel;
 
   return (
-    <div className="relative h-full w-full xl:w-[30dvw]" key={id}>
+    <div
+      className="relative h-full w-full shrink-0 snap-start xl:w-[30dvw]"
+      key={id}
+    >
       <LoadMedia media={image?.url} muted={muted} setMuted={setMuted} />
 
-      <div className="absolute bottom-4 flex w-full flex-col items-end gap-8 px-4 pb-2">
+      <div className="absolute bottom-14 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
             <Like likes={likes} id={id} />
@@ -66,7 +69,7 @@ const Reel = ({ reel, muted, setMuted }) => {
               <div className="aspect-h-1 w-10">
                 <img src={avatar} alt="profile" className="rounded-full" />
               </div>
-              <h3 className="text-sm font-semibold">username</h3>
+              <h3 className="text-sm font-semibold">{username}</h3>
               <span className="text-2xl text-gray-400">·</span>
               <button className="text-sm text-gray-400">Follow</button>
             </div>
@@ -125,7 +128,7 @@ const LoadMedia = ({ media, muted, setMuted }) => {
       <video
         src={media}
         alt="post"
-        className="h-[93dvh] w-full object-cover md:h-[100dvh] xl:rounded-lg"
+        className="h-[93dvh] w-full object-cover md:h-[95dvh] xl:rounded-lg"
         ref={ref}
         onClick={handlePauseVideo}
         loop
