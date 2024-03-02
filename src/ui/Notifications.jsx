@@ -31,6 +31,7 @@ const Notifications = ({ onClose }) => {
 export default Notifications;
 
 const Notification = ({ notification }) => {
+
   return (
     <div className="flex items-center gap-4">
       <div className="h-[2.8rem] w-[2.8rem] rounded-[50%]">
@@ -45,7 +46,19 @@ const Notification = ({ notification }) => {
         <p className="text-xs">{notification.message}</p>
       </div>
       <div className="ml-auto h-[2.8rem] w-[2.8rem]">
-        <img src={notification.thumb} alt="profile" className="h-full w-full" />
+        {notification.thumb.includes(".mp4") ? (
+          <video
+            src={notification.thumb}
+            muted
+            className="h-full w-full"
+          />
+        ) : (
+          <img
+            src={notification.thumb}
+            alt="profile"
+            className="h-full w-full"
+          />
+        )}
       </div>
     </div>
   );
