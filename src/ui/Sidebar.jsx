@@ -16,8 +16,8 @@ import Modal from "./Modal";
 import CreatePostForm from "./CreatePostForm";
 import useCurrentUser from "../hooks/useCurrentUser";
 import LoadingItem from "../features/loading/LoadingItem";
-import Notifications from "../pages/Notifications";
 import { createPortal } from "react-dom";
+import Notifications from "./Notifications";
 
 const Sidebar = () => {
   const [openModal, setOpenModal] = useState(false);

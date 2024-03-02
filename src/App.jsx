@@ -43,6 +43,7 @@ function App() {
             <Route path="followers" element={<Followers />} />
             <Route path="followings" element={<Followings />} />
             <Route path="create" element={<CreatePost />} />
+            <Route path="notifications" element={<Notifications />} />
 
             <Route path="account/">
               <Route path="settings" element={<Settings />} />

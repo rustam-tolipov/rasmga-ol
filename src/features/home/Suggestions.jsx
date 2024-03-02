@@ -23,7 +23,7 @@ const Suggestions = () => {
   }
 
   if (!suggestions?.length) {
-    return <div className="hidden pt-8 sm:block">No suggestions</div>;
+    return <div className="hidden pt-8 lg:block">No suggestions</div>;
   }
 
   return (

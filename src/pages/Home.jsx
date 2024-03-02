@@ -1,5 +1,5 @@
 import React from "react";
-import { HiCamera, HiOutlinePlusCircle } from "react-icons/hi2";
+import { HiCamera, HiOutlineHeart, HiOutlinePlusCircle } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import Posts from "../features/posts/Posts";
 import { NavLink } from "react-router-dom";
@@ -11,9 +11,14 @@ const Home = () => {
     <>
       <TopHeader>
         <HiCamera className="text-3xl xl:hidden" />
-        <NavLink to="/create" className="ml-auto cursor-pointer">
-          <HiOutlinePlusCircle className="text-3xl" />
-        </NavLink>
+        <div className="flex items-center gap-1 ml-auto">
+          <NavLink to="/create" className="cursor-pointer">
+            <HiOutlinePlusCircle className="text-3xl" />
+          </NavLink>
+          <NavLink to="/notifications" className="cursor-pointer">
+            <HiOutlineHeart className="text-3xl" />
+          </NavLink>
+        </div>
       </TopHeader>
       <div className="mt-12 grid grid-cols-1 gap-28 sm:mt-0 md:pt-4 lg:grid-cols-[63%_auto] xl:px-16 xl:pr-28">
         <div className="flex flex-col gap-6 2xl:ml-auto">

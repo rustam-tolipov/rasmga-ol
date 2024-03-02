@@ -1,7 +1,7 @@
 import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useFollowings from "../hooks/useFollowings";
 import useFollowers from "../hooks/useFollowers";
 import useNotifications from "../hooks/useNotifications";
@@ -11,25 +11,20 @@ const Notifications = ({ onClose }) => {
   const { notificationsLoading, notifications, notificationsError } =
     useNotifications();
 
-  const navigate = useNavigate();
+  console.log(notifications);
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  return (
-    <div className="flex flex-col gap-3 xl:px-4">
-      <TopHeader>
-        <HiMiniXMark className="mr-auto text-4xl" onClick={handleBack} />
-        <h1 className="w-full text-center text-xl">Notifications</h1>
-      </TopHeader>
-
-      <div className="mt-12 flex flex-col gap-6 px-4 py-3 sm:mt-0">
-        {notifications?.map((notification, index) => (
-          <Notification key={index} notification={notification} />
-        ))}
+  return createPortal(
+    <Overlay onClose={onClose}>
+      <div className="absolute left-[16dvw] top-0 h-screen w-fit bg-black">
+        <div className="mt-12 flex flex-col gap-6 px-6 py-3 sm:mt-0">
+          {notifications?.map((notification, index) => (
+            <Notification key={index} notification={notification} />
+          ))}
+        </div>
       </div>
-    </div>
+    </Overlay>,
+
+    document.body,
   );
 };
 
@@ -52,6 +47,15 @@ const Notification = ({ notification }) => {
       <div className="ml-auto h-[2.8rem] w-[2.8rem]">
         <img src={notification.thumb} alt="profile" className="h-full w-full" />
       </div>
+    </div>
+  );
+};
+
+const Overlay = ({ onClose, children }) => {
+  return (
+    <div className="fixed inset-0 z-20 flex items-center justify-center">
+      <div className="h-full w-full" onClick={() => onClose(false)}></div>
+      <div className="z-20">{children}</div>
     </div>
   );
 };
