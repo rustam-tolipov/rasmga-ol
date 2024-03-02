@@ -14,10 +14,6 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
-
-      reelAspectRatio: {
-        "9/16": "56.25%",
-      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

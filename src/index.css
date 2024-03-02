@@ -13,3 +13,7 @@ body {
 .dropShadow {
   box-shadow: 0 10px 10px 0 rgba(22, 22, 22, 0.5);
 }
+
+.reel {
+  height: calc(100vh - 3rem);
+}

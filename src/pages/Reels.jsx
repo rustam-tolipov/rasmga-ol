@@ -29,7 +29,7 @@ const Reels = () => {
   const reels = posts.filter((post) => post.image?.url.includes("mp4"));
 
   return (
-    <div className="flex h-screen snap-y snap-mandatory flex-col items-center overflow-scroll sm:gap-2 xl:py-4">
+    <div className="flex snap-y snap-mandatory flex-col items-center gap-4 overflow-scroll sm:h-[100dvh] sm:py-12">
       {reels.map((reel, index) => (
         <Reel key={index} reel={reel} muted={muted} setMuted={setMuted} />
       ))}
@@ -45,12 +45,12 @@ const Reel = ({ reel, muted, setMuted }) => {
 
   return (
     <div
-      className="relative h-full w-full shrink-0 snap-start xl:w-[30dvw]"
+      className="reel relative h-full w-full shrink-0 snap-center sm:h-fit sm:w-fit"
       key={id}
     >
       <LoadMedia media={image?.url} muted={muted} setMuted={setMuted} />
 
-      <div className="absolute bottom-14 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4">
+      <div className="absolute bottom-2 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center">
             <Like likes={likes} id={id} />
@@ -124,11 +124,11 @@ const LoadMedia = ({ media, muted, setMuted }) => {
   };
 
   return (
-    <Reveal>
+    <>
       <video
         src={media}
         alt="post"
-        className="h-[93dvh] w-full object-cover md:h-[95dvh] xl:rounded-lg"
+        className="h-full w-full object-cover sm:max-h-[90dvh] xl:rounded-lg"
         ref={ref}
         onClick={handlePauseVideo}
         loop
@@ -160,6 +160,6 @@ const LoadMedia = ({ media, muted, setMuted }) => {
         className="absolute left-1/2 top-1/2 flex h-fit w-fit -translate-x-1/2 -translate-y-1/2 transform items-center justify-center"
         ref={testRef}
       ></div>
-    </Reveal>
+    </>
   );
 };

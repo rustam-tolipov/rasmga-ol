@@ -18,7 +18,7 @@ const AppLayout = () => {
     <div className="grid h-screen w-full select-none grid-cols-1 text-slate-50 sm:grid-cols-[4.5rem_auto] xl:grid-cols-[16dvw_auto] 2xl:grid-cols-[13vw_auto]">
       <div className="hidden sm:block"></div>
       <Sidebar />
-      <main className="overflow-scroll px-0 py-0 pt-0">
+      <main className="overflow-scroll">
         <Outlet />
       </main>
 

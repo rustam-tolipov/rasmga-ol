@@ -132,7 +132,7 @@ export const LoadModalMedia = ({ media }) => {
         <video
           src={media}
           alt="post"
-          className="z-10 max-h-[80dvh] w-full"
+          className="z-0 max-h-[80dvh] w-full"
           loop
           muted
           autoPlay
