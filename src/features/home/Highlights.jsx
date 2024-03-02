@@ -1,18 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getHighlights } from "../../services/apiUsers";
 import LoadingHighlights from "../loading/LoadingHighlights";
 import Highlight from "../../ui/Highlight";
+import useHighlights from "./useHighlights";
 
 const Highlights = () => {
-  const {
-    isLoading,
-    data: highlights,
-    error,
-  } = useQuery({
-    queryKey: ["highlights"],
-    queryFn: getHighlights,
-  });
+  const { isLoading, highlights } = useHighlights();
 
   if (isLoading) {
     return <LoadingHighlights />;

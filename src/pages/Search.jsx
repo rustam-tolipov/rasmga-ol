@@ -1,8 +1,6 @@
 import React from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { useQuery } from "@tanstack/react-query";
-import { getPosts } from "../services/apiPosts";
 import usePosts from "../hooks/usePosts";
 import LoadingSearch from "../features/loading/LoadingSearch";
 

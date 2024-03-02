@@ -10,12 +10,22 @@ import useCommentPost from "../../hooks/useCommentPost";
 
 const Info = ({ likes, comments, handleModal, id, username, content }) => {
   const { isCommenting, postComment } = useCommentPost();
+  const [comment, setComment] = React.useState("");
 
   const handlePostComment = (e) => {
+    setComment(e.target.value);
     if (e.key === "Enter") {
       postComment({ post_id: id, content: e.target.value });
       e.target.value = "";
+      setComment("");
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postComment({ post_id: id, content: e.target[0].value });
+    e.target.reset();
+    setComment("");
   };
 
   return (
@@ -44,15 +54,25 @@ const Info = ({ likes, comments, handleModal, id, username, content }) => {
           View all {comments.length} comments
         </div>
       )}
-      <div className="flex justify-between text-gray-400">
+      <form
+        className="flex justify-between text-gray-400"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           placeholder="Add a comment..."
           className="w-full bg-transparent text-sm outline-none"
           onKeyPress={handlePostComment}
         />
-        <HiOutlineFaceSmile className="text-lg" />
-      </div>
+        <div className="flex gap-2">
+          {comment.length > 0 && (
+            <button className="text-sm font-semibold" type="submit">
+              {isCommenting ? "Posting..." : "Post"}
+            </button>
+          )}
+          <HiOutlineFaceSmile className="text-lg" />
+        </div>
+      </form>
     </div>
   );
 };

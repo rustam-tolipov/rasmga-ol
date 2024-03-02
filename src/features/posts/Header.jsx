@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import useFollow from "../../hooks/useFollow";
-import useUnFollow from "../../hooks/useUnFollow";
 import DeletePost from "./DeletePost";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
@@ -9,13 +8,11 @@ const Header = ({
   username,
   avatar,
   created_at,
-  post,
   user_id,
   is_followed,
   id,
 }) => {
   const { isFollowing, followUser } = useFollow();
-  const { isUnFollowing, unFollowUser } = useUnFollow();
 
   const { timeAgo } = useTimeAgo();
 
@@ -43,8 +40,9 @@ const Header = ({
             <button
               className="text-sm font-semibold text-blue-500"
               onClick={() => followUser(user_id)}
+              disabled={isFollowing}
             >
-              Follow
+              {isFollowing ? "Following" : "Follow"}
             </button>
           </>
         )}

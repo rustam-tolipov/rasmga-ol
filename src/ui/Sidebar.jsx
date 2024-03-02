@@ -7,7 +7,6 @@ import {
   HiOutlinePlusCircle,
   HiBars3,
   HiUserCircle,
-  HiCamera,
 } from "react-icons/hi2";
 import { IoCompassOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
@@ -16,7 +15,6 @@ import Modal from "./Modal";
 import CreatePostForm from "./CreatePostForm";
 import useCurrentUser from "../hooks/useCurrentUser";
 import LoadingItem from "../features/loading/LoadingItem";
-import { createPortal } from "react-dom";
 import Notifications from "./Notifications";
 
 const Sidebar = () => {

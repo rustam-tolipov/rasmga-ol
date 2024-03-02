@@ -3,16 +3,10 @@ import { getSuggestions } from "../../services/apiUsers";
 import { useQuery } from "@tanstack/react-query";
 import Suggestion from "../../ui/Suggestion";
 import LoadingSuggestions from "../loading/LoadingSuggestions";
+import useSuggestions from "./useSuggestions";
 
 const Suggestions = () => {
-  const {
-    isLoading,
-    data: suggestions,
-    error,
-  } = useQuery({
-    queryKey: ["suggestions"],
-    queryFn: getSuggestions,
-  });
+  const { isLoading, suggestions, error } = useSuggestions();
 
   if (isLoading) {
     return <LoadingSuggestions />;

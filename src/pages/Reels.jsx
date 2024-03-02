@@ -1,16 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  HiOutlineHeart,
   HiOutlineChatBubbleOvalLeft,
   HiOutlinePaperAirplane,
-  HiOutlineBookmark,
   HiMiniEllipsisHorizontal,
   HiMiniPlay,
   HiMiniSpeakerWave,
   HiMiniSpeakerXMark,
 } from "react-icons/hi2";
-import { getPosts } from "../services/apiPosts";
 import { useInView } from "framer-motion";
 import Reveal from "../ui/Reveal";
 import Like from "../ui/Like";

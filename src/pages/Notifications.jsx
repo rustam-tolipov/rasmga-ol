@@ -6,6 +6,7 @@ import useFollowings from "../hooks/useFollowings";
 import useFollowers from "../hooks/useFollowers";
 import useNotifications from "../hooks/useNotifications";
 import { createPortal } from "react-dom";
+import LoadingNotifications from "../features/loading/LoadingNotifications";
 
 const Notifications = ({ onClose }) => {
   const { notificationsLoading, notifications, notificationsError } =
@@ -16,6 +17,10 @@ const Notifications = ({ onClose }) => {
   const handleBack = () => {
     navigate(-1);
   };
+
+  if (notificationsLoading) {
+    return <LoadingNotifications />;
+  }
 
   return (
     <div className="flex flex-col gap-3 xl:px-4">

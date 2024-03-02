@@ -4,8 +4,6 @@ import {
   HiMagnifyingGlass,
   HiOutlineFilm,
   HiOutlineHeart,
-  HiOutlinePlusCircle,
-  HiBars3,
   HiUserCircle,
 } from "react-icons/hi2";
 import { Outlet } from "react-router";

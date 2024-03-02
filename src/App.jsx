@@ -1,8 +1,8 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
-import { Query, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
@@ -10,7 +10,6 @@ import AppLayout from "./ui/AppLayout";
 import Login from "./pages/Login";
 import Explore from "./pages/Explore";
 import Reels from "./pages/Reels";
-import Likes from "./pages/Likes";
 import Post from "./pages/Post";
 import Search from "./pages/Search";
 import Profile from "./pages/Profile";

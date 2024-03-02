@@ -7,6 +7,8 @@ import useFollow from "../../hooks/useFollow";
 import Modal from "../../ui/Modal";
 import Followers from "./Followers";
 import Followings from "./Followings";
+import FollowButton from "../../ui/FollowButton";
+import EditButton from "../../ui/EditButton";
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,8 +18,6 @@ const Header = () => {
     useCurrentUser();
 
   const { userLoading, user, userError } = useProfile();
-  const { isUnFollowing, unFollowUser } = useUnFollow();
-  const { isFollowing, followUser } = useFollow();
 
   if (userLoading || currentUserLoading) {
     return <div>Loading...</div>;
@@ -134,36 +134,3 @@ const Header = () => {
 };
 
 export default Header;
-
-const FollowButton = ({ is_followed, id }) => {
-  const { isUnFollowing, unFollowUser } = useUnFollow();
-  const { isFollowing, followUser } = useFollow();
-
-  return (
-    <button
-      onClick={() => {
-        if (is_followed) {
-          unFollowUser(id);
-        } else {
-          followUser(id);
-        }
-      }}
-      className={`rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50 ${
-        is_followed ? "bg-red-500" : ""
-      }`}
-    >
-      {is_followed ? "Unfollow" : "Follow"}
-    </button>
-  );
-};
-
-const EditButton = () => {
-  return (
-    <NavLink
-      to="/account/edit"
-      className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
-    >
-      Edit Profile
-    </NavLink>
-  );
-};

@@ -9,12 +9,10 @@ import {
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import { NavLink } from "react-router-dom";
-import usePosts from "../hooks/usePosts";
 import useProfile from "../hooks/useProfile";
 
 import Header from "../features/profile/Header";
 import useUserPosts from "../hooks/useUserPosts";
-import LoadingMedia from "../features/loading/LoadingMedia";
 import LoadingProfile from "../features/loading/LoadingProfile";
 
 const Profile = () => {
