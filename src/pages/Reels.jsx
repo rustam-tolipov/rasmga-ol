@@ -49,7 +49,7 @@ const Reel = ({ reel, muted, setMuted }) => {
       className="relative h-full w-full shrink-0 snap-center sm:h-fit sm:w-fit"
       key={id}
     >
-      <LoadMedia media={image?.url} muted={muted} setMuted={setMuted} />
+      <LoadMedia media={image?.reels.url} muted={muted} setMuted={setMuted} />
 
       <div className="absolute bottom-2 z-10 flex w-full flex-col items-end gap-8 px-4 pb-2 sm:bottom-4 md:w-[115%]">
         <div className="flex flex-col items-center gap-4">
@@ -132,6 +132,8 @@ const LoadMedia = ({ media, muted, setMuted }) => {
     ref.current.muted = !muted;
     setMuted(!muted);
   };
+
+  console.log(ref);
 
   return (
     <>
