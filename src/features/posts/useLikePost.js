@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { likePost as likePostApi } from "../services/apiPosts";
+import { likePost as likePostApi } from "../../services/apiPosts";
 import toast from "react-hot-toast";
 
 const useLikePost = () => {

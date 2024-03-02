@@ -1,5 +1,5 @@
 import React from "react";
-import useLikeComment from "../hooks/useLikeComment";
+import useLikeComment from "../features/posts/useLikeComment";
 import useUnLikeComment from "../hooks/useUnLikeComment";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 

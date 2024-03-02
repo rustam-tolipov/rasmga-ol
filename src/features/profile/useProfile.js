@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getMe, getUser } from "../services/apiUsers";
+import { getMe, getUser } from "../../services/apiUsers";
 import { useParams } from "react-router-dom";
 
 const useProfile = () => {

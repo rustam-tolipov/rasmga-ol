@@ -1,12 +1,11 @@
 import React from "react";
-import useLikePost from "../hooks/useLikePost";
+import useLikePost from "../features/posts/useLikePost";
 import useUnlikePost from "../hooks/useUnlikePost";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 
 const Like = ({ likes, id }) => {
   const { likePost } = useLikePost();
   const { unlikePost } = useUnlikePost();
-
 
   const isLiked = likes?.some((like) => like.user_id === 1);
 

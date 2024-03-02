@@ -1,50 +1,25 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { HiCamera, HiChevronLeft } from "react-icons/hi2";
-import { createPost } from "../services/apiPosts";
-import toast from "react-hot-toast";
 import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import useCreatePost from "../features/posts/useCreatePost";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
 
 const CreatePostForm = ({ onClose }) => {
-  const queryClient = useQueryClient();
-  const { register, handleSubmit, reset, formState } = useForm();
-  const { errors } = formState;
-  const [isCreating, setIsCreating] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
   const [content, setContent] = useState("");
   const [size, setSize] = useState("standard");
 
-  const { isLoading, mutate } = useMutation({
-    mutationFn: createPost,
-    onSuccess: () => {
-      toast.success("Post created successfully");
+  const { isLoading, createPost } = useCreatePost();
 
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
-
-      reset();
-      onClose(false);
-      setIsCreating(false);
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
-
-  const navigate = useNavigate();
 
   const handleShare = () => {
     const is_video = fileType === "video/mp4" ? true : false;
-    mutate({ image: file, content, size, is_video });
-    navigate("/");
+    createPost({ image: file, content, size, is_video });
+    onClose(false);
   };
 
   const handleChange = (file) => {
@@ -64,7 +39,6 @@ const CreatePostForm = ({ onClose }) => {
     alert("Are you sure you want to cancel?");
     setFile(null);
     setCurrentPage(0);
-    setIsCreating(false);
     onClose(false);
   };
 
@@ -110,7 +84,11 @@ const CreatePostForm = ({ onClose }) => {
                   currentPage === 2 ? handleShare() : handleNext()
                 }
               >
-                {currentPage === 2 ? "Share" : "Next"}
+                {currentPage === 2
+                  ? isLoading
+                    ? "Creating..."
+                    : "Share"
+                  : "Next"}
               </button>
             )}
           </div>
@@ -133,11 +111,7 @@ const CreatePostForm = ({ onClose }) => {
                   <span className="text-lg">Drag photos and videos here</span>
                 </div>
 
-                <button
-                  className="mt-4 w-full rounded-lg bg-blue-500 px-6 py-1 text-sm text-gray-50"
-                  disabled={isLoading}
-                  onClick={() => setIsCreating(true)}
-                >
+                <button className="mt-4 w-full rounded-lg bg-blue-500 px-6 py-1 text-sm text-gray-50">
                   Select from computer
                 </button>
               </FileUploader>

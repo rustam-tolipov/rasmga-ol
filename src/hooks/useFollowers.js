@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { getFollowers } from "../services/apiUsers";
-import useProfile from "./useProfile";
+import useProfile from "../features/profile/useProfile";
 
 const useFollowers = () => {
   const { user } = useProfile();

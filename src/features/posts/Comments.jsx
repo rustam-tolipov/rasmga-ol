@@ -1,12 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useCommentPost from "../../hooks/useCommentPost";
+import useCommentPost from "./useCommentPost";
 import { HiEllipsisHorizontal, HiOutlineFaceSmile } from "react-icons/hi2";
 import Comment from "../../ui/Comment";
 
 const Comments = ({ avatar, username, comments, postId }) => {
   const { postComment } = useCommentPost();
-  
+
   const handlePostComment = (e) => {
     if (e.key === "Enter") {
       postComment({ post_id: postId, content: e.target.value });

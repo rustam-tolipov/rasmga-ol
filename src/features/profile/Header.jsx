@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useCurrentUser from "../../hooks/useCurrentUser";
-import useProfile from "../../hooks/useProfile";
+import useProfile from "./useProfile";
 import useUnFollow from "../../hooks/useUnFollow";
 import useFollow from "../../hooks/useFollow";
 import Modal from "../../ui/Modal";

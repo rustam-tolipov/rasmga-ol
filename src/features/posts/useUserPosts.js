@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getUserPosts } from "../services/apiPosts";
-import useProfile from "./useProfile";
+import { getUserPosts } from "../../services/apiPosts";
+import useProfile from "../profile/useProfile";
 import { useParams } from "react-router-dom";
 
 const useUserPosts = () => {
