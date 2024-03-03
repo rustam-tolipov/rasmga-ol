@@ -11,8 +11,6 @@ const Notifications = ({ onClose }) => {
   const { notificationsLoading, notifications, notificationsError } =
     useNotifications();
 
-  console.log(notifications);
-
   return createPortal(
     <Overlay onClose={onClose}>
       <div className="absolute left-[16dvw] top-0 h-screen w-fit bg-black">

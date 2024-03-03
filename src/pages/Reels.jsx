@@ -133,8 +133,6 @@ const LoadMedia = ({ media, muted, setMuted }) => {
     setMuted(!muted);
   };
 
-  console.log(ref);
-
   return (
     <>
       <video
