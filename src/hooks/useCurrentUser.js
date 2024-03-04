@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getMe, getUser } from "../services/apiUsers";
 import { useParams } from "react-router-dom";
+import { getCurrentUser } from "../services/apiAuth";
 
 const useCurrentUser = () => {
   const {
@@ -9,8 +9,8 @@ const useCurrentUser = () => {
     data: currentUser,
     error: currentUserError,
   } = useQuery({
-    queryKey: ["user", "me"],
-    queryFn: getMe,
+    queryKey: ["me"],
+    queryFn: getCurrentUser,
   });
 
   return { currentUserLoading, currentUser, currentUserError };

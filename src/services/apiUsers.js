@@ -1,18 +1,9 @@
-import axios from "axios";
+import axios from "../features/authentication/axios";
 import { BASE_URL } from "../utils/constants";
 
 export async function getHighlights() {
   const response = await axios.get(`${BASE_URL}/highlights`);
   return response.data;
-}
-
-export async function getMe() {
-  try {
-    const response = await axios.get(`${BASE_URL}/auth/me`);
-    return response?.data;
-  } catch (error) {
-    return null;
-  }
 }
 
 export async function getUser(username) {

@@ -42,8 +42,7 @@ const Sidebar = () => {
 export default Sidebar;
 
 const MainNav = ({ openModal }) => {
-  const { currentUserLoading, currentUser, currentUserError } =
-    useCurrentUser();
+  const { currentUser, currentUserLoading } = useCurrentUser();
 
   if (currentUserLoading) {
     return (

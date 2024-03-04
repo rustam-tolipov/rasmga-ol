@@ -19,6 +19,7 @@ import Followers from "./pages/Followers";
 import Followings from "./pages/Followings";
 import CreatePost from "./pages/CreatePost";
 import Notifications from "./pages/Notifications";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +35,13 @@ function App() {
       {/* <ReactQueryDevtools initialIsOpen={true} /> */}
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
             <Route path="/" element={<Home />} />
             <Route path="explore" element={<Explore />} />
             <Route path="search" element={<Search />} />

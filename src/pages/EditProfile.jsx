@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { editProfile, getMe } from "../services/apiUsers";
+import { editProfile } from "../services/apiUsers";
 import toast from "react-hot-toast";
 import useCurrentUser from "../hooks/useCurrentUser";
 
