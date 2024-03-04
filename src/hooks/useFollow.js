@@ -10,8 +10,7 @@ const useFollow = () => {
     mutationFn: followUserApi,
     onSuccess: () => {
       toast.success("Followed successfully");
-      
-      queryClient.invalidateQueries(["me"]);
+
       queryClient.invalidateQueries(["suggestions"]);
     },
     onError: (error) => {

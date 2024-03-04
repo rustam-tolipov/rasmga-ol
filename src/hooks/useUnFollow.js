@@ -12,7 +12,6 @@ const useUnFollow = () => {
       toast.success("Unfollowed successfully");
 
       queryClient.invalidateQueries(["me"]);
-      queryClient.invalidateQueries(["suggestions"]);
     },
     onError: (error) => {
       toast.error("An error occurred: " + error.message);

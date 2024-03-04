@@ -3,6 +3,8 @@ import { formatDistanceToNowStrict } from "date-fns";
 
 const useTimeAgo = () => {
   const timeAgo = (timestamp) => {
+    if (!timestamp) return;
+
     const formattedTimestamp = formatDistanceToNowStrict(new Date(timestamp));
 
     if (formattedTimestamp.includes("minute")) {

@@ -3,8 +3,6 @@ import {
   HiMiniCog6Tooth,
   HiOutlineUserPlus,
   HiOutlineHeart,
-  HiHeart,
-  HiChatBubbleOvalLeft,
   HiOutlineSquares2X2,
 } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
@@ -12,29 +10,24 @@ import { NavLink } from "react-router-dom";
 import useProfile from "../features/profile/useProfile";
 
 import Header from "../features/profile/Header";
-import useUserPosts from "../features/posts/useUserPosts";
 import LoadingProfile from "../features/loading/LoadingProfile";
+import ProfilePosts from "../features/profile/ProfilePosts";
+import ProfileReels from "../features/profile/ProfileReels";
 
 const Profile = () => {
   const [currentPage, setCurrentPage] = useState("posts");
 
-  const { isLoading, posts, error } = useUserPosts();
   const { userLoading, user, userError } = useProfile();
 
-  if (isLoading || userLoading) {
+  if (userLoading) {
     return <LoadingProfile />;
   }
 
-  if (error || userError) {
-    return <div>Error: {error?.message || userError?.message}</div>;
+  if (userError) {
+    return <div>Error: {userError?.message}</div>;
   }
 
   const { username, id } = user;
-
-  let reels = [];
-  if (posts.length > 0) {
-    reels = posts.filter((post) => post.image?.url.includes("mp4"));
-  }
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
@@ -67,112 +60,10 @@ const Profile = () => {
           </div>
         </div>
 
-        {currentPage === "posts" ? (
-          <Posts posts={posts} />
-        ) : (
-          <Reels reels={reels} />
-        )}
+        {currentPage === "posts" ? <ProfilePosts /> : <ProfileReels />}
       </div>
     </div>
   );
 };
 
 export default Profile;
-
-const Posts = ({ posts }) => {
-  return (
-    <div className="grid grid-cols-3 gap-1">
-      {posts.length > 0 &&
-        posts.map((post, index) => (
-          <NavLink key={index} to={`/profile/${post.username}/post/${post.id}`}>
-            <LoadMedia
-              key={index}
-              media={post.image.url}
-              comments={post.comments.length}
-              likes={post.likes.length}
-            />
-          </NavLink>
-        ))}
-    </div>
-  );
-};
-
-const Reels = ({ reels }) => {
-  return (
-    <div className="grid grid-cols-3 gap-1">
-      {reels?.map((reel, index) => (
-        <LoadMedia
-          key={index}
-          media={reel.image.url}
-          comments={reel.comments.length}
-          likes={reel.likes.length}
-        />
-      ))}
-    </div>
-  );
-};
-
-const LoadMedia = ({ media, comments, likes }) => {
-  const [hover, setHover] = useState(false);
-
-  const handleHover = () => {
-    setHover(!hover);
-  };
-
-  if (media.includes("mp4")) {
-    return (
-      <div className="relative">
-        <video
-          src={media}
-          className="h-32 w-full object-cover md:h-80"
-          controls
-          onMouseOver={handleHover}
-        />
-
-        <PostInfo
-          hover={hover}
-          handleHover={handleHover}
-          comments={comments}
-          likes={likes}
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="relative">
-      <PostInfo
-        hover={hover}
-        handleHover={handleHover}
-        comments={comments}
-        likes={likes}
-      />
-      <img
-        src={media}
-        alt="post"
-        className="h-32 w-full object-cover md:h-80"
-        onMouseOver={handleHover}
-      />
-    </div>
-  );
-};
-
-const PostInfo = ({ hover, handleHover, comments, likes }) => {
-  return (
-    hover && (
-      <div
-        className="absolute top-0 flex h-full w-full items-center justify-center gap-8 bg-black bg-opacity-50"
-        onMouseLeave={handleHover}
-      >
-        <div className="flex items-center gap-2">
-          <HiHeart className="text-2xl text-gray-50" />
-          <p className="text-gray-50">{likes}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <HiChatBubbleOvalLeft className="text-2xl text-gray-50" />
-          <p className="text-gray-50">{comments}</p>
-        </div>
-      </div>
-    )
-  );
-};

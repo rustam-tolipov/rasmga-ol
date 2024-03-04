@@ -6,6 +6,11 @@ export async function getPosts() {
   return response.data;
 }
 
+export async function getReels() {
+  const response = await axios.get(`${BASE_URL}/reels`);
+  return response.data;
+}
+
 export async function getPostsByPage({ pageParam = 1 }) {
   const response = await axios.get(
     `${BASE_URL}/home?page=${pageParam}&per_page=5`,

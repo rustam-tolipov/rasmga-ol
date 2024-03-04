@@ -8,16 +8,15 @@ import {
   HiMiniSpeakerXMark,
 } from "react-icons/hi2";
 import { useInView } from "framer-motion";
-import Reveal from "../ui/Reveal";
 import Like from "../ui/Like";
 import LoadingReels from "../features/loading/LoadingReels";
-import usePosts from "../hooks/usePosts";
 import { NavLink } from "react-router-dom";
+import useReels from "../hooks/useReels";
 
 const Reels = () => {
   const [muted, setMuted] = useState(true);
 
-  const { isLoading, posts, error } = usePosts();
+  const { isLoading, reels, error } = useReels();
 
   if (isLoading) {
     return <LoadingReels />;
@@ -26,8 +25,6 @@ const Reels = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
-  const reels = posts.filter((post) => post.image?.url.includes("mp4"));
 
   return (
     <div className="flex h-[94dvh] snap-y snap-mandatory flex-col items-center gap-4 overflow-scroll sm:h-[100dvh] sm:py-12">
