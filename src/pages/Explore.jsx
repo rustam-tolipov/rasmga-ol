@@ -12,11 +12,12 @@ const Explore = () => {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetching: isLoading,
+    isFetching,
     isFetchingNextPage,
+    status,
   } = useInfinitePosts();
 
-  if (isLoading) {
+  if (status === "pending") {
     return <LoadingExplore />;
   }
 
@@ -25,8 +26,8 @@ const Explore = () => {
       <div className="mt-12 grid grid-cols-3 gap-1 p-8 sm:mt-0 xl:w-[70dvw]">
         {data?.pages?.map((group, i) => (
           <React.Fragment key={i}>
-            {group.data.map((post) => (
-              <LoadMedia media={post.image?.url} i={i} key={i} />
+            {group.data.map((post, index) => (
+              <LoadMedia media={post.image?.url} i={index} key={index} />
             ))}
           </React.Fragment>
         ))}
@@ -35,7 +36,7 @@ const Explore = () => {
       <LoadMore
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}
-        isFetching={isLoading}
+        isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
       />
     </div>

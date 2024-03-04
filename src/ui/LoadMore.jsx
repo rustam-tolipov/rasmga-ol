@@ -7,16 +7,10 @@ const LoadMore = ({
   isFetching,
   isFetchingNextPage,
 }) => {
-  const ref = useRef();
-  const isInView = useInView(ref);
-
-  if (isInView) {
-    console.log("In view");
-  }
 
   return (
     <>
-      <div ref={ref} className="flex justify-center">
+      <div className="flex justify-center">
         <button
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}

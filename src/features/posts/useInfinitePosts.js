@@ -16,7 +16,7 @@ const useInfinitePosts = () => {
     queryFn: getPostsByPage,
     getNextPageParam: (lastPage, pages) => {
       return lastPage.meta.next_page;
-    },
+  },
   });
 
   return { data, error, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, status };

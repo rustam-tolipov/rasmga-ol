@@ -4,7 +4,7 @@ import useFollow from "../../hooks/useFollow";
 import DeletePost from "./DeletePost";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
-const Header = ({ username, avatar, created_at, user_id, is_followed, id }) => {
+const Header = ({ username, avatar, created_at, user_id, id }) => {
   const { isFollowing, followUser } = useFollow();
 
   const { timeAgo } = useTimeAgo();
@@ -26,7 +26,7 @@ const Header = ({ username, avatar, created_at, user_id, is_followed, id }) => {
         </NavLink>
         <span className="text-2xl text-gray-400">·</span>
         <span className="text-sm text-gray-400">{timeAgo(created_at)}</span>
-        {!is_followed && (
+        {/* {!is_followed && (
           <>
             <span className="text-2xl text-gray-400">·</span>
             <button
@@ -37,7 +37,7 @@ const Header = ({ username, avatar, created_at, user_id, is_followed, id }) => {
               {isFollowing ? "Following" : "Follow"}
             </button>
           </>
-        )}
+        )} */}
         {/* THIS BUTTON DELETES POST */}
         <DeletePost id={id} />
       </div>
