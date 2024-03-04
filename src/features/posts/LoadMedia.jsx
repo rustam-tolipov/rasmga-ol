@@ -56,7 +56,7 @@ export const LoadMedia = ({ media, inModal, is_video, size }) => {
                   : media.reels?.url
           }
           alt="post"
-          className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
+          className="mx-auto h-fit max-h-[80dvh] min-h-[50dvh] w-fit object-cover lg:max-h-[80dvh]"
           ref={ref}
           onClick={handlePauseVideo}
           loop
@@ -105,7 +105,7 @@ export const LoadMedia = ({ media, inModal, is_video, size }) => {
                 : media.reels?.url
         }
         alt="post"
-        className="mx-auto h-fit max-h-[80dvh] w-fit object-cover lg:max-h-[80dvh]"
+        className="mx-auto h-fit max-h-[80dvh] min-h-[50dvh] w-fit object-cover lg:max-h-[80dvh]"
       />
     </Reveal>
   );

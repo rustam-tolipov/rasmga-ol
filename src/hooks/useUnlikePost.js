@@ -15,6 +15,10 @@ const useUnlikePost = () => {
       });
 
       queryClient.invalidateQueries({
+        queryKey: ["home"],
+      });
+
+      queryClient.invalidateQueries({
         queryKey: ["me"],
       });
     },

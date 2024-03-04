@@ -3,9 +3,18 @@ import React from "react";
 import { getPosts } from "../services/apiPosts";
 import usePosts from "../hooks/usePosts";
 import LoadingExplore from "../features/loading/LoadingExplore";
+import useInfinitePosts from "../features/posts/useInfinitePosts";
+import LoadMore from "../ui/LoadMore";
 
 const Explore = () => {
-  const { isLoading, posts, error } = usePosts();
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching: isLoading,
+    isFetchingNextPage,
+  } = useInfinitePosts();
 
   if (isLoading) {
     return <LoadingExplore />;
@@ -14,10 +23,21 @@ const Explore = () => {
   return (
     <div className="flex flex-col xl:items-center">
       <div className="mt-12 grid grid-cols-3 gap-1 p-8 sm:mt-0 xl:w-[70dvw]">
-        {posts?.map((post, i) => (
-          <LoadMedia media={post.image?.url} i={i} key={i} />
+        {data?.pages?.map((group, i) => (
+          <React.Fragment key={i}>
+            {group.data.map((post) => (
+              <LoadMedia media={post.image?.url} i={i} key={i} />
+            ))}
+          </React.Fragment>
         ))}
       </div>
+
+      <LoadMore
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetching={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
+      />
     </div>
   );
 };

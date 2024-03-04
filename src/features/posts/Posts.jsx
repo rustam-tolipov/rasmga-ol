@@ -1,19 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import Post from "./Post";
 import LoadingPosts from "../loading/LoadingPosts";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { BASE_URL } from "../../utils/constants";
+import useInfinitePosts from "./useInfinitePosts";
+import LoadMore from "../../ui/LoadMore";
 
 const Posts = () => {
-  const fetchPosts = async ({ pageParam = 1 }) => {
-    const response = await axios.get(
-      `${BASE_URL}/home?page=${pageParam}&per_page=1`,
-    );
-    return response.data;
-  };
-
   const {
     data,
     error,
@@ -22,21 +13,17 @@ const Posts = () => {
     isFetching,
     isFetchingNextPage,
     status,
-  } = useInfiniteQuery({
-    queryKey: ["projects"],
-    queryFn: fetchPosts,
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage.meta.next_page;
-    },
-  });
+  } = useInfinitePosts();
 
-  if (status === "loading") {
+  if (status === "pending") {
     return <LoadingPosts />;
   }
 
   if (status === "error") {
     return <div>Error: {error.message}</div>;
   }
+
+  console.log(status);
 
   return (
     <div className="col-start-1 col-end-2 sm:px-24">
@@ -49,20 +36,12 @@ const Posts = () => {
           </React.Fragment>
         ))}
 
-        <div>
-          <button
-            onClick={() => fetchNextPage()}
-            disabled={!hasNextPage || isFetchingNextPage}
-            className="rounded-full bg-gray-800 px-4 py-2 text-gray-50"
-          >
-            {isFetchingNextPage
-              ? "Loading more..."
-              : hasNextPage
-                ? "Load More"
-                : "Nothing more to load"}
-          </button>
-        </div>
-        <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
+        <LoadMore
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetching={isFetching}
+          isFetchingNextPage={isFetchingNextPage}
+        />
       </div>
     </div>
   );

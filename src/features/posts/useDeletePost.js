@@ -14,6 +14,10 @@ const useDeletePost = () => {
       queryClient.invalidateQueries({
         queryKey: ["posts"],
       });
+
+      queryClient.invalidateQueries({
+        queryKey: ["home"],
+      });
     },
     onError: (error) => {
       toast.error("An error occurred: " + error.message);

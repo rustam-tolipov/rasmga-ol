@@ -16,6 +16,10 @@ const useLikeComment = () => {
       });
 
       queryClient.invalidateQueries({
+        queryKey: ["home"],
+      });
+
+      queryClient.invalidateQueries({
         queryKey: ["me"],
       });
     },

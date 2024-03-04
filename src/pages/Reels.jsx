@@ -41,7 +41,7 @@ const Reels = () => {
 export default Reels;
 
 const Reel = ({ reel, muted, setMuted }) => {
-  const { id, image, likes, comments, created_at, username, avatar, content } =
+  const { id, image, likes, comments, created_at, username, avatar, caption } =
     reel;
 
   return (
@@ -85,8 +85,15 @@ const Reel = ({ reel, muted, setMuted }) => {
             </div>
 
             <div className="text-sm">
-              lorem ipsum dolor sit amet, consectetur{" "}
-              <span className="text-sm text-gray-400">...more</span>
+              {caption ? (
+                <p>
+                  <span className="font-semibold">{username}</span> {caption}
+                </p>
+              ) : (
+                <p>
+                  <span className="font-semibold">{username}</span> Reels
+                </p>
+              )}
             </div>
           </div>
 

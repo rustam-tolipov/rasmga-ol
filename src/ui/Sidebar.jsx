@@ -32,8 +32,9 @@ const Sidebar = () => {
         </Modal>
       )}
 
-      {openModal === "notifications" &&
-        <Notifications onClose={setOpenModal} />}
+      {openModal === "notifications" && (
+        <Notifications onClose={setOpenModal} />
+      )}
     </aside>
   );
 };
@@ -122,7 +123,11 @@ const LinkItem = ({ icon, text, to }) => {
     <li className={text == "Search" ? "sm:hidden" : ""}>
       <NavLink
         to={to}
-        className="flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+        className={({ isActive }) =>
+          isActive
+            ? "flex cursor-pointer items-center gap-4 rounded-md bg-[#343333] px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+            : "flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+        }
       >
         {icon} <span className="text-lg sm:hidden xl:block">{text}</span>
       </NavLink>
@@ -133,7 +138,11 @@ const LinkItem = ({ icon, text, to }) => {
 const Footer = () => {
   return (
     <ul className="">
-      <LinkItem icon={<HiBars3 className="text-3xl" />} text="Menu" />
+      <LinkItem
+        icon={<HiBars3 className="text-3xl" />}
+        text="Menu"
+        to="/menu"
+      />
     </ul>
   );
 };
