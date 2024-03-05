@@ -19,8 +19,6 @@ const LoginForm = ({ login, signup, isLoading, error, isLogin = true }) => {
     }
   };
 
-  console.log("isLoading", isLoading);
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

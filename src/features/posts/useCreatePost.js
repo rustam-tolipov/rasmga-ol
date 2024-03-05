@@ -34,8 +34,6 @@ const useCreatePost = () => {
 
   const isLoading = status === "pending";
 
-  console.log("isLoading", isLoading);
-
   return { isLoading, createPost: mutate };
 };
 

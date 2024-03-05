@@ -1,14 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  HiCamera,
-  HiChevronLeft,
-  HiChevronRight,
-  HiMiniXMark,
-} from "react-icons/hi2";
-import { createPost } from "../services/apiPosts";
-import toast from "react-hot-toast";
+import { HiCamera, HiChevronRight, HiMiniXMark } from "react-icons/hi2";
 import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
 import TopHeader from "../ui/TopHeader";
@@ -16,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import useCreatePost from "../features/posts/useCreatePost";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
+
+const imageSizes = ["standard", "horizontal", "vertical"];
+const videoSizes = ["reels", "standard", "horizontal"];
 
 const CreatePost = () => {
   const [open, setOpen] = useState(false);
@@ -27,19 +23,20 @@ const CreatePost = () => {
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
   const [content, setContent] = useState("");
+  const [size, setSize] = useState("standard");
 
   const navigate = useNavigate();
 
   const { isLoading, createPost } = useCreatePost();
 
   const handleShare = () => {
-    createPost({ image: file, content });
+    const is_video = fileType === "video/mp4" ? true : false;
+    createPost({ image: file, content, size, is_video });
+
     setTimeout(() => {
       setOpen(false);
       setFile(null);
       setCurrentPage(0);
-      queryClient.invalidateQueries(["posts"]);
-      queryClient.invalidateQueries(["home"]);
       navigate("/");
     }, 1000);
   };
@@ -47,6 +44,10 @@ const CreatePost = () => {
   const handleChange = (file) => {
     setFile(file);
     setFileType(file.type);
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.value);
   };
 
   const handleContent = (e) => {
@@ -131,6 +132,24 @@ const CreatePost = () => {
               transition={{ duration: 0.5 }}
             >
               <LoadMedia media={URL.createObjectURL(file)} type={fileType} />
+
+              <select
+                className="absolute right-2 top-12 w-fit rounded-lg bg-gray-700 px-4 py-2 text-sm text-gray-50 outline-none"
+                disabled={isLoading}
+                onChange={handleSize}
+              >
+                {fileType === "video/mp4"
+                  ? videoSizes.map((size, index) => (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    ))
+                  : imageSizes.map((size, index) => (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    ))}
+              </select>
             </motion.div>
           )}
           {currentPage === 2 && (
