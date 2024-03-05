@@ -1,12 +1,14 @@
-import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import React from "react";
 import { createPost } from "../../services/apiPosts";
 import toast from "react-hot-toast";
 
 const useCreatePost = () => {
   const queryClient = useQueryClient();
-
-
 
   const { status, mutate } = useMutation({
     mutationFn: createPost,
@@ -15,6 +17,10 @@ const useCreatePost = () => {
 
       queryClient.invalidateQueries({
         queryKey: ["posts"],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["userPosts"],
       });
 
       queryClient.invalidateQueries({
@@ -28,7 +34,7 @@ const useCreatePost = () => {
 
   const isLoading = status === "pending";
 
-  console.log('isLoading', isLoading);
+  console.log("isLoading", isLoading);
 
   return { isLoading, createPost: mutate };
 };

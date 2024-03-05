@@ -12,7 +12,7 @@ const useUserPosts = () => {
     data: posts,
     error,
   } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["userPosts"],
     queryFn: () => getUserPosts(username),
   });
 
