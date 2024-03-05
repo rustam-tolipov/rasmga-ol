@@ -3,15 +3,20 @@ import { useForm } from "react-hook-form";
 import { CiLock, CiMail, CiUser } from "react-icons/ci";
 import useLogin from "./useLogin";
 
-const LoginForm = ({ login, isLoading, error, isLogin = true }) => {
+const LoginForm = ({ login, signup, isLoading, error, isLogin = true }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm();
 
   const onSubmit = (data) => {
-    login(data);
+    if (isLogin) {
+      login(data);
+    } else {
+      signup(data);
+    }
   };
 
   return (
@@ -34,7 +39,6 @@ const LoginForm = ({ login, isLoading, error, isLogin = true }) => {
                 message: "Username must be at least 3 characters",
               },
             })}
-            defaultValue="bob"
             placeholder="Username"
           />
         </div>
@@ -55,7 +59,6 @@ const LoginForm = ({ login, isLoading, error, isLogin = true }) => {
               pattern: { value: /^\S+@\S+$/i, message: "Invalid email" },
             })}
             placeholder="Email"
-            defaultValue={"bob@gmail.com"}
           />
         </div>
         {errors.email && (
@@ -78,7 +81,6 @@ const LoginForm = ({ login, isLoading, error, isLogin = true }) => {
               },
             })}
             placeholder="Password"
-            defaultValue={"password"}
           />
         </div>
         {errors.password && (
@@ -101,9 +103,10 @@ const LoginForm = ({ login, isLoading, error, isLogin = true }) => {
                   message:
                     "Password confirmation must be at least 6 characters",
                 },
+                validate: (value) =>
+                  value === getValues("password") || "Passwords do not match",
               })}
               placeholder="Password Confirmation"
-              defaultValue={"password"}
             />
           </div>
           {errors.passwordConfirmation && (

@@ -1,10 +1,12 @@
 import React from "react";
-import useLogin from "../features/authentication/useLogin";
 import { NavLink } from "react-router-dom";
 import LoginForm from "../features/authentication/LoginForm";
+import useSignup from "../features/authentication/useSignup";
+import useLogin from "../features/authentication/useLogin";
 
 const Signup = () => {
-  const { login, isLoading, error } = useLogin();
+  const { signup, isLoading, error } = useSignup();
+  const { login } = useLogin();
 
   const handleGuestCheckout = () => {
     login({ username: "bob", email: "bob@gmail.com", password: "password" });
@@ -33,12 +35,10 @@ const Signup = () => {
         </div>
         <span className="hidden h-full w-[1px] bg-gray-500 lg:block"></span>
         <div className="flex w-full flex-col">
-          <h1 className="text-2xl font-thin text-gray-50">
-            CREATE AN ACCOUNT
-          </h1>
+          <h1 className="text-2xl font-thin text-gray-50">CREATE AN ACCOUNT</h1>
 
           <LoginForm
-            login={login}
+            signup={signup}
             isLoading={isLoading}
             error={error}
             isLogin={false}

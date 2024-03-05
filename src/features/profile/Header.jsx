@@ -9,6 +9,8 @@ import Followers from "./Followers";
 import Followings from "./Followings";
 import FollowButton from "../../ui/FollowButton";
 import EditButton from "../../ui/EditButton";
+import Logout from "../../ui/Logout";
+import { useLogout } from "../authentication/useLogout";
 
 const Header = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,6 +18,7 @@ const Header = () => {
 
   const { currentUserLoading, currentUser, currentUserError } =
     useCurrentUser();
+  const { logout, isLoading } = useLogout();
 
   const { userLoading, user, userError } = useProfile();
 
@@ -67,7 +70,15 @@ const Header = () => {
               {currentUser?.id !== id ? (
                 <FollowButton is_followed={is_followed} id={id} />
               ) : (
-                <EditButton />
+                <>
+                  <EditButton />
+                  <button
+                    className="rounded-lg bg-red-500 px-6 py-1 text-sm text-gray-50"
+                    onClick={() => logout()}
+                  >
+                    {isLoading ? "Loading..." : "Logout"}
+                  </button>
+                </>
               )}
             </div>
           </div>
