@@ -30,6 +30,9 @@ const Notifications = ({ onClose }) => {
       </TopHeader>
 
       <div className="mt-12 flex flex-col gap-6 px-4 py-3 sm:mt-0">
+        {notifications.length === 0 && (
+          <div className="text-center text-gray-200">No notifications yet</div>
+        )}
         {notifications?.map((notification, index) => (
           <Notification key={index} notification={notification} />
         ))}

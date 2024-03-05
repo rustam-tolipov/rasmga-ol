@@ -20,6 +20,7 @@ import Followings from "./pages/Followings";
 import CreatePost from "./pages/CreatePost";
 import Notifications from "./pages/Notifications";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,6 +69,7 @@ function App() {
           </Route>
 
           <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

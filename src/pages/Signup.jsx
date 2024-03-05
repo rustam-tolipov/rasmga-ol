@@ -3,7 +3,7 @@ import useLogin from "../features/authentication/useLogin";
 import { NavLink } from "react-router-dom";
 import LoginForm from "../features/authentication/LoginForm";
 
-const Login = () => {
+const Signup = () => {
   const { login, isLoading, error } = useLogin();
 
   const handleGuestCheckout = () => {
@@ -34,17 +34,22 @@ const Login = () => {
         <span className="hidden h-full w-[1px] bg-gray-500 lg:block"></span>
         <div className="flex w-full flex-col">
           <h1 className="text-2xl font-thin text-gray-50">
-            HAVE AN ACCOUNT? LOGIN
+            CREATE AN ACCOUNT
           </h1>
 
-          <LoginForm login={login} isLoading={isLoading} error={error} />
+          <LoginForm
+            login={login}
+            isLoading={isLoading}
+            error={error}
+            isLogin={false}
+          />
           <div className="flex items-center gap-3">
-            <span className="text-gray-500">Don&apos;t have an account?</span>
+            <span className="text-gray-500">Already have an account?</span>
             <NavLink
-              to="/signup"
+              to="/login"
               className="animate-pulse text-gray-50 hover:text-gray-300 hover:underline"
             >
-              SIGN UP
+              LOGIN
             </NavLink>
           </div>
         </div>
@@ -53,11 +58,4 @@ const Login = () => {
   );
 };
 
-export default Login;
-
-/* <div className="flex flex-col items-center gap-4 text-gray-50 shadow-lg shadow-[#252627]">
-          <img src="/images/logo.svg" alt="RasmgaOl" className="w-40" />
-          <CiCamera className="text-6xl" />
-
-          <h1 className="text-2xl font-thin">USER LOGIN</h1>
-        </div> */
+export default Signup;

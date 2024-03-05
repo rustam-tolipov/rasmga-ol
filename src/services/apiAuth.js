@@ -22,6 +22,14 @@ export async function login(username, email, password) {
   return response.data;
 }
 
+export async function logout() {
+  const response = await axios.delete(`${BASE_URL}/auth/logout`);
+  
+  if (response.status !== 200) {
+    throw new Error("Failed to logout");
+  }
+}
+
 export async function getCurrentUser() {
   const response = await axios.get(`${BASE_URL}/auth/me`);
 

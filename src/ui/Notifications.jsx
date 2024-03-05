@@ -15,6 +15,11 @@ const Notifications = ({ onClose }) => {
     <Overlay onClose={onClose}>
       <div className="absolute left-[16dvw] top-0 h-screen w-fit bg-black">
         <div className="mt-12 flex flex-col gap-6 px-6 py-3 sm:mt-0">
+          {notifications?.length === 0 && (
+            <div className="text-center text-gray-200">
+              No notifications yet
+            </div>
+          )}
           {notifications?.map((notification, index) => (
             <Notification key={index} notification={notification} />
           ))}
@@ -29,7 +34,6 @@ const Notifications = ({ onClose }) => {
 export default Notifications;
 
 const Notification = ({ notification }) => {
-
   return (
     <div className="flex items-center gap-4">
       <div className="h-[2.8rem] w-[2.8rem] rounded-[50%]">
@@ -45,11 +49,7 @@ const Notification = ({ notification }) => {
       </div>
       <div className="ml-auto h-[2.8rem] w-[2.8rem]">
         {notification.thumb.includes(".mp4") ? (
-          <video
-            src={notification.thumb}
-            muted
-            className="h-full w-full"
-          />
+          <video src={notification.thumb} muted className="h-full w-full" />
         ) : (
           <img
             src={notification.thumb}

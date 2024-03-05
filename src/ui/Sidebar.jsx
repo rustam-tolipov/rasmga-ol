@@ -5,7 +5,6 @@ import {
   HiOutlineFilm,
   HiOutlineHeart,
   HiOutlinePlusCircle,
-  HiBars3,
   HiUserCircle,
 } from "react-icons/hi2";
 import { IoCompassOutline } from "react-icons/io5";
@@ -16,6 +15,7 @@ import CreatePostForm from "./CreatePostForm";
 import useCurrentUser from "../hooks/useCurrentUser";
 import LoadingItem from "../features/loading/LoadingItem";
 import Notifications from "./Notifications";
+import Logout from "./Logout";
 
 const Sidebar = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -136,12 +136,8 @@ const LinkItem = ({ icon, text, to }) => {
 
 const Footer = () => {
   return (
-    <ul className="">
-      <LinkItem
-        icon={<HiBars3 className="text-3xl" />}
-        text="Menu"
-        to="/menu"
-      />
-    </ul>
+    <footer className="mt-auto flex flex-col items-center justify-center gap-4">
+      <Logout />
+    </footer>
   );
 };

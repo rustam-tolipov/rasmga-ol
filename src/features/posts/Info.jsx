@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Like from "../../ui/Like";
 import {
   HiOutlineBookmark,
@@ -8,9 +8,9 @@ import {
 } from "react-icons/hi2";
 import useCommentPost from "./useCommentPost";
 
-const Info = ({ likes, comments, handleModal, id, username, content }) => {
+const Info = ({ likes, comments, handleModal, id, username, caption }) => {
   const { isCommenting, postComment } = useCommentPost();
-  const [comment, setComment] = React.useState("");
+  const [comment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ const Info = ({ likes, comments, handleModal, id, username, content }) => {
       <div className="text-sm font-semibold">{likes?.length} likes</div>
       <div className="flex gap-1">
         <span className="text-sm font-semibold">{username}</span>
-        <p className="text-sm">{content?.slice(0, 56)}</p>
+        <p className="text-sm">{caption?.slice(0, 56)}</p>
         <span className="text-sm text-gray-400">...more</span>
       </div>
       {comments?.length > 0 && (

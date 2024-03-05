@@ -8,22 +8,22 @@ const useLogin = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: login, isLoading } = useMutation({
+  const { mutate: login, isLoading, error } = useMutation({
     mutationFn: ({ username, email, password }) =>
       loginApi(username, email, password),
     onSuccess: (user) => {
       toast.success("Login successful");
 
-      queryClient.setQueryData("me", user);
+      queryClient.setQueryData(["me"], user);
 
       navigate("/");
     },
     onError: (error) => {
-      toast.error("Login failed");
+      toast.error(`Login failed: ${error.response.data.error}`);
     },
   });
 
-  return { login, isLoading };
+  return { login, isLoading, error };
 };
 
 export default useLogin;
