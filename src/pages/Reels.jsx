@@ -54,10 +54,13 @@ const Reel = ({ reel, muted, setMuted }) => {
             <Like likes={likes} id={id} />
             <span className="text-xs">{likes.length}</span>
           </div>
-          <div className="flex flex-col items-center">
+          <NavLink
+            className="flex flex-col items-center"
+            to={`/profile/${username}/post/${id}`}
+          >
             <HiOutlineChatBubbleOvalLeft className="text-2xl" />
             <span className="text-xs">{comments.length}</span>
-          </div>
+          </NavLink>
           <HiOutlinePaperAirplane className="text-2xl" />
         </div>
 
@@ -94,7 +97,9 @@ const Reel = ({ reel, muted, setMuted }) => {
             </div>
           </div>
 
-          <HiMiniEllipsisHorizontal className="ml-auto text-xl" />
+          <NavLink to={`/profile/${username}/post/${id}`} className="ml-auto">
+            <HiMiniEllipsisHorizontal className="ml-auto text-xl" />
+          </NavLink>
         </div>
       </div>
     </div>

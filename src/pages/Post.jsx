@@ -13,7 +13,11 @@ const Post = () => {
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen animate-pulse items-center justify-center bg-[#121212] text-gray-50">
+        <h1 className="px-8 text-center text-lg">Post Loading...</h1>
+      </div>
+    );
   }
 
   if (error) {

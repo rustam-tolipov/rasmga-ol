@@ -6,6 +6,9 @@ import useCreatePost from "../features/posts/useCreatePost";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
 
+const imageSizes = ["standard", "horizontal", "vertical"];
+const videoSizes = ["reels", "standard", "horizontal"];
+
 const CreatePostForm = ({ onClose }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(null);
@@ -137,10 +140,17 @@ const CreatePostForm = ({ onClose }) => {
                 disabled={isLoading}
                 onChange={handleSize}
               >
-                <option value="standard">Standard</option>
-                <option value="horizontal">Horizontal</option>
-                <option value="vertical">Vertical</option>
-                <option value="reels">reels</option>
+                {fileType === "video/mp4"
+                  ? videoSizes.map((size, index) => (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    ))
+                  : imageSizes.map((size, index) => (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    ))}
               </select>
             </motion.div>
           )}
