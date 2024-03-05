@@ -3,6 +3,15 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
+const loadingTexts = [
+  "Loading...",
+  "Still loading...",
+  `The Render server takes a bit
+   to wake up, 
+   thanks for your patience...`,
+  "Thanks for your patience...",
+];
+
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const authToken = JSON.parse(localStorage.getItem("auth-token"));
@@ -20,25 +29,23 @@ const ProtectedRoute = ({ children }) => {
 
   const [loadingText, setLoadingText] = useState("Loading...");
 
-  setTimeout(() => {
-    setLoadingText("Still loading...");
-  }, 1000);
+  useEffect(() => {
+    if (isLoading) {
+      const interval = setInterval(() => {
+        setLoadingText(
+          loadingTexts[Math.floor(Math.random() * loadingTexts.length)],
+        );
+      }, 3000);
 
-  setTimeout(() => {
-    setLoadingText(
-      "The Render server takes a bit to wake up, thanks for your patience...",
-    );
-  }, 2000);
-
-  setTimeout(() => {
-    setLoadingText("Thanks for your patience...");
-  }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isLoading]);
 
   // 3. While loading, show a loading spinner
   if (isLoading) {
     return (
       <div className="flex h-screen animate-pulse items-center justify-center bg-[#121212] text-gray-50">
-        <h1>{loadingText}</h1>
+        <h1 className="px-8 text-center text-lg">{loadingText}</h1>
       </div>
     );
   }
