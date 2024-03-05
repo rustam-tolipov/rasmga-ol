@@ -8,7 +8,7 @@ const useSignup = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: signup, isLoading, error } = useMutation({
+  const { mutate: signup, status, error } = useMutation({
     mutationFn: ({ username, email, password, passwordConfirm }) =>
     signupApi(username, email, password, passwordConfirm),
     onSuccess: (user) => {
@@ -22,6 +22,8 @@ const useSignup = () => {
       toast.error(`Login failed: ${error.response.data.error}`);
     },
   });
+
+  const isLoading = status === "pending";
 
   return { signup, isLoading, error };
 };

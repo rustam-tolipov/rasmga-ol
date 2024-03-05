@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const useLikePost = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isLiking, mutate: likePost } = useMutation({
+  const { status, mutate: likePost } = useMutation({
     mutationFn: likePostApi,
     onSuccess: () => {
       toast.success("Post liked successfully");
@@ -27,6 +27,8 @@ const useLikePost = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isLiking = status === "pending";
 
   return { isLiking, likePost };
 };

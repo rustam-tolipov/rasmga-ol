@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const useCommentPost = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isCommenting, mutate: postComment } = useMutation({
+  const { status, mutate: postComment } = useMutation({
     mutationFn: postCommentApi,
     onSuccess: () => {
       toast.success("Comment posted successfully");
@@ -27,6 +27,8 @@ const useCommentPost = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isCommenting = status === "pending";
 
   return { isCommenting, postComment };
 };

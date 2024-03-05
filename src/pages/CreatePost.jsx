@@ -13,6 +13,7 @@ import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
 import TopHeader from "../ui/TopHeader";
 import { useNavigate } from "react-router-dom";
+import useCreatePost from "../features/posts/useCreatePost";
 
 const fileTypes = ["JPG", "PNG", "GIF", "MP4"];
 
@@ -22,7 +23,6 @@ const CreatePost = () => {
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
-  const [isCreating, setIsCreating] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
@@ -30,28 +30,18 @@ const CreatePost = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading, mutate } = useMutation({
-    mutationFn: createPost,
-    onSuccess: () => {
-      toast.success("Post created successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["posts"],
-      });
-
-      reset();
-      setOpen(false);
-      navigate("/");
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
+  const { isLoading, createPost } = useCreatePost();
 
   const handleShare = () => {
-    setIsCreating(true);
-    mutate({ image: file, content });
-    navigate("/");
+    createPost({ image: file, content });
+    setTimeout(() => {
+      setOpen(false);
+      setFile(null);
+      setCurrentPage(0);
+      queryClient.invalidateQueries(["posts"]);
+      queryClient.invalidateQueries(["home"]);
+      navigate("/");
+    }, 1000);
   };
 
   const handleChange = (file) => {
@@ -67,7 +57,6 @@ const CreatePost = () => {
     alert("Are you sure you want to cancel?");
     setFile(null);
     setCurrentPage(0);
-    setIsCreating(false);
     setOpen(false);
   };
 
@@ -94,7 +83,7 @@ const CreatePost = () => {
             onClick={handleShare}
             disabled={isLoading}
           >
-            {isCreating ? "Creating..." : "Share"}
+            {isLoading ? "Creating..." : "Share"}
           </button>
         ) : (
           <HiChevronRight

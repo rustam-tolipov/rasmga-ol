@@ -19,6 +19,8 @@ const LoginForm = ({ login, signup, isLoading, error, isLogin = true }) => {
     }
   };
 
+  console.log("isLoading", isLoading);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -119,10 +121,10 @@ const LoginForm = ({ login, signup, isLoading, error, isLogin = true }) => {
 
       <button
         type="submit"
-        className="mt-6 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500"
+        className={`mt-6 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500 ${isLoading ? "animate-pulse cursor-not-allowed" : ""}`}
         disabled={isLoading}
       >
-        {isLoading ? "Loading..." : isLogin ? "Login" : "Sign Up"}
+        {isLoading ? "..." : isLogin ? "Login" : "Sign Up"}
       </button>
     </form>
   );

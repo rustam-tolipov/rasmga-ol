@@ -8,7 +8,7 @@ const useCreatePost = () => {
 
 
 
-  const { isLoading, mutate } = useMutation({
+  const { status, mutate } = useMutation({
     mutationFn: createPost,
     onSuccess: () => {
       toast.success("Post created successfully");
@@ -25,6 +25,10 @@ const useCreatePost = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isLoading = status === "pending";
+
+  console.log('isLoading', isLoading);
 
   return { isLoading, createPost: mutate };
 };

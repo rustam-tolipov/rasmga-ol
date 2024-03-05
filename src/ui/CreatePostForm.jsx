@@ -15,11 +15,15 @@ const CreatePostForm = ({ onClose }) => {
 
   const { isLoading, createPost } = useCreatePost();
 
-
   const handleShare = () => {
     const is_video = fileType === "video/mp4" ? true : false;
     createPost({ image: file, content, size, is_video });
-    onClose(false);
+
+    setTimeout(() => {
+      onClose(false);
+      setFile(null);
+      setCurrentPage(0);
+    }, 1000);
   };
 
   const handleChange = (file) => {
@@ -83,6 +87,7 @@ const CreatePostForm = ({ onClose }) => {
                 onClick={() =>
                   currentPage === 2 ? handleShare() : handleNext()
                 }
+                disabled={isLoading}
               >
                 {currentPage === 2
                   ? isLoading
@@ -128,7 +133,7 @@ const CreatePostForm = ({ onClose }) => {
               <LoadMedia media={URL.createObjectURL(file)} type={fileType} />
 
               <select
-                className="absolute right-2 top-12 w-fit rounded-lg bg-gray-700 px-4 py-2 text-sm text-gray-50"
+                className="absolute right-2 top-12 w-fit rounded-lg bg-gray-700 px-4 py-2 text-sm text-gray-50 outline-none"
                 disabled={isLoading}
                 onChange={handleSize}
               >

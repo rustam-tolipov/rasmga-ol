@@ -27,7 +27,7 @@ const Signup = () => {
 
           <button
             type="button"
-            className="mt-4 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500"
+            className={`mt-6 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500 ${isLoading ? "animate-pulse cursor-not-allowed" : ""}`}
             onClick={handleGuestCheckout}
           >
             {isLoading ? "Loading..." : "Continue as Guest"}

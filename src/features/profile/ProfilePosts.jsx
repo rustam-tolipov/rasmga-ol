@@ -6,12 +6,13 @@ import {
   HiHeart,
   HiMiniVideoCamera,
 } from "react-icons/hi2";
+import { LoadingProfilePosts } from "../loading/LoadingProfile";
 
 const ProfilePosts = () => {
   const { isLoading, posts, error } = useUserPosts();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingProfilePosts />;
   }
 
   return <Posts posts={posts} />;

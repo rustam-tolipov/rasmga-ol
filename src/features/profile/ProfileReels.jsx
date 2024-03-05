@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import useUserPosts from "../posts/useUserPosts";
 import { HiChatBubbleOvalLeft, HiHeart } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
+import { LoadingProfilePosts } from "../loading/LoadingProfile";
 
 const ProfileReels = () => {
   const { isLoading, posts, error } = useUserPosts();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingProfilePosts />;
   }
 
   const reels = posts?.filter((post) => post.image?.reels?.url.endsWith("mp4"));

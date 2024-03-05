@@ -58,9 +58,10 @@ const Info = ({ likes, comments, handleModal, id, username, caption }) => {
         <div className="flex gap-2">
           {comment.length > 0 && (
             <button className="text-sm font-semibold" type="submit">
-              {isCommenting ? "Posting..." : "Post"}
+              Post
             </button>
           )}
+          {isCommenting && "Posting..."}
           <HiOutlineFaceSmile className="text-lg" />
         </div>
       </form>

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 const useUnLikeComment = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isUnLiking, mutate: unLikeComment } = useMutation({
+  const { status, mutate: unLikeComment } = useMutation({
     mutationFn: unLikeCommentApi,
     onSuccess: () => {
       toast.success("Comment unliked successfully");
@@ -27,6 +27,8 @@ const useUnLikeComment = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isUnLiking = status === "pending";
 
   return { isUnLiking, unLikeComment };
 };

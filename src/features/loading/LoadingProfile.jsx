@@ -15,12 +15,11 @@ const LoadingProfile = () => {
         <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
       <LoadingHeader />
-      <LoadingProfilePosts />
     </div>
   );
 };
 
-const LoadingProfilePosts = () => {
+export const LoadingProfilePosts = () => {
   return (
     <div className="flex flex-col xl:w-[70dvw]">
       <div className="grid w-full grid-cols-3 gap-1">

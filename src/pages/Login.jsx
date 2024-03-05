@@ -25,10 +25,10 @@ const Login = () => {
 
           <button
             type="button"
-            className="mt-4 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500"
+            className={`mt-6 rounded-sm bg-gray-700 px-2 py-3 text-white hover:bg-gray-500 ${isLoading ? "animate-pulse cursor-not-allowed" : ""}`}
             onClick={handleGuestCheckout}
           >
-            {isLoading ? "Loading..." : "Continue as Guest"}
+            {isLoading ? "Loging in..." : "Continue as Guest"}
           </button>
         </div>
         <span className="hidden h-full w-[1px] bg-gray-500 lg:block"></span>
