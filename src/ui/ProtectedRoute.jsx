@@ -28,7 +28,7 @@ const ProtectedRoute = ({ children }) => {
     setLoadingText(
       "The Render server takes a bit to wake up, thanks for your patience...",
     );
-  }, 3000);
+  }, 2000);
 
   setTimeout(() => {
     setLoadingText("Thanks for your patience...");
