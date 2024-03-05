@@ -5,6 +5,7 @@ import usePosts from "../hooks/usePosts";
 import LoadingExplore from "../features/loading/LoadingExplore";
 import useInfinitePosts from "../features/posts/useInfinitePosts";
 import LoadMore from "../ui/LoadMore";
+import TopHeader from "../ui/TopHeader";
 
 const Explore = () => {
   const {
@@ -23,7 +24,7 @@ const Explore = () => {
 
   return (
     <div className="flex flex-col xl:items-center">
-      <div className="mt-12 grid grid-cols-3 gap-1 p-8 sm:mt-0 xl:w-[70dvw]">
+      <div className="grid grid-cols-3 gap-1 sm:mt-0 sm:p-8 xl:w-[70dvw]">
         {data?.pages?.map((group, i) => (
           <React.Fragment key={i}>
             {group.data.map((post, index) => (
@@ -52,8 +53,8 @@ const LoadMedia = ({ media, i }) => {
         src={media}
         className={
           i % 7 === 2
-            ? "row-span-2 h-full w-full object-cover"
-            : "h-72 w-full object-cover"
+            ? "h-full w-full object-cover sm:row-span-2"
+            : " w-full object-cover sm:h-72"
         }
       ></video>
     );
@@ -64,8 +65,8 @@ const LoadMedia = ({ media, i }) => {
       alt="post"
       className={
         i % 7 === 2
-          ? "row-span-2 h-full w-full object-cover"
-          : "h-72 w-full object-cover"
+          ? "h-full w-full object-cover sm:row-span-2"
+          : "w-full object-cover sm:h-72"
       }
     />
   );

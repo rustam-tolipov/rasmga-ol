@@ -1,11 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useFollow from "../../hooks/useFollow";
 import DeletePost from "./DeletePost";
 import useTimeAgo from "../../hooks/useTimeAgo";
 
-const Header = ({ username, avatar, created_at, user_id, id }) => {
-  const { isFollowing, followUser } = useFollow();
+const Header = ({ username, avatar, created_at, id }) => {
 
   const { timeAgo } = useTimeAgo();
 
@@ -26,18 +24,6 @@ const Header = ({ username, avatar, created_at, user_id, id }) => {
         </NavLink>
         <span className="text-2xl text-gray-400">·</span>
         <span className="text-sm text-gray-400">{timeAgo(created_at)}</span>
-        {/* {!is_followed && (
-          <>
-            <span className="text-2xl text-gray-400">·</span>
-            <button
-              className="text-sm font-semibold text-blue-500"
-              onClick={() => followUser(user_id)}
-              disabled={isFollowing}
-            >
-              {isFollowing ? "Following" : "Follow"}
-            </button>
-          </>
-        )} */}
         {/* THIS BUTTON DELETES POST */}
         <DeletePost id={id} />
       </div>

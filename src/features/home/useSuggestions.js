@@ -1,4 +1,3 @@
-import React from "react";
 import { getSuggestions } from "../../services/apiUsers";
 import { useQuery } from "@tanstack/react-query";
 

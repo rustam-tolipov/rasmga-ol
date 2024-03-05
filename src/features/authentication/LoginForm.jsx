@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { CiLock, CiMail, CiUser } from "react-icons/ci";
-import useLogin from "./useLogin";
 
 const LoginForm = ({ login, signup, isLoading, error, isLogin = true }) => {
   const {

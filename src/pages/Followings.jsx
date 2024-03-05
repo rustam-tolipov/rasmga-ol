@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import LoadingFollowers from "../features/loading/LoadingFollowers";
 
 const Followings = () => {
-  const { followingsLoading, followings, followingsError } = useFollowings();
+  const { followingsLoading, followings } = useFollowings();
 
   const navigate = useNavigate();
 

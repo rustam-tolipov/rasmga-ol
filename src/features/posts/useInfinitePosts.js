@@ -1,5 +1,4 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import React from "react";
 import { getPostsByPage } from "../../services/apiPosts";
 
 const useInfinitePosts = () => {
@@ -14,7 +13,7 @@ const useInfinitePosts = () => {
   } = useInfiniteQuery({
     queryKey: ["home"],
     queryFn: getPostsByPage,
-    getNextPageParam: (lastPage, pages) => {
+    getNextPageParam: (lastPage) => {
       return lastPage.meta.next_page;
   },
   });

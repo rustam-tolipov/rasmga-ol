@@ -1,6 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { HiCamera, HiChevronRight, HiMiniXMark } from "react-icons/hi2";
 import { FileUploader } from "react-drag-drop-files";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,11 +12,6 @@ const imageSizes = ["standard", "horizontal", "vertical"];
 const videoSizes = ["reels", "standard", "horizontal"];
 
 const CreatePost = () => {
-  const [open, setOpen] = useState(false);
-
-  const queryClient = useQueryClient();
-  const { register, handleSubmit, reset, formState } = useForm();
-  const { errors } = formState;
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
@@ -34,7 +27,6 @@ const CreatePost = () => {
     createPost({ image: file, content, size, is_video });
 
     setTimeout(() => {
-      setOpen(false);
       setFile(null);
       setCurrentPage(0);
       navigate("/");
@@ -52,13 +44,6 @@ const CreatePost = () => {
 
   const handleContent = (e) => {
     setContent(e.target.value);
-  };
-
-  const handleCancel = () => {
-    alert("Are you sure you want to cancel?");
-    setFile(null);
-    setCurrentPage(0);
-    setOpen(false);
   };
 
   const handleBack = () => {

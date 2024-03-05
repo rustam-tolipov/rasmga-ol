@@ -12,6 +12,7 @@ import Sidebar from "./Sidebar";
 import { NavLink } from "react-router-dom";
 import useCurrentUser from "../hooks/useCurrentUser";
 import LoadingNavigation from "../features/loading/LoadingNavigation";
+import { IoCompassOutline } from "react-icons/io5";
 
 const AppLayout = () => {
   return (
@@ -43,8 +44,8 @@ const Navigation = () => {
         <div className="flex h-full items-center justify-around">
           <LinkItem icon={<HiOutlineHome className="text-3xl" />} to="/" />
           <LinkItem
-            icon={<HiMagnifyingGlass className="text-3xl" />}
-            to="/search"
+            icon={<IoCompassOutline className="text-3xl" />}
+            to="/explore"
           />
           <LinkItem icon={<HiOutlineFilm className="text-3xl" />} to="/reels" />
           <LinkItem

@@ -3,14 +3,14 @@ import TopHeader from "../ui/TopHeader";
 import { useNavigate } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
 import { useForm } from "react-hook-form";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editProfile } from "../services/apiUsers";
 import toast from "react-hot-toast";
 import useCurrentUser from "../hooks/useCurrentUser";
+import useEditProfile from "../features/profile/useEditProfile";
 
 const EditProfile = () => {
-  const { currentUserLoading, currentUser, currentUserError } =
-    useCurrentUser();
+  const { currentUser } = useCurrentUser();
 
   const queryClient = useQueryClient();
 
@@ -25,19 +25,7 @@ const EditProfile = () => {
     },
   });
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: editProfile,
-    onSuccess: (user) => {
-      toast.success("Profile updated successfully");
-
-      queryClient.invalidateQueries({
-        queryKey: ["me"],
-      });
-    },
-    onError: (error) => {
-      toast.error("An error occurred: " + error.message);
-    },
-  });
+  const { editProfile } = useEditProfile();
 
   const navigate = useNavigate();
 
@@ -46,7 +34,7 @@ const EditProfile = () => {
   };
 
   const onSubmit = (data) => {
-    mutate({ ...data, avatar: file });
+    editProfile({ ...data, avatar: file });
     navigate("/profile/" + data.username);
   };
 
@@ -86,9 +74,6 @@ const EditProfile = () => {
             </div>
             <div className="flex flex-col font-medium">
               <h3 className="text-md">username</h3>
-              {/* <button className="rounded-lg text-sm text-blue-500">
-                Change profile photo
-              </button> */}
 
               <input
                 type="file"
@@ -161,24 +146,6 @@ const EditProfile = () => {
                 Add a bio to your profile
               </p>
             </div>
-            {/* <div>
-              <label htmlFor="name" className="text-md font-medium">
-                Gender
-              </label>
-
-              <select
-                id="name"
-                className="mt-2 w-full rounded-sm bg-gray-700 px-4 py-2 outline-none"
-                {...register("gender")}
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-              <p className="mt-1 text-xs text-gray-400">
-                This won’t be part of your public profile.
-              </p>
-            </div> */}
           </div>
 
           <button className="mt-10 w-fit rounded-lg bg-blue-500 px-4 py-2 text-gray-50">

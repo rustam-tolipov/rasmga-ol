@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { postComment as postCommentApi } from "../../services/apiPosts";
 import toast from "react-hot-toast";
 

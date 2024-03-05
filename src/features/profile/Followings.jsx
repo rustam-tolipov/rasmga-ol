@@ -5,8 +5,8 @@ import useUnFollow from "../../hooks/useUnFollow";
 import { NavLink } from "react-router-dom";
 
 const Followings = ({ id }) => {
-  const { followingsLoading, followings, followingsError } = useFollowings(id);
-  const { isUnFollowing, unFollowUser } = useUnFollow();
+  const { followings } = useFollowings(id);
+  const { unFollowUser } = useUnFollow();
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">

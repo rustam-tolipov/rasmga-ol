@@ -1,5 +1,4 @@
 import React from "react";
-import { logout } from "../services/apiAuth";
 import { useLogout } from "../features/authentication/useLogout";
 
 const Logout = () => {

@@ -1,15 +1,12 @@
 import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import useFollowings from "../hooks/useFollowings";
-import useFollowers from "../hooks/useFollowers";
+import { NavLink, useNavigate } from "react-router-dom";
 import useNotifications from "../hooks/useNotifications";
-import { createPortal } from "react-dom";
 import LoadingNotifications from "../features/loading/LoadingNotifications";
 
 const Notifications = ({ onClose }) => {
-  const { notificationsLoading, notifications, notificationsError } =
+  const { notificationsLoading, notifications } =
     useNotifications();
 
   const navigate = useNavigate();

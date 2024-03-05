@@ -54,10 +54,3 @@ const Login = () => {
 };
 
 export default Login;
-
-/* <div className="flex flex-col items-center gap-4 text-gray-50 shadow-lg shadow-[#252627]">
-          <img src="/images/logo.svg" alt="RasmgaOl" className="w-40" />
-          <CiCamera className="text-6xl" />
-
-          <h1 className="text-2xl font-thin">USER LOGIN</h1>
-        </div> */

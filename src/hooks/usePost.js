@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { getPost } from "../services/apiPosts";
 import { useParams } from "react-router-dom";
 

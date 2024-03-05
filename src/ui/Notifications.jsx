@@ -1,15 +1,10 @@
 import React from "react";
-import { HiMiniXMark } from "react-icons/hi2";
-import TopHeader from "../ui/TopHeader";
 import { NavLink, useParams } from "react-router-dom";
-import useFollowings from "../hooks/useFollowings";
-import useFollowers from "../hooks/useFollowers";
 import useNotifications from "../hooks/useNotifications";
 import { createPortal } from "react-dom";
 
 const Notifications = ({ onClose }) => {
-  const { notificationsLoading, notifications, notificationsError } =
-    useNotifications();
+  const { notifications } = useNotifications();
 
   return createPortal(
     <Overlay onClose={onClose}>

@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useCurrentUser from "../../hooks/useCurrentUser";
 import useProfile from "./useProfile";
-import useUnFollow from "../../hooks/useUnFollow";
-import useFollow from "../../hooks/useFollow";
 import Modal from "../../ui/Modal";
 import Followers from "./Followers";
 import Followings from "./Followings";
 import FollowButton from "../../ui/FollowButton";
 import EditButton from "../../ui/EditButton";
-import Logout from "../../ui/Logout";
 import { useLogout } from "../authentication/useLogout";
 
 const Header = () => {

@@ -4,7 +4,7 @@ import useFollowers from "../../hooks/useFollowers";
 import { NavLink } from "react-router-dom";
 
 const Followers = ({ id }) => {
-  const { followersLoading, followers, followersError } = useFollowers(id);
+  const { followers } = useFollowers(id);
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">
@@ -19,7 +19,10 @@ const Followers = ({ id }) => {
               key={index}
               className="flex items-center justify-between px-4 py-2"
             >
-              <NavLink className="flex items-center gap-2" to={`/profile/${follower.username}`}>
+              <NavLink
+                className="flex items-center gap-2"
+                to={`/profile/${follower.username}`}
+              >
                 <img
                   src={follower.avatar}
                   alt="profile"

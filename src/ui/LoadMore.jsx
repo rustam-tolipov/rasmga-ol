@@ -1,16 +1,12 @@
-import { useInView } from "framer-motion";
-import React, { useRef } from "react";
 
 const LoadMore = ({
   fetchNextPage,
   hasNextPage,
-  isFetching,
   isFetchingNextPage,
 }) => {
-
   return (
-    <>
-      <div className="flex justify-center">
+    <div className="mt-4 flex flex-col items-center justify-center">
+      <div className="flex items-center justify-center">
         <button
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage || isFetchingNextPage}
@@ -23,8 +19,7 @@ const LoadMore = ({
               : "Nothing more to load"}
         </button>
       </div>
-      <div>{isFetching && !isFetchingNextPage ? "Fetching..." : null}</div>
-    </>
+    </div>
   );
 };
 

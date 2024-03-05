@@ -1,6 +1,4 @@
 import React from "react";
-import { getSuggestions } from "../../services/apiUsers";
-import { useQuery } from "@tanstack/react-query";
 import Suggestion from "../../ui/Suggestion";
 import LoadingSuggestions from "../loading/LoadingSuggestions";
 import useSuggestions from "./useSuggestions";
@@ -22,8 +20,6 @@ const Suggestions = () => {
 
   return (
     <div className="hidden h-full flex-col gap-5 pt-8 lg:flex 2xl:w-[50%]">
-      {/* <Suggestion suggestedUser={suggestions[0]?.user} /> */}
-
       <div className="flex items-center justify-between text-gray-400">
         <h3 className="text-sm font-semibold">Suggested For You</h3>
         <span className="text-xs">See All</span>

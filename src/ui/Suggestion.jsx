@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import useFollow from "../hooks/useFollow";
 
 const Suggestion = ({ suggestedUser }) => {
-  const { isFollowing, followUser } = useFollow();
+  const { followUser } = useFollow();
 
   return (
     <div className="flex items-center gap-4">
