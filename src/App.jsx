@@ -21,6 +21,8 @@ import CreatePost from "./pages/CreatePost";
 import Notifications from "./pages/Notifications";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -70,6 +72,8 @@ function App() {
 
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

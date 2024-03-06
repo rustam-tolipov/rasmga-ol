@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import useLogin from "../features/authentication/useLogin";
 import { NavLink } from "react-router-dom";
 import LoginForm from "../features/authentication/LoginForm";
+import useForgotPassword from "../features/authentication/useForgotPassword";
 
 const Login = () => {
   const { login, isLoading, error } = useLogin();
+  const { forgotPassword } = useForgotPassword();
 
   const handleGuestCheckout = () => {
-    login({ username: "bob", email: "bob@gmail.com", password: "password" });
+    login({ email: "bob@gmail.com", password: "password" });
   };
 
   return (
@@ -37,7 +39,21 @@ const Login = () => {
             HAVE AN ACCOUNT? LOGIN
           </h1>
 
-          <LoginForm login={login} isLoading={isLoading} error={error} />
+          <LoginForm
+            login={login}
+            isLoading={isLoading}
+            error={error}
+            forgotPassword={forgotPassword}
+          />
+          <div className="flex items-center gap-3">
+            <span className="text-gray-500">Forgot your password?</span>
+            <NavLink
+              to="/forgot-password"
+              className="animate-pulse text-gray-50 hover:text-gray-300 hover:underline"
+            >
+              RESET PASSWORD
+            </NavLink>
+          </div>
           <div className="flex items-center gap-3">
             <span className="text-gray-500">Don&apos;t have an account?</span>
             <NavLink

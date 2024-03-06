@@ -2,6 +2,33 @@ import axios, { baseAxios } from "../features/authentication/axios";
 import { BASE_URL } from "../utils/constants";
 import Cookies from "js-cookie";
 
+export async function resetPassword(password, token) {
+  localStorage.removeItem("auth-token");
+  Cookies.remove("token");
+
+  const email = Cookies.get("email");
+
+  await baseAxios.post(`${BASE_URL}/password/reset`, {
+    email,
+    password,
+    token,
+  });
+
+  return true;
+}
+
+export async function forgotPassword(email) {
+  localStorage.removeItem("auth-token");
+  Cookies.remove("token");
+  Cookies.set("email", email, { expires: 1 });
+
+  await baseAxios.post(`${BASE_URL}/password/forgot`, {
+    email,
+  });
+
+  return true;
+}
+
 export async function signup(username, email, password, passwordConfirm) {
   const response = await baseAxios.post(`${BASE_URL}/auth/signup`, {
     user: {
