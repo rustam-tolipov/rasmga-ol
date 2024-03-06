@@ -33,27 +33,29 @@ const LoginForm = ({
         className="flex w-full flex-col gap-4 rounded-md border-gray-700 py-8 text-gray-50"
       >
         {/* USERNAME */}
-        {/* <div className="flex flex-col gap-1">
-      <div className="flex flex-row items-center gap-1 border border-gray-600 px-2">
-        <CiUser className="text-2xl" />
+        {!isLogin ? (
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-row items-center gap-1 border border-gray-600 px-2">
+              <CiUser className="text-2xl" />
 
-        <input
-          type="text"
-          className="w-full rounded-md bg-transparent p-2 text-xl font-light placeholder-gray-300 shadow-md outline-none"
-          {...register("username", {
-            required: "Username is required",
-            minLength: {
-              value: 3,
-              message: "Username must be at least 3 characters",
-            },
-          })}
-          placeholder="Username"
-        />
-      </div>
-      {errors.username && (
-        <p className="italic text-red-600">{errors.username.message}</p>
-      )}
-    </div> */}
+              <input
+                type="text"
+                className="w-full rounded-md bg-transparent p-2 text-xl font-light placeholder-gray-300 shadow-md outline-none"
+                {...register("username", {
+                  required: "Username is required",
+                  minLength: {
+                    value: 3,
+                    message: "Username must be at least 3 characters",
+                  },
+                })}
+                placeholder="Username"
+              />
+            </div>
+            {errors.username && (
+              <p className="italic text-red-600">{errors.username.message}</p>
+            )}
+          </div>
+        ) : null}
 
         {/* EMAIL */}
         <div className="flex flex-col gap-1">

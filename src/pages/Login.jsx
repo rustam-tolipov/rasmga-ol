@@ -45,7 +45,7 @@ const Login = () => {
             error={error}
             forgotPassword={forgotPassword}
           />
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <span className="text-gray-500">Forgot your password?</span>
             <NavLink
               to="/forgot-password"
@@ -53,7 +53,7 @@ const Login = () => {
             >
               RESET PASSWORD
             </NavLink>
-          </div>
+          </div> */}
           <div className="flex items-center gap-3">
             <span className="text-gray-500">Don&apos;t have an account?</span>
             <NavLink
