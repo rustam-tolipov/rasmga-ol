@@ -59,7 +59,7 @@
 
 ## About The Project
 
-![Rasmga Ol Screenshot](https://github.com/Rustamxon7/rasmga-ol/assets/69011963/7fd9df83-11f9-425f-9115-75ea1ed10e63)
+![Rasmga Ol Screenshot](https://private-user-images.githubusercontent.com/69011963/310872332-7fd9df83-11f9-425f-9115-75ea1ed10e63.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDk4MTQ5MzEsIm5iZiI6MTcwOTgxNDYzMSwicGF0aCI6Ii82OTAxMTk2My8zMTA4NzIzMzItN2ZkOWRmODMtMTFmOS00MjVmLTkxMTUtNzVlYTFlZDEwZTYzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMzA3VDEyMzAzMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTMyNTgyYjQyMjNlNWM3Mzg1YTMzNjliMGRhN2VkNGZhZGE1N2NhN2I5ODE1NjAyODY3MWVlNGNkMWE1NDk0NDImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.9Iev3wa27arA9sgLsAXPh4Q6eSgexKm0SiH-_SByB-I)
 
 Rasmga Ol UI is a social media platform that allows users to share their photos and videos with their followers. It is built with React, React Query, and Tailwind CSS. The UI is designed to be simple and easy to use, with a focus on the user experience.
 
