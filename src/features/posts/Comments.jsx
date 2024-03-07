@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import useCommentPost from "./useCommentPost";
 import { HiEllipsisHorizontal, HiOutlineFaceSmile } from "react-icons/hi2";
 import Comment from "../../ui/Comment";
+import Modal from "../../ui/Modal";
+import PostInfo from "./PostInfo";
 
-const Comments = ({ avatar, username, comments, postId }) => {
+const Comments = ({ avatar, username, comments, postId, user_id }) => {
   const { postComment } = useCommentPost();
+  const [openModal, setOpenModal] = useState(false);
 
   const handlePostComment = (e) => {
     if (e.key === "Enter") {
@@ -31,7 +34,23 @@ const Comments = ({ avatar, username, comments, postId }) => {
               {username}
             </NavLink>
           </div>
-          <HiEllipsisHorizontal className="text-2xl" />
+          <HiEllipsisHorizontal
+            className="text-2xl"
+            onClick={() => setOpenModal(!openModal)}
+          />
+
+          {openModal && (
+            <Modal openModal={openModal} onClose={setOpenModal}>
+              <PostInfo
+                {...{
+                  setOpenModal,
+                  user_id,
+                  id: postId,
+                  username,
+                }}
+              />
+            </Modal>
+          )}
         </div>
       </div>
 

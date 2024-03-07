@@ -16,18 +16,18 @@ export const LoadMedia = ({ media, inModal, is_video, size }) => {
 
   useEffect(() => {
     if (is_video) {
-      if (!isInView || inModal || muted) {
+      if (!isInView || inModal) {
         ref.current.pause();
         setPlayVideo(false);
       } else {
         ref.current.play();
+        setPlayVideo(false);
       }
     }
   }, [inModal, isInView, is_video, muted]);
 
   const handlePlayVideo = () => {
     ref.current.play();
-    ref.current.muted = false;
     setMuted(false);
     setPlayVideo(false);
   };
@@ -126,7 +126,7 @@ export const LoadModalMedia = ({ media }) => {
     setPlayVideo(!playVideo);
   };
 
-  if (media && media.includes("video")) {
+  if (media && media.endsWith(".mp4")) {
     return (
       <div className="relative">
         <video

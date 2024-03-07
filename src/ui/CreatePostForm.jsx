@@ -14,7 +14,9 @@ const CreatePostForm = ({ onClose }) => {
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState("");
   const [content, setContent] = useState("");
-  const [size, setSize] = useState("standard");
+  const [size, setSize] = useState(
+    file ? (fileType === "video/mp4" ? "reels" : "standard") : "",
+  );
 
   const { isLoading, createPost } = useCreatePost();
 

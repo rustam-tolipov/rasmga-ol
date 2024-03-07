@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useDeletePost = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isDeleting, mutate: deletePost } = useMutation({
+  const { status, mutate: deletePost } = useMutation({
     mutationFn: deletePostApi,
     onSuccess: () => {
       toast.success("Post deleted successfully");
@@ -22,6 +22,8 @@ const useDeletePost = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isDeleting = status === "pending";
 
   return { isDeleting, deletePost };
 };

@@ -6,13 +6,16 @@ import TopHeader from "../ui/TopHeader";
 import { LoadModalMedia } from "../features/posts/LoadMedia";
 import { useNavigate } from "react-router-dom";
 import PostComponent from "../features/posts/Post";
+import useCurrentUser from "../hooks/useCurrentUser";
 
 const Post = () => {
   const { isLoading, post, error } = usePost();
 
   const navigate = useNavigate();
 
-  if (isLoading) {
+  const { currentUserLoading, currentUser } = useCurrentUser();
+
+  if (isLoading || currentUserLoading) {
     return (
       <div className="flex h-screen animate-pulse items-center justify-center bg-[#121212] text-gray-50">
         <h1 className="px-8 text-center text-lg">Post Loading...</h1>
@@ -62,6 +65,7 @@ const Post = () => {
             username={username}
             comments={comments}
             postId={id}
+            user_id={post?.user_id}
           />
         </div>
       </div>

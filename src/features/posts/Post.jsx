@@ -9,7 +9,8 @@ import Info from "./Info";
 import Comments from "./Comments";
 
 const Post = ({ post }) => {
-  const { image, comments, username, avatar, id, is_video, size } = post;
+  const { image, comments, username, avatar, id, is_video, size, user_id } =
+    post;
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -52,6 +53,7 @@ const Post = ({ post }) => {
                 username={username}
                 comments={comments}
                 postId={id}
+                user_id={user_id}
               />
             </div>
           </div>
