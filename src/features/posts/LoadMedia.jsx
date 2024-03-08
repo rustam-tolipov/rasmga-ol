@@ -28,7 +28,6 @@ export const LoadMedia = ({ media, inModal, is_video, size }) => {
 
   const handlePlayVideo = () => {
     ref.current.play();
-    setMuted(false);
     setPlayVideo(false);
   };
 
