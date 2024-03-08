@@ -28,8 +28,13 @@ const Explore = () => {
               <NavLink
                 key={index}
                 to={`/profile/${post.username}/post/${post.id}`}
+                className={
+                  index % 7 === 2
+                    ? "h-full w-full object-cover sm:row-span-2"
+                    : "w-full object-cover sm:h-72"
+                }
               >
-                <LoadMedia media={post.image?.url} i={index} />
+                <LoadMedia media={post.image?.url} />
               </NavLink>
             ))}
           </React.Fragment>
@@ -48,28 +53,9 @@ const Explore = () => {
 
 export default Explore;
 
-const LoadMedia = ({ media, i }) => {
+const LoadMedia = ({ media }) => {
   if (media.includes("video")) {
-    return (
-      <video
-        src={media}
-        className={
-          i % 7 === 2
-            ? "h-full w-full object-cover sm:row-span-2"
-            : " w-full object-cover sm:h-72"
-        }
-      ></video>
-    );
+    return <video src={media} className="h-full w-full object-cover"></video>;
   }
-  return (
-    <img
-      src={media}
-      alt="post"
-      className={
-        i % 7 === 2
-          ? "h-full w-full object-cover sm:row-span-2"
-          : "w-full object-cover sm:h-72"
-      }
-    />
-  );
+  return <img src={media} alt="post" className="h-full w-full object-cover" />;
 };

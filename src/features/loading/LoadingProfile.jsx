@@ -7,12 +7,10 @@ import { HiMiniCog6Tooth, HiOutlineUserPlus } from "react-icons/hi2";
 const LoadingProfile = () => {
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
-      <TopHeader>
-        <NavLink to="/account/settings">
+      <TopHeader title='profile' go="/account/settings">
+        <NavLink to="/account/settings" className="flex items-center gap-4">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
         </NavLink>
-        <h1 className="w-full text-center text-xl">User</h1>
-        <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
       <LoadingHeader />
     </div>
@@ -54,7 +52,7 @@ const LoadingHeader = () => {
           <div className="h-8 w-24 animate-pulse rounded-lg bg-slate-300"></div>
         </div>
 
-        <div className="flex sm:flex-col gap-2">
+        <div className="flex gap-2 sm:flex-col">
           <div className="h-6 w-24 animate-pulse rounded-lg bg-slate-300"></div>
           <div className="h-6 w-24 animate-pulse rounded-lg bg-slate-300"></div>
         </div>

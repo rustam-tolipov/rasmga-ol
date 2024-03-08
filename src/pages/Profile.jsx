@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   HiMiniCog6Tooth,
-  HiOutlineUserPlus,
   HiOutlineHeart,
   HiOutlineSquares2X2,
 } from "react-icons/hi2";
