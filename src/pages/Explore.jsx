@@ -6,6 +6,7 @@ import LoadingExplore from "../features/loading/LoadingExplore";
 import useInfinitePosts from "../features/posts/useInfinitePosts";
 import LoadMore from "../ui/LoadMore";
 import TopHeader from "../ui/TopHeader";
+import { NavLink } from "react-router-dom";
 
 const Explore = () => {
   const {
@@ -28,7 +29,12 @@ const Explore = () => {
         {data?.pages?.map((group, i) => (
           <React.Fragment key={i}>
             {group.data.map((post, index) => (
-              <LoadMedia media={post.image?.url} i={index} key={index} />
+              <NavLink
+                key={index}
+                to={`/profile/${post.username}/post/${post.id}`}
+              >
+                <LoadMedia media={post.image?.url} i={index} />
+              </NavLink>
             ))}
           </React.Fragment>
         ))}
