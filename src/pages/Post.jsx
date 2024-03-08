@@ -36,10 +36,8 @@ const Post = () => {
   return (
     <>
       <div className="flex flex-col sm:hidden">
-        <TopHeader>
-          <HiMiniXMark className="mr-auto text-4xl" onClick={handleBack} />
-          <h1 className="w-full text-center text-xl">Post</h1>
-        </TopHeader>
+        <TopHeader title="Post" />
+
         <div className="pt-14 sm:hidden">
           {post && <PostComponent post={post} />}
         </div>

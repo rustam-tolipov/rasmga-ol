@@ -9,15 +9,17 @@ import Highlights from "../features/home/Highlights";
 const Home = () => {
   return (
     <>
-      <TopHeader>
-        <HiCamera className="text-3xl xl:hidden" />
-        <div className="flex items-center gap-1 ml-auto">
-          <NavLink to="/create" className="cursor-pointer">
-            <HiOutlinePlusCircle className="text-3xl" />
-          </NavLink>
-          <NavLink to="/notifications" className="cursor-pointer">
-            <HiOutlineHeart className="text-3xl" />
-          </NavLink>
+      <TopHeader go="/">
+        <div className="flex w-full">
+          <HiCamera className="text-3xl xl:hidden" />
+          <div className="ml-auto flex items-center gap-1">
+            <NavLink to="/create" className="cursor-pointer">
+              <HiOutlinePlusCircle className="text-3xl" />
+            </NavLink>
+            <NavLink to="/notifications" className="cursor-pointer">
+              <HiOutlineHeart className="text-3xl" />
+            </NavLink>
+          </div>
         </div>
       </TopHeader>
 

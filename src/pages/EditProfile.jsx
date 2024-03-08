@@ -29,10 +29,6 @@ const EditProfile = () => {
 
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   const onSubmit = (data) => {
     editProfile({ ...data, avatar: file });
     navigate("/profile/" + data.username);
@@ -50,13 +46,7 @@ const EditProfile = () => {
         </ul>
       </div>
       <div className="flex flex-col xl:w-1/2 xl:pl-12 xl:pt-12">
-        <TopHeader>
-          <HiChevronLeft className="mr-auto text-2xl" onClick={handleBack} />
-
-          <h1 className="text-md w-full text-center font-semibold">
-            Edit profile
-          </h1>
-        </TopHeader>
+        <TopHeader title="Edit Profile" />
 
         <form
           className="mt-12 flex h-full flex-col gap-4 px-4 py-4 sm:mt-0"

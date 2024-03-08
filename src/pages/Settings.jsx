@@ -9,19 +9,9 @@ const Settings = () => {
 
   const { logout, isLoading } = useLogout();
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   return (
     <div className="flex h-screen flex-col">
-      <TopHeader>
-        <HiChevronLeft className="mr-auto text-2xl" onClick={handleBack} />
-
-        <h1 className="text-md w-full text-center font-semibold">
-          Settings and privacy
-        </h1>
-      </TopHeader>
+      <TopHeader title="Settings" />
 
       <div className="mt-12 flex h-full flex-col pb-14 sm:mt-0">
         <h3 className="bg-gray-800 px-2 py-2 text-xl font-light tracking-wide">

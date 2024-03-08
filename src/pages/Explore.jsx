@@ -1,11 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { getPosts } from "../services/apiPosts";
-import usePosts from "../hooks/usePosts";
 import LoadingExplore from "../features/loading/LoadingExplore";
 import useInfinitePosts from "../features/posts/useInfinitePosts";
 import LoadMore from "../ui/LoadMore";
-import TopHeader from "../ui/TopHeader";
 import { NavLink } from "react-router-dom";
 
 const Explore = () => {

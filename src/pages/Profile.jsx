@@ -31,12 +31,10 @@ const Profile = () => {
 
   return (
     <div className="flex flex-col xl:items-center xl:justify-center">
-      <TopHeader>
-        <NavLink to="/account/settings">
+      <TopHeader title={username} go="/account/settings">
+        <NavLink to="/account/settings" className="flex items-center gap-4">
           <HiMiniCog6Tooth className="mr-auto text-2xl" />
         </NavLink>
-        <h1 className="w-full text-center text-xl">{username}</h1>
-        <HiOutlineUserPlus className="text-2xl" />
       </TopHeader>
 
       <Header />

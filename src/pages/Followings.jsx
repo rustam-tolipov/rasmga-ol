@@ -8,22 +8,13 @@ import LoadingFollowers from "../features/loading/LoadingFollowers";
 const Followings = () => {
   const { followingsLoading, followings } = useFollowings();
 
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   if (followingsLoading) {
-    return  <LoadingFollowers title="Followings" />;
+    return <LoadingFollowers title="Followings" />;
   }
 
   return (
     <div className="flex flex-col gap-3 xl:px-4">
-      <TopHeader>
-        <HiMiniXMark className="mr-auto text-4xl" onClick={handleBack} />
-        <h1 className="w-full text-center text-xl">Followings</h1>
-      </TopHeader>
+      <TopHeader title="Followings" />
 
       <div className="mt-12 flex flex-col gap-6 px-4 py-3 sm:mt-0">
         {followings?.map((following, index) => (

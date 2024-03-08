@@ -48,10 +48,6 @@ const CreatePost = () => {
     setContent(e.target.value);
   };
 
-  const handleBack = () => {
-    setCurrentPage((prev) => prev - 1);
-  };
-
   const handleNext = () => {
     if (currentPage === 2) return;
     setCurrentPage((prev) => prev + 1);
@@ -61,10 +57,7 @@ const CreatePost = () => {
 
   return (
     <div className="flex h-[92dvh] flex-col gap-3 xl:px-4">
-      <TopHeader>
-        <HiMiniXMark className="mr-auto text-4xl" onClick={handleBack} />
-        <h1 className="w-full text-center text-xl">Create Post</h1>
-
+      <TopHeader go="">
         {currentPage === 2 ? (
           <button
             className="text-md ml-auto rounded-lg py-1 font-semibold text-blue-500 xl:ml-20"
@@ -75,7 +68,7 @@ const CreatePost = () => {
           </button>
         ) : (
           <HiChevronRight
-            className="text-3xl"
+            className="ml-auto text-3xl"
             onClick={handleNext}
             disabled={isLoading}
           />

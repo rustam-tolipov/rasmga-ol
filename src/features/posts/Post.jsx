@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { HiMiniXMark } from "react-icons/hi2";
 
 import Modal from "../../ui/Modal";
 import { LoadMedia, LoadModalMedia } from "./LoadMedia";
@@ -36,13 +35,7 @@ const Post = ({ post }) => {
         <Modal openModal={openModal} onClose={handleModal}>
           <div className="absolute left-1/2 top-1/2 z-10 flex h-full w-full -translate-x-1/2 -translate-y-1/2 transform sm:max-h-[80dvh] sm:w-[80dvw]">
             <div className="grid h-full w-full grid-cols-1 bg-gray-800 font-medium text-gray-50 sm:grid-cols-[auto_50%]">
-              <TopHeader>
-                <HiMiniXMark
-                  className="mr-auto text-4xl"
-                  onClick={handleModal}
-                />
-                <h1 className="w-full text-center text-xl">Comments</h1>
-              </TopHeader>
+              <TopHeader title="Comments" />
 
               <div className="relative hidden h-full w-full items-center justify-center overflow-hidden bg-black sm:flex">
                 <LoadModalMedia media={image.url} />
