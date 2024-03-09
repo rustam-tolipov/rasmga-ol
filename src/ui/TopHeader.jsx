@@ -9,8 +9,6 @@ const TopHeader = ({ title, children, go = "back" }) => {
     navigate(-1);
   };
 
-  console.log(go);
-
   return (
     <div className="fixed z-50 flex h-[6dvh] w-full items-center gap-2 border-b border-slate-600 bg-gray-900 px-4 py-2 sm:hidden">
       {children}

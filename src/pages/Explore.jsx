@@ -32,7 +32,7 @@ const Explore = () => {
                 className="w-full overflow-hidden sm:h-72"
               >
                 <LoadPreviewMedia
-                  media={post.image?.url}
+                  media={post.image?.thumbnail.url}
                   comments={post.comments.length}
                   likes={post.likes.length}
                 />

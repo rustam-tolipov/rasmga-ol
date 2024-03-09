@@ -16,6 +16,7 @@ const ProfilePosts = () => {
 export default ProfilePosts;
 
 const Posts = ({ posts }) => {
+
   return (
     <div className="grid grid-cols-3 gap-1">
       {posts.length > 0 &&
@@ -27,7 +28,7 @@ const Posts = ({ posts }) => {
           >
             <LoadPreviewMedia
               key={index}
-              media={post.image.url}
+              media={post.image?.thumbnail.url}
               comments={post.comments.length}
               likes={post.likes.length}
             />

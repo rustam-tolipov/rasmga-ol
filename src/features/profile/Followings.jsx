@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const Followings = ({ id }) => {
   const { followings } = useFollowings(id);
-  const { unFollowUser } = useUnFollow();
+  const { isUnFollowing, unFollowUser } = useUnFollow();
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">
@@ -36,7 +36,7 @@ const Followings = ({ id }) => {
                 className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50"
                 onClick={() => unFollowUser(following.id)}
               >
-                Unfollow
+                {isUnFollowing ? "Unfollowing" : "Unfollow"}
               </button>
             </div>
           ))}

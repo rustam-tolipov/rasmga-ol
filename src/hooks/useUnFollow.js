@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useUnFollow = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isUnFollowing, mutate: unFollowUser } = useMutation({
+  const { status, mutate: unFollowUser } = useMutation({
     mutationFn: unFollowUserApi,
     onSuccess: () => {
       toast.success("Unfollowed successfully");
@@ -16,6 +16,8 @@ const useUnFollow = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isUnFollowing = status === "pending";
 
   return { isUnFollowing, unFollowUser };
 };

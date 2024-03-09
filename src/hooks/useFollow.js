@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const useFollow = () => {
   const queryClient = useQueryClient();
 
-  const { isLoading: isFollowing, mutate: followUser } = useMutation({
+  const { status, mutate: followUser } = useMutation({
     mutationFn: followUserApi,
     onSuccess: () => {
       toast.success("Followed successfully");
@@ -16,6 +16,8 @@ const useFollow = () => {
       toast.error("An error occurred: " + error.message);
     },
   });
+
+  const isFollowing = status === "pending";
 
   return { isFollowing, followUser };
 };

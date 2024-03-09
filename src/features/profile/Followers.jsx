@@ -2,9 +2,11 @@ import React from "react";
 import { HiChevronLeft } from "react-icons/hi2";
 import useFollowers from "../../hooks/useFollowers";
 import { NavLink } from "react-router-dom";
+import useFollow from "../../hooks/useFollow";
 
 const Followers = ({ id }) => {
   const { followers } = useFollowers(id);
+  const { isFollowing, followUser } = useFollow();
 
   return (
     <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-gray-800">
@@ -30,9 +32,14 @@ const Followers = ({ id }) => {
                 />
                 <h3>{follower.username}</h3>
               </NavLink>
-              <button className="rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50">
-                Follow
-              </button>
+              {!follower.is_followed && (
+                <button
+                  className="rounded-lg bg-blue-500 px-6 py-1 text-sm text-gray-50"
+                  onClick={() => followUser(follower.id)}
+                >
+                  {isFollowing ? "Following" : "Follow Back"}
+                </button>
+              )}
             </div>
           ))}
         </div>

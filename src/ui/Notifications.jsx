@@ -51,7 +51,7 @@ const Notification = ({ notification, onClose }) => {
         <p className="text-xs">{notification.message}</p>
       </div>
       <div className="ml-auto h-[2.8rem] w-[2.8rem]">
-        {notification.thumb.includes(".mp4") ? (
+        {notification.thumbnail.endsWith(".mp4") ? (
           <video src={notification.thumb} muted className="h-full w-full" />
         ) : (
           <img

@@ -24,7 +24,7 @@ const Reels = ({ reels }) => {
         <NavLink key={index} to={`/profile/${reel.username}/post/${reel.id}`}>
           <LoadPreviewMedia
             key={index}
-            media={reel.image.reels.url}
+            media={reel.image.thumbnail.url}
             comments={reel.comments.length}
             likes={reel.likes.length}
           />
