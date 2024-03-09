@@ -33,6 +33,8 @@ const Notifications = ({ onClose }) => {
 export default Notifications;
 
 const Notification = ({ notification, onClose }) => {
+  console.log(notification);
+
   return (
     <NavLink
       className="flex items-center gap-4"
@@ -51,7 +53,7 @@ const Notification = ({ notification, onClose }) => {
         <p className="text-xs">{notification.message}</p>
       </div>
       <div className="ml-auto h-[2.8rem] w-[2.8rem]">
-        {notification.thumbnail.includes(".mp4") ? (
+        {notification.thumb.endsWith(".mp4") ? (
           <video src={notification.thumb} muted className="h-full w-full" />
         ) : (
           <img
