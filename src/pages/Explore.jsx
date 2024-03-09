@@ -3,6 +3,7 @@ import LoadingExplore from "../features/loading/LoadingExplore";
 import useInfinitePosts from "../features/posts/useInfinitePosts";
 import LoadMore from "../ui/LoadMore";
 import { NavLink } from "react-router-dom";
+import LoadPreviewMedia from "./LoadPreviewMedia";
 
 const Explore = () => {
   const {
@@ -28,13 +29,13 @@ const Explore = () => {
               <NavLink
                 key={index}
                 to={`/profile/${post.username}/post/${post.id}`}
-                className={
-                  index % 7 === 2
-                    ? "h-full w-full object-cover sm:row-span-2"
-                    : "w-full object-cover sm:h-72"
-                }
+                className="w-full overflow-hidden sm:h-72"
               >
-                <LoadMedia media={post.image?.url} />
+                <LoadPreviewMedia
+                  media={post.image?.url}
+                  comments={post.comments.length}
+                  likes={post.likes.length}
+                />
               </NavLink>
             ))}
           </React.Fragment>
@@ -52,10 +53,3 @@ const Explore = () => {
 };
 
 export default Explore;
-
-const LoadMedia = ({ media }) => {
-  if (media.includes("video")) {
-    return <video src={media} className="h-full w-full object-cover"></video>;
-  }
-  return <img src={media} alt="post" className="h-full w-full object-cover" />;
-};
