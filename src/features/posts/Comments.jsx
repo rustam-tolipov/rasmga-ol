@@ -18,7 +18,7 @@ const Comments = ({ avatar, username, comments, postId, user_id }) => {
   };
 
   return (
-    <div className="flex h-full w-full sm:min-w-[30dvw] flex-col overflow-y-auto bg-[#121212] pb-12 pt-12 sm:p-0">
+    <div className="flex h-full w-full flex-col overflow-y-auto bg-[#121212] pb-12 pt-12 sm:min-w-[30dvw] sm:p-0">
       <div className="hidden h-fit border-b border-gray-600 sm:block">
         <div className="flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-2">
@@ -56,13 +56,7 @@ const Comments = ({ avatar, username, comments, postId, user_id }) => {
 
       <div className="flex flex-col gap-2 overflow-y-scroll px-4 py-2">
         {comments?.map((comment, index) => (
-          <Comment
-            key={index}
-            {...comment}
-            postId={postId}
-            avatar={avatar}
-            username={username}
-          />
+          <Comment key={index} {...comment} />
         ))}
       </div>
 

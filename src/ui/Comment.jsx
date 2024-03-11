@@ -12,7 +12,7 @@ const Comment = ({
   content,
   created_at,
   id,
-  postId,
+  post_id,
   likes,
   user_id,
 }) => {
@@ -47,19 +47,22 @@ const Comment = ({
             <span className="text-xs font-semibold">{likes.length} likes</span>
           )}
 
-          <HiEllipsisHorizontal className="cursor-pointer text-xl" onClick={() => setOpenModal(!openModal)} />
+          <HiEllipsisHorizontal
+            className="cursor-pointer text-xl"
+            onClick={() => setOpenModal(!openModal)}
+          />
 
           {openModal && (
             <Modal openModal={openModal} onClose={setOpenModal}>
               <CommentInfo
-                {...{ setOpenModal, user_id, post_id: postId, id, username }}
+                {...{ setOpenModal, user_id, post_id, id, username }}
               />
             </Modal>
           )}
         </div>
       </div>
 
-      <LikeButton isLiked={isLiked} comment={{ id, post_id: postId }} />
+      <LikeButton isLiked={isLiked} comment={{ id, post_id }} />
     </div>
   );
 };
