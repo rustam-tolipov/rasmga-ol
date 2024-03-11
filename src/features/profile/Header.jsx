@@ -43,9 +43,9 @@ const Header = () => {
       {openModal && (
         <Modal openModal={openModal} onClose={setOpenModal}>
           {openModal === "followers" ? (
-            <Followers id={id} />
+            <Followers id={id} onClose={setOpenModal} />
           ) : (
-            <Followings id={id} />
+            <Followings id={id} onClose={setOpenModal} />
           )}
         </Modal>
       )}

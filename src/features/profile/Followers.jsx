@@ -4,7 +4,7 @@ import useFollowers from "../../hooks/useFollowers";
 import { NavLink } from "react-router-dom";
 import useFollow from "../../hooks/useFollow";
 
-const Followers = ({ id }) => {
+const Followers = ({ id, onClose }) => {
   const { followers } = useFollowers(id);
   const { isFollowing, followUser } = useFollow();
 
@@ -24,6 +24,7 @@ const Followers = ({ id }) => {
               <NavLink
                 className="flex items-center gap-2"
                 to={`/profile/${follower.username}`}
+                onClick={onClose}
               >
                 <img
                   src={follower.avatar}

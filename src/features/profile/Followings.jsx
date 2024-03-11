@@ -4,7 +4,7 @@ import useFollowings from "../../hooks/useFollowings";
 import useUnFollow from "../../hooks/useUnFollow";
 import { NavLink } from "react-router-dom";
 
-const Followings = ({ id }) => {
+const Followings = ({ id, onClose }) => {
   const { followings } = useFollowings(id);
   const { isUnFollowing, unFollowUser } = useUnFollow();
 
@@ -24,6 +24,7 @@ const Followings = ({ id }) => {
               <NavLink
                 className="flex items-center gap-2"
                 to={`/profile/${following.username}`}
+                onClick={onClose}
               >
                 <img
                   src={following.avatar}
