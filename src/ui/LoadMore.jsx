@@ -5,7 +5,7 @@ const LoadMore = ({
   isFetchingNextPage,
 }) => {
   return (
-    <div className="mt-4 flex flex-col items-center justify-center">
+    <div className="mb-6 mt-auto flex flex-col items-center justify-center">
       <div className="flex items-center justify-center">
         <button
           onClick={() => fetchNextPage()}

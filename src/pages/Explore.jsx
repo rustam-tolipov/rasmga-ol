@@ -21,7 +21,7 @@ const Explore = () => {
   }
 
   return (
-    <div className="flex flex-col xl:items-center">
+    <div className="flex h-full flex-col xl:items-center">
       <div className="grid grid-cols-3 gap-1 sm:mt-0 sm:p-8 xl:w-[70dvw]">
         {data?.pages?.map((group, i) => (
           <React.Fragment key={i}>
