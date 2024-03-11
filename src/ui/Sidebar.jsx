@@ -124,8 +124,8 @@ const LinkItem = ({ icon, text, to }) => {
         to={to}
         className={({ isActive }) =>
           isActive
-            ? "flex cursor-pointer items-center gap-4 rounded-md bg-[#343333] px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
-            : "flex cursor-pointer items-center gap-4 rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+            ? "flex cursor-pointer items-center gap-4 w-fit xl:w-full rounded-md bg-[#343333] px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
+            : "flex cursor-pointer items-center gap-4 w-fit xl:w-full rounded-md px-2 py-2 duration-500 hover:bg-[#1f1e1e]"
         }
       >
         {icon} <span className="text-lg sm:hidden xl:block">{text}</span>

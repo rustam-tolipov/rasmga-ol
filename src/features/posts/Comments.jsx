@@ -18,7 +18,7 @@ const Comments = ({ avatar, username, comments, postId, user_id }) => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col overflow-y-auto pb-12 pt-12 sm:p-0">
+    <div className="flex h-full w-full sm:min-w-[30dvw] flex-col overflow-y-auto bg-[#121212] pb-12 pt-12 sm:p-0">
       <div className="hidden h-fit border-b border-gray-600 sm:block">
         <div className="flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-2">

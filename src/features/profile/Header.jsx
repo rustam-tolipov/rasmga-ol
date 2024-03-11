@@ -100,22 +100,18 @@ const Header = () => {
 
           <div className="flex flex-col">
             <p className="text-md font-medium">{username}</p>
-            <p className="hidden text-sm md:block">
-              {bio || "Lorem ipsum dolor sit amet, consectetur"}
-            </p>
+            <p className="hidden text-sm md:block">{bio || ""}</p>
 
-            <p className="text-xs text-gray-400">
+            {/* <p className="text-xs text-gray-400">
               5000 accounts reached in the last 30 <br /> days.
               <strong>View insights</strong>
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
       <div className="px-4 py-4 sm:hidden">
         <p className="text-md font-medium">{username}</p>
-        <p className="text-sm">
-          {bio || "Lorem ipsum dolor sit amet, consectetur"}
-        </p>
+        <p className="text-sm">{bio || ""}</p>
       </div>
       <div className="flex flex-row items-center justify-around border-y border-slate-600 p-2 px-4 sm:hidden">
         <div className="flex flex-col items-center">

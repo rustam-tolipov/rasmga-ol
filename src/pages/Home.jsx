@@ -25,7 +25,7 @@ const Home = () => {
 
       <div className="h-[6dvh] sm:hidden"></div>
 
-      <div className="grid grid-cols-1 gap-28 sm:mt-0 md:pt-4 lg:grid-cols-[63%_auto] xl:px-16 xl:pr-28">
+      <div className="grid grid-cols-1 gap-28 sm:mt-0 md:pt-4 xl:grid-cols-[63%_auto] xl:px-16 xl:pr-28">
         <div className="flex flex-col gap-6 2xl:ml-auto">
           <Highlights />
           <Posts />

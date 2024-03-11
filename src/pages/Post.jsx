@@ -6,16 +6,13 @@ import TopHeader from "../ui/TopHeader";
 import { LoadModalMedia } from "../features/posts/LoadMedia";
 import { useNavigate } from "react-router-dom";
 import PostComponent from "../features/posts/Post";
-import useCurrentUser from "../hooks/useCurrentUser";
 
 const Post = () => {
   const { isLoading, post, error } = usePost();
 
   const navigate = useNavigate();
 
-  const { currentUserLoading, currentUser } = useCurrentUser();
-
-  if (isLoading || currentUserLoading) {
+  if (isLoading) {
     return (
       <div className="flex h-screen animate-pulse items-center justify-center bg-[#121212] text-gray-50">
         <h1 className="px-8 text-center text-lg">Post Loading...</h1>
@@ -48,9 +45,9 @@ const Post = () => {
           onClick={handleBack}
         />
 
-        <div className="grid h-full w-full grid-cols-1 bg-gray-800 font-medium text-gray-50 sm:grid-cols-[auto_30%]">
+        <div className="grid h-full w-full grid-cols-1 bg-[#121212] font-medium text-gray-50 sm:grid-cols-[auto_40%] lg:grid-cols-[auto_30%]">
           <TopHeader>
-            <HiMiniXMark className="mr-auto text-4xl" />
+            <HiMiniXMark className="mr-auto text-4xl" onClick={handleBack} />
             <h1 className="w-full text-center text-xl">Comments</h1>
           </TopHeader>
 
