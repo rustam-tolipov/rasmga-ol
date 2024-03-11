@@ -18,6 +18,7 @@ const FollowButton = ({ is_followed, id }) => {
       className={`rounded-lg bg-gray-500 px-6 py-1 text-sm text-gray-50 ${
         is_followed ? "bg-red-500" : ""
       }`}
+      disabled={isUnFollowing || isFollowing}
     >
       {is_followed ? "Unfollow" : "Follow"}
     </button>

@@ -72,6 +72,7 @@ const Header = () => {
                   <button
                     className="rounded-lg bg-red-500 px-6 py-1 text-sm text-gray-50"
                     onClick={() => logout()}
+                    disabled={isLoading}
                   >
                     {isLoading ? "Loading..." : "Logout"}
                   </button>

@@ -57,6 +57,7 @@ const Settings = () => {
           type="button"
           className="mt-auto flex items-center justify-between border-y border-gray-600 px-2 py-2"
           onClick={() => logout()}
+          disabled={isLoading}
         >
           <span className="text-lg text-red-500">
             {isLoading ? "Logging out..." : "Logout"}

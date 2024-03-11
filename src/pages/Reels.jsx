@@ -80,8 +80,8 @@ const Reel = ({ reel, muted, setMuted }) => {
                 </div>
                 <h3 className="text-sm font-semibold">{username}</h3>
               </NavLink>
-              <span className="text-2xl text-gray-400">·</span>
-              <button className="text-sm text-gray-400">Follow</button>
+              {/* <span className="text-2xl text-gray-400">·</span> */}
+              {/* <button className="text-sm text-gray-400">Follow</button> */}
             </div>
 
             <div className="text-sm">

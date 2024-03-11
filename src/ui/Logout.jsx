@@ -9,6 +9,7 @@ const Logout = () => {
     <button
       onClick={() => logout()}
       className="xl:w-full rounded-md bg-red-500 sm:px-2 xl:px-4 py-2 text-center text-sm font-semibold text-white"
+      disabled={isLoading}
     >
       <span className="hidden xl:block">
         {isLoading ? "Logging out..." : "Logout"}

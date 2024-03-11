@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import useFollow from "../hooks/useFollow";
 
 const Suggestion = ({ suggestedUser }) => {
-  const { followUser } = useFollow();
+  const { isFollowing, followUser } = useFollow();
 
   return (
     <div className="flex items-center gap-4">
@@ -26,6 +26,7 @@ const Suggestion = ({ suggestedUser }) => {
       <button
         className="ml-auto text-sm font-semibold text-blue-500"
         onClick={() => followUser(suggestedUser.id)}
+        disabled={isFollowing}
       >
         Follow
       </button>

@@ -37,6 +37,7 @@ const Followers = ({ id, onClose }) => {
                 <button
                   className="rounded-lg bg-blue-500 px-6 py-1 text-sm text-gray-50"
                   onClick={() => followUser(follower.id)}
+                  disabled={isFollowing}
                 >
                   {isFollowing ? "Following" : "Follow Back"}
                 </button>

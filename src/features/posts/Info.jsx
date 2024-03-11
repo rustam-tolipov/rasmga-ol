@@ -57,7 +57,11 @@ const Info = ({ likes, comments, handleModal, id, username, caption }) => {
         />
         <div className="flex gap-2">
           {comment.length > 0 && (
-            <button className="text-sm font-semibold" type="submit">
+            <button
+              className="text-sm font-semibold"
+              type="submit"
+              disabled={isCommenting}
+            >
               Post
             </button>
           )}

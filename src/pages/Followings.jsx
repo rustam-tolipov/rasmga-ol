@@ -2,7 +2,7 @@ import React from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 import TopHeader from "../ui/TopHeader";
 import useFollowings from "../hooks/useFollowings";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import LoadingFollowers from "../features/loading/LoadingFollowers";
 import useUnFollow from "../hooks/useUnFollow";
 
@@ -40,11 +40,14 @@ const Follower = ({ following }) => {
           className="h-full w-full rounded-[50%]"
         />
       </div>
-      <h3 className="text-sm font-semibold">{following.username}</h3>
+      <NavLink to={`/profile/${following.username}`}>
+        <h3 className="text-sm font-semibold">{following.username}</h3>
+      </NavLink>
 
       <button
         className="text-md ml-auto rounded-lg bg-gray-500 px-4 py-1 text-gray-50 xl:ml-20"
         onClick={() => unFollowUser(following.id)}
+        disabled={isUnFollowing}
       >
         {isUnFollowing ? "Unfollowing" : "Unfollow"}
       </button>
