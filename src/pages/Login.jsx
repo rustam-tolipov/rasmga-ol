@@ -9,7 +9,7 @@ const Login = () => {
   const { forgotPassword } = useForgotPassword();
 
   const handleGuestCheckout = () => {
-    login({ email: "bob@gmail.com", password: "password" });
+    login({ email: "guest@gmail.com", password: "password" });
   };
 
   return (
